@@ -1,0 +1,17 @@
+{% extends "band_booking/base.html" %}
+{% block title %}{{ band.name }} - Band - Band Booking{% endblock %}
+{% block content %}
+<h1>{{ band.name }} <small>Band</small></h1>
+<h2>Contact</h2>
+<table>
+	<tr><td colspan="2"><b>{{ band.contact_person }}</b></td></tr>
+	<tr>
+		<td>Phone</td>
+		<td>{{ band.contact_phone }}</td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td>{{ band.contact_email }}</td>
+	</tr>
+</table>
+{% endblock %}
