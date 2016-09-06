@@ -2,6 +2,13 @@
 {% block title %}{{ band.name }} - Band - Band Booking{% endblock %}
 {% block content %}
 <h1>{{ band.name }} <small>Band</small></h1>
+<img src="{{ band_meta.images.0.url }}" width="{{ band_meta.images.0.width }}" height="{{ band_meta.images.0.height }}">
+<table>
+	<tr>
+		<td>Popularity</td>
+		<td>{{ band_meta.popularity }}</td>
+	</tr>
+</table>
 <h2>Contact</h2>
 <table>
 	<tr><td colspan="2"><b>{{ band.contact_person }}</b></td></tr>

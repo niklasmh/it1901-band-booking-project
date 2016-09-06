@@ -9,3 +9,14 @@ class BandListView(ListView):
 class BandDetailView(DetailView):
 	model = models.Band
 	pk_url_kwarg = 'band'
+
+	def get_context_data(self, **kwargs):
+		context = super(BandDetailView, self).get_context_data(**kwargs)
+		if self.object.spotify_artist_id:
+			artist_req = requests.get('https://api.spotify.com/v1/artists/%s/' % (
+				self.object.spotify_artist_id
+			))
+			if artist_req.status_code == 200:
+				context['band_meta'] \
+					= json.loads(artist_req.content.decode('utf8'))
+		return context
