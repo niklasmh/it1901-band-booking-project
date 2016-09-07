@@ -3,8 +3,12 @@
 	<head>
 		<meta encoding="utf-8">
 		<title>{% block title %}Band Booking{% endblock %}</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	</head>
 	<body>
-		{% block content %}{% endblock %}
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
 	</body>
 </html>

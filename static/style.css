@@ -1,0 +1,15 @@
+body > .content {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+@media screen and (max-width: 1000px) {
+	body > .content {
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
