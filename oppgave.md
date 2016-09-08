@@ -22,6 +22,7 @@ Undervisningsassistent eller studentassistent for gruppen er produkteier.
  - [ ] ønsker jeg å kunne se nøkkelinformasjon om et band, som popularitet i strømmetjenester, salgstall for album og tidligere konserter i Norge for å vurdere om bandet skal få tilbud om å bli booket.
  - [ ] så skal jeg kunne søke opp band som har spilt på en scene tidligere, og se nøkkelinformasjon om bandet og om tidligere konserter slik at jeg kan vurdere hvilke band som bør få tilbud om å bli booket.
  - [ ] skal jeg kunne sende tilbud til manager for et band på booking på en spesifikk dato og med en spesifikk pris. Tilbudet skal være godkjent av bookingsjef.
+ - [ ] skal jeg kunne legge inn booking.
 
 ### Som bookingsjef
  - [ ] ønsker jeg å kunne få generert et forslag til billettpris som tar høyde for markedsinformasjon og faktiske kostnader, og få forslag til billettpris på scener med ulik størrelse slik at konserter går i økonomisk balanse.
