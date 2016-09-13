@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from band import models
 import requests, json
 
@@ -20,3 +20,12 @@ class BandDetailView(DetailView):
 				context['band_meta'] \
 					= json.loads(artist_req.content.decode('utf8'))
 		return context
+
+class BandCreateView(CreateView):
+	model = models.Band
+	fields = '__all__'
+
+class BandUpdateView(UpdateView):
+	model = models.Band
+	pk_url_kwarg = 'band'
+	fields = '__all__'
