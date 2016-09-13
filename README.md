@@ -14,6 +14,7 @@ $ virtualenv env # Lag et virtuelt miljø.
 $ source env/bin/activate # Aktivere virtualenv.
 $ pip install requests # Installere pakker til miljøet.
 $ pip install -r requirements.txt # Installerer avhengigheter til prosjektet.
+$ cp doc/settings_local.dev.py band_booking/settings_local.py # Setter instillinger for et utviklingsmiljø (for windows erstatt cp med copy)
 $ python manage.py migrate
 $ python manage.py createsuperuser # Følg instruksjonene.
 ```
