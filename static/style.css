@@ -18,21 +18,49 @@ h3 {
 	font-size: 150%;
 }
 
-
-
-
-body > .content {
-	width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 0;
-	margin-bottom: 0;
+header {
+	position: fixed;
+	width: 100%;
+	height: 60px;
+	top: 0px;
+	left: 0px;
+	background-color: #a03033;
+	z-index: 1;
 }
 
+
+header img {
+	position: absolute;
+	left:50%;
+	transform: translate(-50%);
+	top:15px;
+
+}
+
+body {
+	position: absolute;
+	width: 100%;
+}
+
+.content {
+	width: 75%;
+	height: auto;
+	position: relative;
+	top: 60px;
+	left: 50%;
+	transform: translate(-50%);
+	padding: 10px;
+	padding-top: 0px;
+	display: inline-block;
+}
+
+/*
 @media screen and (max-width: 1000px) {
-	body > .content {
-		width: 100%;
+	.content {
+		width: 75%;
 		margin-left: 0;
 		margin-right: 0;
 	}
 }
+
+*/
