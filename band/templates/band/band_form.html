@@ -1,7 +1,20 @@
 {% extends "base.html" %}
-{% block title %}Edit {{ band.name }} - Band - Band Booking{% endblock %}
+{% block title %}
+{% if form.initial %}
+{{ band.name }} - Edit
+{% else %}
+Create
+{% endif %}
+ - Band - Band Booking
+{% endblock %}
 {% block content %}
-<h1>{{ band.name }} <small>Edit</small></h1>
+<h1>
+	{% if form.initial %}
+	{{ band.name }} <small>edit</small>
+	{% else %}
+	Band <small>create</small>
+	{% endif %}
+</h1>
 <form method="POST">
 	{% csrf_token %}
 	<table>
