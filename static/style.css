@@ -1,3 +1,26 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400';
+
+html {
+	font-family: 'Roboto', Sans-serif;
+	font-size: 15px;
+}
+
+h1 {
+	font-size: 300%;
+	font-weight: 300;
+}
+
+h2 {
+	font-size: 200%;
+}
+
+h3 {
+	font-size: 150%;
+}
+
+
+
+
 body > .content {
 	width: 1000px;
 	margin-left: auto;
