@@ -26,13 +26,13 @@ h6 { font-size: 1rem; }
 	left: 0px;
 	background-color: #a03033;
 	z-index: 1;
+	display: flex;
+	align-items: center;
 }
 
 .head-logo {
-	position: absolute;
-	left:50%;
-	transform: translate(-50%);
-	top:15px;
+	text-align: center;
+	width: 100%;
 }
 
 .foot {
