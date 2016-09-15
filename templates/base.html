@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<header>
-			<img src="../static/img/samfundetlogo_hvit.png">
+			<a href="{% url 'band:list'%}"> <img src="{% static 'img/samfundetlogo_hvit.png'%}"></a>
 		</header>
 		<div class="content">
 			{% block content %}{% endblock %}
