@@ -37,6 +37,20 @@ header img {
 
 }
 
+footer {
+	width: 100%;
+	height: 60px;
+	background-color: #a03033;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+footer p {
+	text-align: center;
+}
+
 body {
 	position: absolute;
 	width: 100%;
