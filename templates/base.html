@@ -7,14 +7,14 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	</head>
 	<body>
-		<header>
-			<a href="{% url 'band:list'%}"> <img src="{% static 'img/samfundetlogo_hvit.png'%}"></a>
+		<header class="head">
+			<a href="{% url 'band:list'%}" class="head-logo">
+				<img src="{% static 'img/samfundetlogo_hvit.png'%}">
+			</a>
 		</header>
 		<div class="content">
 			{% block content %}{% endblock %}
 		</div>
-		<footer>
-			<p>@Samfundet 2016</p>
-		</footer>
+		<footer class="foot">@Samfundet 2016</footer>
 	</body>
 </html>
