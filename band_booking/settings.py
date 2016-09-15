@@ -38,6 +38,8 @@ INSTALLED_APPS = [
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'band',
+	'venue',
+	'booking',
 ]
 
 MIDDLEWARE_CLASSES = [
