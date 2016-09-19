@@ -26,6 +26,10 @@ h4 { font-size: 1.4rem; }
 h5 { font-size: 1.2rem; }
 h6 { font-size: 1rem; }
 
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+	font-weight: 300;
+}
+
 .head {
 	position: fixed;
 	width: 100%;
