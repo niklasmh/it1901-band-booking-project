@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Venues - Band Booking{% endblock %}
+{% block content %}
+<h1>Venues</h1>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for venue in venue_list %}
+		<tr>
+			<td><a href="{% url 'venue:detail' venue.id %}">{{ venue.name }}</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
