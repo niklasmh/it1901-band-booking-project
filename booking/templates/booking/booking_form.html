@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+{% if form.initial %}
+{{ band.name }} - Edit
+{% else %}
+Create
+{% endif %}
+ - Band - Band Booking
+{% endblock %}
+{% block content %}
+<h1>
+	{% if form.initial %}
+	{{ booking.band.name }} @ {{ booking.venue.name }} <small>edit</small>
+	{% else %}
+	Booking <small>create</small>
+	{% endif %}
+</h1>
+<form method="POST">
+	{% csrf_token %}
+	<table>
+		{{ form.as_table }}
+		<tr>
+			<td></td>
+			<td>
+				<input type="submit" value="Ok">
+			</td
+		</tr>
+	</table>
+</form>
+{% endblock %}

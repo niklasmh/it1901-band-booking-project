@@ -1,3 +1,6 @@
 from django.contrib import admin
+from booking import models
 
-# Register your models here.
+@admin.register(models.Booking)
+class BookingAdmin(admin.ModelAdmin):
+	list_display = ('band', 'venue', 'user', 'begin', 'end', 'state',)

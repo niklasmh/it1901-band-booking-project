@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
     url(r'^band/', include('band.urls', namespace='band')),
     url(r'^venue/', include('venue.urls', namespace='venue')),
+    url(r'^booking/', include('booking.urls', namespace='booking')),
     url(r'^admin/', admin.site.urls),
 ]
