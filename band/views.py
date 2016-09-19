@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils.encoding import escape_uri_path
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from band import models
 import requests, json
@@ -24,6 +25,17 @@ class BandDetailView(DetailView):
 class BandCreateView(CreateView):
 	model = models.Band
 	fields = '__all__'
+
+	def form_valid(self, form):
+		search_req = requests.get('https://api.spotify.com/v1/search?q=%s&type=artist&market=NO&limit=1' % (
+			escape_uri_path(form.cleaned_data['name'])
+		))
+		if search_req.status_code == 200:
+			data = json.loads(search_req.content.decode('utf8'))
+			if data['artists']['items']:
+				artist = data['artists']['items'][0]
+				form.instance.spotify_artist_id = artist['id']
+			return super(BandCreateView, self).form_valid(form)
 
 class BandUpdateView(UpdateView):
 	model = models.Band
