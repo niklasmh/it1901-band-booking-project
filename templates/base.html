@@ -9,9 +9,16 @@
 	</head>
 	<body>
 		<header class="head">
-			<span></span>
+			<span class="head-side"></span>
 			<a href="{% url 'index' %}" class="logo"></a>
-			<span></span>
+			{% if user.is_authenticated %}
+			<span class="user head-side">
+				<span>{{ user.get_full_name|default:user.username }}</span> /
+				<a href="{% url 'user:logout' %}">Log out</a>
+			</span>
+			{% else %}
+			<span class="head-side"></span>
+			{% endif %}
 		</header>
 		<div class="content">
 			{% block content %}{% endblock %}
