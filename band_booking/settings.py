@@ -27,6 +27,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/user/login/'
+
 
 # Application definition
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
 	'band',
 	'venue',
 	'booking',
+	'user',
 ]
 
 MIDDLEWARE_CLASSES = [
