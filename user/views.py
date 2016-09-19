@@ -1,5 +1,6 @@
 from django.views.generic import FormView, RedirectView
 from django.utils.http import is_safe_url
+from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout
 from django.utils.decorators import method_decorator
@@ -17,6 +18,10 @@ class LoginView(FormView):
 
 	@method_decorator(sensitive_post_parameters('password'))
 	def dispatch(self, request, *args, **kwargs):
+
+		if request.user.is_authenticated():
+			return HttpResponseRedirect(self.get_success_url())
+
 		request.session.set_test_cookie()
 
 		return super(LoginView, self).dispatch(request, *args, **kwargs)

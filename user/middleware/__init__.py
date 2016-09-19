@@ -1,0 +1,1 @@
+from user.middleware.login_required import LoginRequiredMiddleware
