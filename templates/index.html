@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Band Booking{% endblock %}
+{% block content %}
+<h1>Band Booking</h1>
+<ul>
+	<li><a href="{% url 'band:list' %}">Band</a></td>
+	<li><a href="{% url 'venue:list' %}">Venue</a></td>
+</ul>
+{% endblock %}
