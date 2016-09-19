@@ -39,6 +39,7 @@ class LogoutView(RedirectView):
 	url = settings.LOGIN_URL
 
 	def get(self, request, *args, **kwargs):
+		auth_logout(request)
 		return super(LogoutView, self).get(request, *args, **kwargs)
 
 class PasswordChangeView(FormView):
