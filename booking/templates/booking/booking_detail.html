@@ -1,6 +1,8 @@
 {% extends "booking/booking_list.html" %}
 {% block breadcrumbs %}
-    {{ block.super }} » <a href="{% url 'booking:detail' booking.id  %}">{{ booking.band.name}}</a>
+    {{ block.super }} 
+    <a class="breadcrumbs">»</a> 
+    <a href="{% url 'booking:detail' booking.id  %}" class="breadcrumbs">{{ booking.band.name}}</a>
 {% endblock %}
 {% block title %}{{ booking.band.name }} @ {{ booking.venue.name }} - Booking - Band Booking{% endblock %}
 {% block content %}

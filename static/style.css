@@ -71,6 +71,8 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-position: center;
 }
 
+/* <<<<< FOOTER >>>>> */
+
 .foot {
 	position: relative;
 	width: 100%;
@@ -86,6 +88,23 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	position: absolute;
 }
 
+
+
+.breadcrumbs {
+	color:black;
+	position: relative;
+	top: 3px;
+	float: left;
+	margin-right: 5px;
+}
+
+.breadcrumbs:hover {
+	color:#a03033;
+	font-weight: bold;
+}
+
+/* <<<<< KNAPP >>>>> */
+
 .button {
 	padding:5px;
 	top:-15px;
@@ -98,6 +117,8 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .button:hover {
 	background-color: darkgray;
 }
+
+/* <<<<< FORSIDE BOKSER >>>>> */
 
 .overview {
 	display: flex;
@@ -161,6 +182,8 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .row:hover {
 	background-color: lightgray;
 }
+
+/* <<<<< TABELL FOR MOBIL >>>>> */
 
 @media (max-width: 420px) {
 	.table {

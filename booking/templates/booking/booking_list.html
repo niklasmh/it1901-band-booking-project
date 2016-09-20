@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block breadcrumbs %}
-    {{ block.super }} » <a href="{% url 'booking:list' %}">Bookings</a>
+    {{ block.super }}
+    <a class="breadcrumbs">»</a> <a href="{% url 'booking:list' %}" class="breadcrumbs">Bookings</a>
 {% endblock %}
 {% block title %}Bookings - Band Booking{% endblock %}
 {% block content %}
