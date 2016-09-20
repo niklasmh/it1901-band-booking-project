@@ -17,11 +17,11 @@
 	</tr>
 	<tr>
 		<th>Registered:</th>
-		<td>{{ booking.created }}</td>
+		<td>{{ booking.created|date:'d M Y, H:i'  }}</td>
 	</tr>
 	<tr>
 		<th>Last modified:</th>
-		<td>{{ booking.modified }}</td>
+		<td>{{ booking.modified|date:'d M Y, H:i'  }}</td>
 	</tr>
 	<tr>
 		<th>Band fee:</th>
