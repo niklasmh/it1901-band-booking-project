@@ -162,6 +162,53 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-color: lightgray;
 }
 
+@media (max-width: 420px) {
+	.table {
+		display: block;
+	}
+
+	.rowheader {
+		display: none;
+	}
+
+	.row {
+		display: block;
+	}
+
+	.cell {
+		display: table-row;
+		padding: 0 4px;
+	}
+
+	.cell:before {
+		display: table-cell;
+		content: attr(data-col) ": ";
+		font-size: .8em;
+		font-weight: bold;
+		padding: 4px 6px;
+		background: #a03033;
+		color: #fff;
+		text-align: right;
+		margin-right: 10px;
+	}
+
+	.row:nth-of-type(odd) .cell:before {
+		background: #903029;
+	}
+
+	.cell:first-child:before {
+		padding-top: 10px;
+	}
+
+	.cell:last-child:before {
+		padding-bottom: 10px;
+	}
+
+	.row:hover .cell:before {
+		background: #803022;
+	}
+}
+
 /* ---------------------------- */
 
 .content {
