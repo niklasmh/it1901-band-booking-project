@@ -11,8 +11,8 @@
 	
 	{% for band in band_list %}
 	<a href="{% url 'band:detail' band.slug %}" class="row">
-		<div class="cell">{{ band.name }}</div>
-		<div class="cell">{{ band.contact_person }}</div>
+		<div class="cell" data-col="ARTIST">{{ band.name }}</div>
+		<div class="cell" data-col="PERSON">{{ band.contact_person }}</div>
 	</a>
 	{% endfor %}
 </div>

@@ -16,13 +16,13 @@
 	
 	{% for booking in booking_list %}
 	<a href="{% url 'booking:detail' booking.id %}" class="row">
-		<div class="cell">{{ booking.band.name }}</div>
-		<div class="cell">{{ booking.venue.name }}</div>
-		<div class="cell">{{ booking.begin }}</div>
-		<div class="cell">{{ booking.end }}</div>
-		<div class="cell">{{ booking.band_fee }}kr</div>
-		<div class="cell">{{ booking.user.get_full_name|default:booking.user.username }}</div>
-		<div class="cell">{{ booking.get_state_display }}</div>
+		<div class="cell" data-col="Band">{{ booking.band.name }}</div>
+		<div class="cell" data-col="Venue">{{ booking.venue.name }}</div>
+		<div class="cell" data-col="Begin">{{ booking.begin }}</div>
+		<div class="cell" data-col="End">{{ booking.end }}</div>
+		<div class="cell" data-col="Band fee">{{ booking.band_fee }}kr</div>
+		<div class="cell" data-col="Created by">{{ booking.user.get_full_name|default:booking.user.username }}</div>
+		<div class="cell" data-col="State">{{ booking.get_state_display }}</div>
 	</a>
 	{% endfor %}
 </div>

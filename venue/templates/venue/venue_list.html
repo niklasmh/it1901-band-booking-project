@@ -9,7 +9,7 @@
 	{% for venue in venue_list %}
 	<a href="{% url 'venue:detail' venue.slug %}" class="row">
 		
-		<div class="cell">{{ venue.name }}</div>
+		<div class="cell" data-col="Name">{{ venue.name }}</div>
 	</a>
 	{% endfor %}
 	</div>
