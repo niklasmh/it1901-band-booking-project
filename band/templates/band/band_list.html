@@ -2,21 +2,18 @@
 {% block title %}Bands - Band Booking{% endblock %}
 {% block content %}
 <h1>Bands</h1>
-<a href="{% url 'band:create' %}">Add band</a>
-<table>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Contact person</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for band in band_list %}
-		<tr>
-			<td><a href="{% url 'band:detail' band.id %}">{{ band.name }}</a></td>
-			<td>{{ band.contact_person }}</td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
+<a href="{% url 'band:create' %}" class="button">Add band</a>
+<div class="table">
+	<div class="rowheader">
+		<div class="cell">ARTIST</div>
+		<div class="cell">CONTACT PERSON</div>
+	</div>
+	
+	{% for band in band_list %}
+	<a href="{% url 'band:detail' band.id %}" class="row">
+		<div class="cell">{{ band.name }}</div>
+		<div class="cell">{{ band.contact_person }}</div>
+	</a>
+	{% endfor %}
+</div>
 {% endblock %}

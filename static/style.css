@@ -72,10 +72,66 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .foot {
+	position: relative;
 	width: 100%;
 	height: 60px;
 	background-color: #a03033;
+}
+
+.foot p {
+	width: 100%;
+	top:0.3em;
 	text-align: center;
+	color: white;
+	position: absolute;
+}
+
+.button {
+	padding:5px;
+	top:-15px;
+	position: relative;
+	background-color: #a03033;
+	color: white;
+	text-decoration: none;
+}
+
+.button:hover {
+	background-color: darkgray;
+}
+
+.table {
+	position: absolute;
+	margin-top: 20px;
+	display: table;
+	margin: 0 0 40px 0;
+	width: 100%;
+}
+
+.rowheader {
+	background:#a03033;
+	width: 100%;
+	display: table-row;
+	color:white;
+}
+
+.cell {
+	padding: 6px 12px;
+	display: table-cell;
+}
+
+.row:nth-of-type(odd) {
+	background:#e9e9e9;
+}
+
+.row {
+	display: table-row;
+	background-color: #f6f6f6;
+	text-decoration: none;
+	color:black;
+}
+
+.row:hover {
+	background-color: lightgray;
 }
 
 .content {
