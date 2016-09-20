@@ -99,6 +99,37 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-color: darkgray;
 }
 
+.overview {
+	left:50%;
+	width: 100%;
+
+}
+
+.overview-element {
+	float: left;
+	border:3px solid #a03033;
+	height: 100px;
+	width: 100px;
+	padding: 15px;
+	margin: 20px;
+	color: black;
+	text-decoration: none;
+	text-align: center;
+}
+
+.overview-element:hover {
+	background-color: #a03033;
+	color:white;
+	border:3px solid #a03033;
+}
+
+.overview-element p {
+	top:25px;
+	position: relative;
+}
+
+/* <<<<< TABELL LAYOUT >>>>> */
+
 .table {
 	position: absolute;
 	margin-top: 20px;
@@ -133,6 +164,8 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .row:hover {
 	background-color: lightgray;
 }
+
+/* ---------------------------- */
 
 .content {
 	flex: 1;
