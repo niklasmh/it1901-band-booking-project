@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Band Booking{% endblock %}
 {% block content %}
-<h1>Overview</h1>
-<hr>
-<ul>
-	<li><a href="{% url 'band:list' %}">Bands</a></td>
-	<li><a href="{% url 'venue:list' %}">Venues</a></td>
-	<li><a href="{% url 'booking:list' %}">Bookings</a></td>
-</ul>
+
+
+<div class="overview">
+	<h1>Overview</h1>
+	<a href="{% url 'band:list' %}" class="overview-element"><p>BANDS</p></a>
+	<a href="{% url 'venue:list' %}" class="overview-element"><p>VENUES</p></a>
+	<a href="{% url 'booking:list' %}" class="overview-element"><p>BOOKINGS</p></a>
+</div>
 {% endblock %}
