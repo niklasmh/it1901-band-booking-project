@@ -1,15 +1,25 @@
 {% extends "base.html" %}
+{% block breadcrumbs %}
+    {{ block.super }} » <a href="{% url 'venue:list' %}">Venues</a>
+{% endblock %}
 {% block title %}Venues - Band Booking{% endblock %}
 {% block content %}
 <h1>Venues</h1>
 <div class="table">
 	<div class="rowheader">
 		<div class="cell">Name</div>
+		<div class="cell">Crowd Capacity</div>
+		<div class="cell">Stage Width</div>
+		<div class="cell">Stage Height</div>
+		<div class="cell">Stage Depth</div>
 	</div>
 	{% for venue in venue_list %}
 	<a href="{% url 'venue:detail' venue.slug %}" class="row">
-		
 		<div class="cell" data-col="Name">{{ venue.name }}</div>
+		<div class="cell" data-col="Crowd Capacity">{{ venue.crowd_capacity }}</div>
+		<div class="cell" data-col="Stage Width">{{ venue.stage_width }}m</div>
+		<div class="cell" data-col="Stage Height">{{ venue.stage_height }}m</div>
+		<div class="cell" data-col="Stage Depth">{{ venue.stage_depth }}m</div>
 	</a>
 	{% endfor %}
 	</div>

@@ -1,29 +1,55 @@
-{% extends "base.html" %}
+{% extends "booking/booking_list.html" %}
+{% block breadcrumbs %}
+    {{ block.super }} » <a href="{% url 'booking:detail' booking.id  %}">{{ booking.band.name}}</a>
+{% endblock %}
 {% block title %}{{ booking.band.name }} @ {{ booking.venue.name }} - Booking - Band Booking{% endblock %}
 {% block content %}
 <h1>{{ booking.band.name }} @ {{ booking.venue.name }} <small>booking</small></h1>
 <table>
 	<tr>
-		<th>Registered by</th>
-		<td>{{ booking.user.get_full_name|default:booking.user.username }}</td>
+		<th>From:</th>
+		<td>{{ booking.begin|date:'d M Y, H:i' }}</td>
 	</tr>
 	<tr>
-		<th>Registered</th>
-		<td>{{ booking.created }}</td>
+		<th>To:</th>
+		<td>{{ booking.end|date:'d M Y, H:i' }}</td>
 	</tr>
 	<tr>
-		<th>Last modified</th>
-		<td>{{ booking.modified }}</td>
-	</tr>
-	<tr>
-		<th>Band fee</th>
+		<th>Band fee:</th>
 		<td>{{ booking.band_fee }}kr</td>
 	</tr>
 	<tr>
-		<th>State</th>
+		<th>Price member:</th>
+		<td>{{ booking.price_member }}kr</td>
+	</tr>
+	<tr>
+		<th>Price non-member:</th>
+		<td>{{ booking.price }}kr</td>
+	</tr>
+	<tr>
+		<th>Registered by:</th>
+		<td>{{ booking.user.get_full_name|default:booking.user.username }}</td>
+	</tr>
+	<tr>
+		<th>Registered:</th>
+		<td>{{ booking.created|date:'d M Y, H:i'  }}</td>
+	</tr>
+	<tr>
+		<th>Last modified:</th>
+		<td>{{ booking.modified|date:'d M Y, H:i'  }}</td>
+	</tr>
+	<tr>
+		<th>State:</th>
 		<td>{{ booking.get_state_display }}</td>
 	</tr>
 </table>
+<form method="post" action = "{%url 'booking:setstate'  booking.id %}">
+
+		{% csrf_token %}
+
+		<input type= "submit" value= "Accept" name= "accepted">
+		<input type= "submit" value= "Reject" name= "rejected">
+</form>
 <section>
 	<h2><a href="{% url 'band:detail' booking.band.slug %}">{{ booking.band.name }}</a> <small>band</small></h2>
 	<section>

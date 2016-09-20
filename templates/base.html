@@ -20,11 +20,18 @@
 			<span class="head-side"></span>
 			{% endif %}
 		</header>
+
+
+
 		<div class="content">
+			{% block breadcrumbs %}<a href="{% url 'index' %}">Home</a>{% endblock %}
+
 			{% block content %}{% endblock %}
 		</div>
 		<footer class="foot">
-			<a href="mailto:baldur.kjelsvik@gmail.com"><p>@Samfundet 2016</p></a>
+			<a href="mailto:baldur.kjelsvik@gmail.com">
+				<p>@Samfundet 2016</p>
+			</a>
 		</footer>
 	</body>
 </html>
