@@ -11,6 +11,8 @@ class Booking(models.Model):
 	begin = models.DateTimeField()
 	end = models.DateTimeField()
 	band_fee = models.DecimalField(max_digits=10, decimal_places=2)
+	price_member = models.DecimalField(max_digits=10, decimal_places=2)
+	price = models.DecimalField(max_digits=10, decimal_places=2)
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
 	state = models.CharField(max_length=1, default=' ', choices=((' ', '-'),

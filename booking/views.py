@@ -10,7 +10,7 @@ class BookingDetailView(DetailView):
 
 class BookingCreateView(CreateView):
 	model = models.Booking
-	fields = ('band', 'venue', 'begin', 'end', 'band_fee',)
+	fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'price_member', 'price')
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user
