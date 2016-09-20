@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ band.name }} - Band - Band Booking{% endblock %}
 {% block content %}
-<h1>{{ band.name }} <small>Band</small></h1>
-<a href="{% url 'band:update' band.id %}">Edit band</a>
+<h1>{{ band.name }} <small>band</small></h1>
+<a href="{% url 'band:update' band.slug %}">Edit band</a><br/>
 <img src="{{ band_meta.images.0.url }}" width="{{ band_meta.images.0.width }}" height="{{ band_meta.images.0.height }}">
 <table>
 	<tr>

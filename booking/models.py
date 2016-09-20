@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from band.models import Band
 from venue.models import Venue
@@ -15,3 +16,9 @@ class Booking(models.Model):
 	state = models.CharField(max_length=1, default=' ', choices=((' ', '-'),
 																 ('r', 'Rejected'),
 																 ('a', 'Accepted')))
+
+	def __str__(self):
+		return "%s @ %s" % (self.band, self.venue)
+
+	def get_absolute_url(self):
+		return reverse('booking:detail', kwargs={ 'booking': self.id })

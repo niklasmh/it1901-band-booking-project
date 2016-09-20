@@ -8,6 +8,10 @@ class Band(models.Model):
 	contact_email = models.CharField(max_length=30, blank=True, null=True)
 	spotify_artist_id = models.CharField(max_length=50, blank=True, null=True)
 	active = models.BooleanField(default=True)
+	slug = models.SlugField(null=True, editable=False)
+
+	def __str__(self):
+		return self.name
 
 	def get_absolute_url(self):
-		return reverse('band:detail', kwargs={ 'band': self.id })
+		return reverse('band:detail', kwargs={ 'band_slug': self.slug })

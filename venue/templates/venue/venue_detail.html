@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ venue.name }} - Venue - Band Booking{% endblock %}
+{% block content %}
+<h1>{{ venue.name }} <small>venue</small></h1>
+<table>
+	<tr>
+		<td>Crowd capacity</td>
+		<td>{{ venue.crowd_capacity }} people</td>
+	</tr>
+	<tr>
+		<td>Stage width</td>
+		<td>{{ venue.stage_width }}m</td>
+	</tr>
+	<tr>
+		<td>Stage depth</td>
+		<td>{{ venue.stage_depth }}m</td>
+	</tr>
+	<tr>
+		<td>Stage height</td>
+		<td>{{ venue.stage_height }}m</td>
+	</tr>
+</table>
+{% endblock %}

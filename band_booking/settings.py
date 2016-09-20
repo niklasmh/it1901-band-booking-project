@@ -27,6 +27,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/user/login/'
+LOGIN_EXEMPT_URLS = []
+
 
 # Application definition
 
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
 	'band',
 	'venue',
 	'booking',
+	'user',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -49,6 +53,7 @@ MIDDLEWARE_CLASSES = [
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+	'user.middleware.LoginRequiredMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
