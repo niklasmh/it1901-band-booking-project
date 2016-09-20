@@ -65,4 +65,11 @@
 		</tr>
 	</table>
 </section>
+<form method="post" action = "{%url 'booking:setstate'  booking.id %}">
+    
+    {% csrf_token %}
+    
+    <input type= "submit" value= "Accept" name= "accepted">
+    <input type= "submit" value= "Reject" name= "rejected">
+</form>
 {% endblock %}
