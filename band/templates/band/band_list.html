@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block breadcrumbs %}
+    {{ block.super }} » <a href="{% url 'band:list' %}">Bands</a>
+{% endblock %}
 {% block title %}Bands - Band Booking{% endblock %}
 {% block content %}
 <h1>Bands</h1>
@@ -7,12 +10,16 @@
 	<div class="rowheader">
 		<div class="cell">ARTIST</div>
 		<div class="cell">CONTACT PERSON</div>
+		<div class="cell">CONTACT PHONE</div>
+		<div class="cell">CONTACT EMAIL</div>
 	</div>
 	
 	{% for band in band_list %}
 	<a href="{% url 'band:detail' band.slug %}" class="row">
 		<div class="cell">{{ band.name }}</div>
 		<div class="cell">{{ band.contact_person }}</div>
+		<div class="cell">{{ band.contact_phone }}</div>
+		<div class="cell">{{ band.contact_email }}</div>
 	</a>
 	{% endfor %}
 </div>

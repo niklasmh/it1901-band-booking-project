@@ -1,4 +1,7 @@
-{% extends "base.html" %}
+{% extends "venue/venue_list.html" %}
+{% block breadcrumbs %}
+    {{ block.super }} » <a href="{% url 'venue:detail' venue.slug %}">{{ venue.name }}</a>
+{% endblock %}
 {% block title %}{{ venue.name }} - Venue - Band Booking{% endblock %}
 {% block content %}
 <h1>{{ venue.name }} <small>venue</small></h1>

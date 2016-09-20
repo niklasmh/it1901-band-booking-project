@@ -12,6 +12,6 @@ class Band(models.Model):
 
 	def __str__(self):
 		return self.name
-
+	
 	def get_absolute_url(self):
 		return reverse('band:detail', kwargs={ 'band_slug': self.slug })
