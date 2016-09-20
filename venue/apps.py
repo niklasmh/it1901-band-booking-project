@@ -2,4 +2,7 @@ from django.apps import AppConfig
 
 
 class VenueConfig(AppConfig):
-    name = 'venue'
+	name = 'venue'
+
+	def ready(self):
+		import venue.signals.handlers

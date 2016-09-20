@@ -7,5 +7,6 @@ venue = [
 
 urlpatterns = [
 	url(r'^$', views.VenueListView.as_view(), name='list'),
-	url(r'^(?P<venue>\d+)/', include(venue)),
+	url(r'^(?P<venue_pk>\d+)/', include(venue)),
+	url(r'^(?P<venue_slug>[-a-zA-Z0-9]+)/', include(venue)),
 ]

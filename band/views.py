@@ -10,6 +10,7 @@ class BandListView(ListView):
 class BandDetailView(DetailView):
 	model = models.Band
 	pk_url_kwarg = 'band'
+	slug_url_kwarg = 'band_slug'
 
 	def get_context_data(self, **kwargs):
 		context = super(BandDetailView, self).get_context_data(**kwargs)
@@ -39,5 +40,6 @@ class BandCreateView(CreateView):
 
 class BandUpdateView(UpdateView):
 	model = models.Band
-	pk_url_kwarg = 'band'
+	pk_url_kwarg = 'band_pk'
+	slug_url_kwarg = 'band_slug'
 	fields = '__all__'

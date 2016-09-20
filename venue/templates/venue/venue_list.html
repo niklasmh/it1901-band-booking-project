@@ -7,7 +7,7 @@
 		<div class="cell">Name</div>
 	</div>
 	{% for venue in venue_list %}
-	<a href="{% url 'venue:detail' venue.id %}" class="row">
+	<a href="{% url 'venue:detail' venue.slug %}" class="row">
 		
 		<div class="cell">{{ venue.name }}</div>
 	</a>

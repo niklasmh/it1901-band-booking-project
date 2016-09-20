@@ -10,5 +10,6 @@ band = [
 urlpatterns = [
 	url(r'^$', views.BandListView.as_view(), name='list'),
 	url(r'^create/$', views.BandCreateView.as_view(), name='create'),
-	url(r'^(?P<band>\d+)/', include(band)),
+	url(r'^(?P<band_pk>\d+)/', include(band)),
+	url(r'^(?P<band_slug>[-a-zA-Z0-9]+)/', include(band)),
 ]

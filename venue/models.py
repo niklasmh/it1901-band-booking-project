@@ -7,3 +7,7 @@ class Venue(models.Model):
 	stage_depth = models.DecimalField(max_digits=10, decimal_places=2)
 	stage_height = models.DecimalField(max_digits=10, decimal_places=2)
 	active = models.BooleanField(default=True)
+	slug = models.SlugField(null=True, editable=False)
+
+	def get_absolute_url(self):
+		return reverse('venue:detail', kwargs={ 'venue_slug': self.slug })
