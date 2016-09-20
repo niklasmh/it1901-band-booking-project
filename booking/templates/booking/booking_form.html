@@ -1,4 +1,9 @@
-{% extends "base.html" %}
+{% extends "booking/booking_list.html" %}
+{% block breadcrumbs %}
+    {{ block.super }} 
+    <a class="breadcrumbs">»</a> 
+    <a href="{% url 'booking:create' %}" class="breadcrumbs">Create Booking</a>
+{% endblock %}
 {% block title %}
 {% if form.initial %}
 {{ band.name }} - Edit
