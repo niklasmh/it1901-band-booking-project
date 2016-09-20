@@ -10,5 +10,8 @@ class Band(models.Model):
 	active = models.BooleanField(default=True)
 	slug = models.SlugField(null=True, editable=False)
 
+	def __str__(self):
+		return self.name
+
 	def get_absolute_url(self):
 		return reverse('band:detail', kwargs={ 'band_slug': self.slug })

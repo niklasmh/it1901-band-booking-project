@@ -17,5 +17,8 @@ class Booking(models.Model):
 																 ('r', 'Rejected'),
 																 ('a', 'Accepted')))
 
+	def __str__(self):
+		return "%s @ %s" % (self.band, self.venue)
+
 	def get_absolute_url(self):
 		return reverse('booking:detail', kwargs={ 'booking': self.id })

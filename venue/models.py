@@ -9,5 +9,8 @@ class Venue(models.Model):
 	active = models.BooleanField(default=True)
 	slug = models.SlugField(null=True, editable=False)
 
+	def __str__(self):
+		return self.name
+
 	def get_absolute_url(self):
 		return reverse('venue:detail', kwargs={ 'venue_slug': self.slug })
