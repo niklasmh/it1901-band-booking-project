@@ -11,7 +11,7 @@
 	<tbody>
 		{% for venue in venue_list %}
 		<tr>
-			<td><a href="{% url 'venue:detail' venue.id %}">{{ venue.name }}</a></td>
+			<td><a href="{% url 'venue:detail' venue.slug %}">{{ venue.name }}</a></td>
 		</tr>
 		{% endfor %}
 	</tbody>

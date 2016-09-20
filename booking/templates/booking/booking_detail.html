@@ -45,7 +45,7 @@
 	</section>
 </section>
 <section>
-	<h2><a href="{% url 'venue:detail' booking.venue.id %}">{{ booking.venue.name }}</a> <small>venue</small></h2>
+	<h2><a href="{% url 'venue:detail' booking.venue.slug %}">{{ booking.venue.name }}</a> <small>venue</small></h2>
 	<table>
 		<tr>
 			<th>Crowd capacity</th>

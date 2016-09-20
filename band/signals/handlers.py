@@ -5,6 +5,5 @@ from band import models
 def add_band_slug(instance, **kwargs):
 	if not instance.slug:
 		unique_slugify(instance, instance.name, queryset=models.Band.objects.all())
-	print(instance.slug)
 
 pre_save.connect(add_band_slug, sender=models.Band)

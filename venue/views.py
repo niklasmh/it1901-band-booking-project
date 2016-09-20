@@ -7,4 +7,5 @@ class VenueListView(ListView):
 
 class VenueDetailView(DetailView):
 	model = models.Venue
-	pk_url_kwarg = 'venue'
+	pk_url_kwarg = 'venue_pk'
+	slug_url_kwarg = 'venue_slug'
