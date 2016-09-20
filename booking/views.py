@@ -1,5 +1,6 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from booking import models
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView
+from django.urls import reverse
+from booking import models,forms
 
 class BookingListView(ListView):
 	model = models.Booking
@@ -15,3 +16,16 @@ class BookingCreateView(CreateView):
 	def form_valid(self, form):
 		form.instance.user = self.request.user
 		return super(BookingCreateView, self).form_valid(form);
+    
+class BookingSetStateView(FormView):
+    
+    form_class = forms.BookingSetStateForm
+    
+    def form_valid(self, form): 
+        booking = models.Booking.objects.get(id = self.kwargs["booking"])
+        booking.state = "a" if form.cleaned_data["accepted"] else "r"
+        booking.save()
+        return super(BookingSetStateView, self).form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('booking:list')

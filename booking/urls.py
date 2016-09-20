@@ -4,6 +4,7 @@ from booking import views
 
 booking = [
 	url(r'^$', views.BookingDetailView.as_view(), name='detail'),
+    url(r'^setstate/$', views.BookingSetStateView.as_view(), name='setstate'),
 ]
 
 urlpatterns = [

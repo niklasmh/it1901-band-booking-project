@@ -100,16 +100,14 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .overview {
-	left:50%;
-	width: 100%;
-
+	display: flex;
+	flex-flow: wrap;
 }
 
 .overview-element {
-	float: left;
+	flex: 1 0 100px;
 	border:3px solid #a03033;
 	height: 100px;
-	width: 100px;
 	padding: 15px;
 	margin: 20px;
 	color: black;
@@ -131,7 +129,6 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 /* <<<<< TABELL LAYOUT >>>>> */
 
 .table {
-	position: absolute;
 	margin-top: 20px;
 	display: table;
 	margin: 0 0 40px 0;
@@ -170,7 +167,8 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .content {
 	flex: 1;
 	width: 100%;
-	max-width: 1000px;
+	max-width: 960px;
+	margin: auto;
 	position: relative;
 	padding: 60px 10px 10px 10px;
 	box-sizing: border-box;
