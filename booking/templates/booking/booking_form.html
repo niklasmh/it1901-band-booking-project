@@ -5,8 +5,8 @@
     <a href="{% url 'booking:create' %}" class="breadcrumbs">Create Booking</a>
 {% endblock %}
 {% block title %}
-{% if form.initial %}
-{{ band.name }} - Edit
+{% if booking %}
+{{ booking.band.name }} @ {{ booking.venue.name }} - Edit
 {% else %}
 Create
 {% endif %}
@@ -14,7 +14,7 @@ Create
 {% endblock %}
 {% block content %}
 <h1>
-	{% if form.initial %}
+	{% if booking %}
 	{{ booking.band.name }} @ {{ booking.venue.name }} <small>edit</small>
 	{% else %}
 	Booking <small>create</small>

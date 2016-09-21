@@ -2,11 +2,14 @@
 {% block breadcrumbs %}
     {{ block.super }} 
     <a class="breadcrumbs">»</a> 
-    <a href="{% url 'booking:detail' booking.id  %}" class="breadcrumbs">{{ booking.band.name}}</a>
+    <a href="{% url 'booking:detail' booking.id  %}" class="breadcrumbs">{{ booking.band.name }} @ {{ booking.venue.name }}</a>
 {% endblock %}
 {% block title %}{{ booking.band.name }} @ {{ booking.venue.name }} - Booking - Band Booking{% endblock %}
 {% block content %}
 <h1>{{ booking.band.name }} @ {{ booking.venue.name }} <small>booking</small></h1>
+{% if perms.booking.change_booking %}
+<a href="{% url 'booking:change' booking.id %}">Change</a>
+{% endif %}
 <table>
 	<tr>
 		<th>From:</th>
@@ -40,11 +43,43 @@
 		<th>Last modified:</th>
 		<td>{{ booking.modified|date:'d M Y, H:i'  }}</td>
 	</tr>
+	{% if booking.replaces %}
+	<tr>
+		<th>Replaces:</th>
+		<td><a href="{% url 'booking:detail' booking.replaces.id %}">{{ booking.replaces }}</a></td>
+	</tr>
+	{% endif %}
 	<tr>
 		<th>State:</th>
 		<td>{{ booking.get_state_display }}</td>
 	</tr>
 </table>
+
+{% if booking.replacements.all %}
+<h3>Replacements</h3>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Created</th>
+			<th>State</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for replacement in booking.replacements.all %}
+		<tr>
+			<td>
+				<a href="{% url 'booking:detail' replacement.id %}">
+					{{ replacement.band.name }} @ {{ replacement.venue.name }}
+				</a>
+			</td>
+			<td>{{ replacement.created|date:'d M Y, H:i' }}</td>
+			<td>{{ replacement.get_state_display }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}
 
 <!-- Can only be seen by those that have permission to "Accept or reject booking" -->
 {% if perms.booking.accept_booking and booking.state == ' ' %}
