@@ -18,10 +18,6 @@ class LoginView(FormView):
 
 	@method_decorator(sensitive_post_parameters('password'))
 	def dispatch(self, request, *args, **kwargs):
-
-		if request.user.is_authenticated():
-			return HttpResponseRedirect(self.get_success_url())
-
 		request.session.set_test_cookie()
 
 		return super(LoginView, self).dispatch(request, *args, **kwargs)
