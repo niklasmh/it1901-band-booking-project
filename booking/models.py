@@ -24,3 +24,8 @@ class Booking(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('booking:detail', kwargs={ 'booking': self.id })
+
+	class Meta:
+		permissions = (
+			("accept_booking", "Accept or reject booking"),
+		)
