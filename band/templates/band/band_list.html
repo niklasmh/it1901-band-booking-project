@@ -7,7 +7,9 @@
 {% block title %}Bands - Band Booking{% endblock %}
 {% block content %}
 <h1>Bands</h1>
+{% if perms.band.add_band %}
 <a href="{% url 'band:create' %}" class="button">Add band</a>
+{% endif %}
 <div class="table">
 	<div class="rowheader">
 		<div class="cell">ARTIST</div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils.encoding import escape_uri_path
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from band import models
 import requests, json
 
@@ -23,7 +24,8 @@ class BandDetailView(DetailView):
 					= json.loads(artist_req.content.decode('utf8'))
 		return context
 
-class BandCreateView(CreateView):
+class BandCreateView(PermissionRequiredMixin, CreateView):
+	permission_required = 'band.add_band'
 	model = models.Band
 	fields = '__all__'
 
@@ -38,7 +40,8 @@ class BandCreateView(CreateView):
 				form.instance.spotify_artist_id = artist['id']
 			return super(BandCreateView, self).form_valid(form)
 
-class BandUpdateView(UpdateView):
+class BandUpdateView(PermissionRequiredMixin, UpdateView):
+	permission_required = 'band.edit_band'
 	model = models.Band
 	pk_url_kwarg = 'band_pk'
 	slug_url_kwarg = 'band_slug'
