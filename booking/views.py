@@ -31,6 +31,12 @@ class BookingUpdateView(PermissionRequiredMixin, CreateView, SingleObjectMixin):
 
 	def dispatch(self, request, *args, **kwargs):
 		self.object_original = self.get_object()
+		if self.object_original.state == models.BOOKING_REPLACED:
+			messages.warning(self.request, 'The booking has already been %s.' % (
+				self.object_original.get_state_display()
+			))
+			return HttpResponseRedirect(reverse('booking:detail',
+												kwargs={'booking': self.object_original.id}))
 		return super(BookingUpdateView, self).dispatch(request, *args, **kwargs)
 
 	def get_initial(self):
