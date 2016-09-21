@@ -68,13 +68,17 @@ class BookingSetStateView(PermissionRequiredMixin, FormView):
 		if booking.state != ' ':
 			messages.warning(self.request, 'The booking has already been %s.' % booking.get_state_display())
 			return self.form_invalid(form)
+
+		if form.cleaned_data['accepted'] and form.cleaned_data['rejected']:
+			return self.form_invalid(form)
+
 		if form.cleaned_data['accepted']:
 			booking.state = models.BOOKING_ACCEPTED
 			replaces = booking.replaces
 			if replaces:
 				replaces.state = models.BOOKING_REPLACED
 				replaces.save()
-		else:
+		elif form.cleaned_data['rejected']:
 			booking.state = models.BOOKING_REJECTED
 		booking.save()
 		return super(BookingSetStateView, self).form_valid(form)
