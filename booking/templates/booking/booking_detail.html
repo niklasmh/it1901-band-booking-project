@@ -47,7 +47,7 @@
 </table>
 
 <!-- Can only be seen by those that have permission to "Accept or reject booking" -->
-{% if perms.booking.accept_booking %}
+{% if perms.booking.accept_booking and booking.state == ' ' %}
 	<form method="post" action = "{%url 'booking:setstate'  booking.id %}">
 		{% csrf_token %}
 		<input type= "submit" value= "Accept" name= "accepted">
