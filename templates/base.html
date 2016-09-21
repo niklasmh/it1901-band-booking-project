@@ -24,10 +24,16 @@
 			{% endif %}
 		</header>
 
-
-
 		<div class="content">
 			{% block breadcrumbs %}<a href="{% url 'index' %}" class="breadcrumbs">Home</a>{% endblock %}
+
+			{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
 
 			{% block content %}{% endblock %}
 		</div>
