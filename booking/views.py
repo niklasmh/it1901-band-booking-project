@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse
 from booking import models,forms
 
@@ -9,7 +10,8 @@ class BookingDetailView(DetailView):
 	model = models.Booking
 	pk_url_kwarg = 'booking'
 
-class BookingCreateView(CreateView):
+class BookingCreateView(PermissionRequiredMixin, CreateView):
+	permission_required = 'booking.add_booking'
 	model = models.Booking
 	fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'price_member', 'price')
 
