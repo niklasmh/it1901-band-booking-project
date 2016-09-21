@@ -45,13 +45,17 @@
 		<td>{{ booking.get_state_display }}</td>
 	</tr>
 </table>
-<form method="post" action = "{%url 'booking:setstate'  booking.id %}">
 
+<!-- Can only be seen by those that have permission to "Accept or reject booking" -->
+{% if perms.booking.accept_booking %}
+	<form method="post" action = "{%url 'booking:setstate'  booking.id %}">
 		{% csrf_token %}
-
 		<input type= "submit" value= "Accept" name= "accepted">
 		<input type= "submit" value= "Reject" name= "rejected">
-</form>
+	</form>
+{% endif %}
+<!--HHHHHHHHHHHHHHHHHHHHHH-->
+
 <section>
 	<h2><a href="{% url 'band:detail' booking.band.slug %}">{{ booking.band.name }}</a> <small>band</small></h2>
 	<section>
