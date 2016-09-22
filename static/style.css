@@ -97,6 +97,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .logo {
 	display: block;
+	margin-left: 15%;
 	width: 496px;
 	height: 30px;
 	/* Using the .svg as the default logo, with the png as fallback.
@@ -153,10 +154,28 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-color: #a03033;
 	color: white;
 	text-decoration: none;
+	border: none;
 }
 
-.button:hover {
+.button:hover, .button-booking:hover {
 	background-color: darkgray;
+}
+
+.button-form {
+	position: relative;
+	left:40px;
+	padding-bottom: 10px;
+}
+
+.button-booking {
+	width: 70px;
+	height: 25px;
+	margin: 5px 5px 0 0;
+	padding:5px;
+	background-color: #a03033;
+	color: white;
+	text-decoration: none;
+	border: none;
 }
 
 /*	6. FORSIDEBOKSER */
@@ -274,6 +293,22 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	.row:hover .cell:before {
 		background: #803022;
 	}
+}
+
+
+
+.booking-box {
+	border:3px solid #a03033;
+	width: 347px;
+	border-radius: 3px;
+	background:#eee;
+}
+.booking-table {
+	padding: 5px 20px 10px 20px;
+}
+
+.booking-table th {
+	padding-right: 10px;
 }
 
 /*	9. MESSAGES */

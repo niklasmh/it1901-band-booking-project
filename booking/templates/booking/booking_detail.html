@@ -10,7 +10,14 @@
 {% if perms.booking.change_booking and booking.state != 'm' %}
 <a href="{% url 'booking:change' booking.id %}">Change</a>
 {% endif %}
-<table>
+
+<section class="booking-box">
+<div class="rowheader">
+		<div class="cell">Booking Details &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		</div>
+	</div>
+<table class="booking-table">
+
 	<tr>
 		<th>From:</th>
 		<td>{{ booking.begin|date:'d M Y, H:i' }}</td>
@@ -83,13 +90,14 @@
 
 <!-- Can only be seen by those that have permission to "Accept or reject booking" -->
 {% if perms.booking.accept_booking and booking.state == ' ' %}
-	<form method="post" action = "{%url 'booking:setstate'  booking.id %}">
+	<form class="button-form" method="post" action = "{%url 'booking:setstate'  booking.id %}">
 		{% csrf_token %}
-		<input type= "submit" value= "Accept" name= "accepted">
-		<input type= "submit" value= "Reject" name= "rejected">
+		<input type= "submit" value= "Accept" name= "accepted" class="button-booking">
+		<input type= "submit" value= "Reject" name= "rejected" class="button-booking">
 	</form>
 {% endif %}
 <!--HHHHHHHHHHHHHHHHHHHHHH-->
+</section>
 
 <section>
 	<h2><a href="{% url 'band:detail' booking.band.slug %}">{{ booking.band.name }}</a> <small>band</small></h2>
@@ -111,6 +119,7 @@
 		</table>
 	</section>
 </section>
+
 <section>
 	<h2><a href="{% url 'venue:detail' booking.venue.slug %}">{{ booking.venue.name }}</a> <small>venue</small></h2>
 	<table>

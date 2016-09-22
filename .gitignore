@@ -1,6 +1,5 @@
 __pycache__/
 *.pyc
 env/
-venv/
 db.sqlite3
 settings_local.py
