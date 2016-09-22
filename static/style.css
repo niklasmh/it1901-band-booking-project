@@ -167,25 +167,29 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .overview-element {
-	flex: 1 0 100px;
+	flex: 1 0 160px;
 	border:3px solid #a03033;
-	height: 100px;
+	height: 130px;
 	padding: 15px;
+	box-sizing: border-box;
 	margin: 20px;
 	color: black;
 	text-decoration: none;
 	text-align: center;
+	display: flex;
+	transition: .2s ease-in-out;
+	transition-property: background-color, color;
 }
 
 .overview-element:hover {
 	background-color: #a03033;
+	transition-duration: .05s;
 	color:white;
 	border:3px solid #a03033;
 }
 
 .overview-element p {
-	top:25px;
-	position: relative;
+	margin: auto;
 }
 
 /*	7. TABELL-LAYOUT */
