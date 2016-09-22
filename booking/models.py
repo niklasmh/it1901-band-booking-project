@@ -44,11 +44,11 @@ class Booking(models.Model):
 			("accept_booking", "Accept or reject booking"),
 		)
 
-class Rapport(models.Model):
+class Report(models.Model):
 	booking = models.OneToOneField(
 		Booking,
 		on_delete=models.CASCADE,
-		related_name="rapport",
+		related_name="report",
 	)
 	attended_member = models.IntegerField()
 	attended = models.IntegerField()
