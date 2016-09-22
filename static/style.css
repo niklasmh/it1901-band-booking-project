@@ -14,6 +14,7 @@ Kopier hele linjen i innholdfortegnelse og søk på linjen for å komme til kode
 	6. FORSIDEBOKSER
 	7. TABELL-LAYOUT
 	8. TABELL-LAYOUT-MOBIL
+	9. MESSAGES
 
 */
 
@@ -269,3 +270,33 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 		background: #803022;
 	}
 }
+
+/*	9. MESSAGES */
+
+.messages{
+	padding-left: 0px;
+	
+}
+
+.warning, .error {
+	background-color:#FFBABA;
+}
+
+.info {
+	background-color:#00529B;
+}
+
+.success {
+	background-color:#DFF2BF;
+}
+
+.debug {
+	background-color: #FEEFB3;
+}
+
+.debug, .warning, .info, .success, .error {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	text-align: center;
+}
+
