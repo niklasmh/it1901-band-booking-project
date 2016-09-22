@@ -121,6 +121,12 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	position: absolute;
 }
 
+.footerlink {
+	color: white;
+	text-decoration: underline;
+	cursor: auto;
+}
+
 /*	4. BREADCRUMBS*/
 
 .breadcrumbs {
@@ -128,7 +134,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	position: relative;
 	top: 3px;
 	float: left;
-	margin-right: 5px;
+	margin-right: 10px;
 }
 
 .breadcrumbs:hover {
