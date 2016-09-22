@@ -96,6 +96,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .logo {
 	display: block;
+	margin-left: 15%;
 	width: 496px;
 	height: 30px;
 	/* Using the .svg as the default logo, with the png as fallback.
