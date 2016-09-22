@@ -2,11 +2,11 @@
 {% block breadcrumbs %}
     {{ block.super }} 
     <a class="breadcrumbs">»</a> 
-    <a href="{% url 'booking:detail' booking.id  %}" class="breadcrumbs">{{ booking.band.name }} @ {{ booking.venue.name }}</a>
+    <a href="{% url 'booking:detail' booking.id  %}" class="breadcrumbs">{{ booking }}</a>
 {% endblock %}
-{% block title %}{{ booking.band.name }} @ {{ booking.venue.name }} - Booking - Band Booking{% endblock %}
+{% block title %}{{ booking }} - Booking - Band Booking{% endblock %}
 {% block content %}
-<h1>{{ booking.band.name }} @ {{ booking.venue.name }} <small>booking</small></h1>
+<h1>{{ booking }} <small>booking</small></h1>
 {% if perms.booking.change_booking and booking.state != 'm' %}
 <a href="{% url 'booking:change' booking.id %}">Change</a>
 {% endif %}
@@ -46,7 +46,7 @@
 	{% if booking.replaces %}
 	<tr>
 		<th>Replaces:</th>
-		<td><a href="{% url 'booking:detail' booking.replaces.id %}">{{ booking.replaces }}</a></td>
+		<td><a href="{% url 'booking:detail' booking.replaces.id %}">{{ booking.replaces }}</a> ({{ booking.replaces.get_state_display }})</td>
 	</tr>
 	{% endif %}
 	<tr>
