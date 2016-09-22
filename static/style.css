@@ -1,5 +1,25 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400';
 
+/*
+
+Kopier hele linjen i innholdfortegnelse og søk på linjen for å komme til koden.
+
+<<<<<<<		INNHOLDSFORTEGNELSE		>>>>>>>
+
+	1. HTML, CONTENT, BODY og H1,H2,H3,H4,H5,H6
+	2. HEADER og LOGO
+	3. FOOTER
+	4. BREADCRUMBS 
+	5. KNAPP
+	6. FORSIDEBOKSER
+	7. TABELL-LAYOUT
+	8. TABELL-LAYOUT-MOBIL
+
+*/
+
+
+/*	1. HTML, CONTENT, BODY og H1,H2,H3,H4,H5,H6 */
+
 html {
 	font-family: 'Roboto', Sans-serif;
 	font-size: 16px;
@@ -12,6 +32,17 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	min-width: 240px;
+}
+
+.content {
+	flex: 1;
+	width: 100%;
+	max-width: 960px;
+	margin: auto;
+	position: relative;
+	padding: 60px 10px 10px 10px;
+	box-sizing: border-box;
+	display: inline-block;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -30,6 +61,8 @@ h6 { font-size: 1rem; }
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	font-weight: 300;
 }
+
+/*	2. HEADER og LOGO */
 
 .head {
 	position: fixed;
@@ -71,7 +104,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-position: center;
 }
 
-/* <<<<< FOOTER >>>>> */
+/*	3. FOOTER */
 
 .foot {
 	position: relative;
@@ -88,14 +121,20 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	position: absolute;
 }
 
+.footerlink {
+	color: white;
+	text-decoration: underline;
+	cursor: auto;
+}
 
+/*	4. BREADCRUMBS*/
 
 .breadcrumbs {
 	color:black;
 	position: relative;
 	top: 3px;
 	float: left;
-	margin-right: 5px;
+	margin-right: 10px;
 }
 
 .breadcrumbs:hover {
@@ -103,7 +142,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	font-weight: bold;
 }
 
-/* <<<<< KNAPP >>>>> */
+/*	5. KNAPP*/
 
 .button {
 	padding:5px;
@@ -118,7 +157,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-color: darkgray;
 }
 
-/* <<<<< FORSIDE BOKSER >>>>> */
+/*	6. FORSIDEBOKSER */
 
 .overview {
 	display: flex;
@@ -147,7 +186,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	position: relative;
 }
 
-/* <<<<< TABELL LAYOUT >>>>> */
+/*	7. TABELL-LAYOUT */
 
 .table {
 	margin-top: 20px;
@@ -183,7 +222,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-color: lightgray;
 }
 
-/* <<<<< TABELL FOR MOBIL >>>>> */
+/*	8. TABELL-LAYOUT-MOBIL */
 
 @media (max-width: 420px) {
 	.table {
@@ -230,17 +269,4 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	.row:hover .cell:before {
 		background: #803022;
 	}
-}
-
-/* ---------------------------- */
-
-.content {
-	flex: 1;
-	width: 100%;
-	max-width: 960px;
-	margin: auto;
-	position: relative;
-	padding: 60px 10px 10px 10px;
-	box-sizing: border-box;
-	display: inline-block;
 }
