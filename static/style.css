@@ -40,6 +40,7 @@ body {
 	max-width: 960px;
 	margin: auto;
 	position: relative;
+	top: 10px;
 	padding: 60px 10px 10px 10px;
 	box-sizing: border-box;
 	display: inline-block;
@@ -48,6 +49,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 	font-family: 'Roboto', Sans-serif; /* Titles */
+	margin-top: 7.5px;
+	margin-bottom: 20px;
 }
 
 /* Using relative font-size to body (rem) */
@@ -131,9 +134,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .breadcrumbs {
 	color:black;
-	position: relative;
-	top: 3px;
-	float: left;
+	margin-top: 10px;
 	margin-right: 10px;
 }
 
@@ -145,9 +146,9 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 /*	5. KNAPP*/
 
 .button {
+	margin: 5px 5px 0 0;
 	padding:5px;
 	top:-15px;
-	position: relative;
 	background-color: #a03033;
 	color: white;
 	text-decoration: none;
@@ -189,9 +190,8 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 /*	7. TABELL-LAYOUT */
 
 .table {
-	margin-top: 20px;
 	display: table;
-	margin: 0 0 40px 0;
+	margin: 20px 0 40px 0;
 	width: 100%;
 }
 
