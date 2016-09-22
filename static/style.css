@@ -1,25 +1,30 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400';
 
-/*
+/**
+ * 
+ * Kopier hele linjen i innholdfortegnelse og søk på linjen for å komme til koden.
+ * 
+ * <<<<<<<		INNHOLDSFORTEGNELSE		>>>>>>>
+ * 
+ * 1. HTML, CONTENT, BODY og H1,H2,H3,H4,H5,H6
+ * 2. HEADER og LOGO
+ * 3. FOOTER
+ * 4. BREADCRUMBS
+ * 5. KNAPP
+ * 6. FORSIDEBOKSER
+ * 7. TABELL-LAYOUT
+ * 8. TABELL-LAYOUT-MOBIL
+ * 9. MESSAGES
+ * 10. LOG-IN
+ *
+ * @project Band Booking
+ * @version 1.0
+ * @author Almank, exenpipp, ingridmed, niklasmh, okknor, Pontius1007, sikaro
+ * @copyright 2016
+ * @license MIT
+ */
 
-Kopier hele linjen i innholdfortegnelse og søk på linjen for å komme til koden.
-
-<<<<<<<		INNHOLDSFORTEGNELSE		>>>>>>>
-
-	1. HTML, CONTENT, BODY og H1,H2,H3,H4,H5,H6
-	2. HEADER og LOGO
-	3. FOOTER
-	4. BREADCRUMBS 
-	5. KNAPP
-	6. FORSIDEBOKSER
-	7. TABELL-LAYOUT
-	8. TABELL-LAYOUT-MOBIL
-	9. MESSAGES
-
-*/
-
-
-/*	1. HTML, CONTENT, BODY og H1,H2,H3,H4,H5,H6 */
+/** 1. HTML, CONTENT, BODY og H1,H2,H3,H4,H5,H6 */
 
 html {
 	font-family: 'Roboto', Sans-serif;
@@ -67,7 +72,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	font-weight: 300;
 }
 
-/*	2. HEADER og LOGO */
+/** 2. HEADER og LOGO */
 
 .head {
 	position: fixed;
@@ -110,7 +115,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-position: center;
 }
 
-/*	3. FOOTER */
+/** 3. FOOTER */
 
 .foot {
 	position: relative;
@@ -133,7 +138,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	cursor: auto;
 }
 
-/*	4. BREADCRUMBS*/
+/** 4. BREADCRUMBS*/
 
 .breadcrumbs, .breadcrumbs-arrow {
 	color:black;
@@ -145,7 +150,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	color:#a03033;
 }
 
-/*	5. KNAPP*/
+/** 5. KNAPP*/
 
 .button {
 	margin: 5px 5px 0 0;
@@ -178,7 +183,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	border: none;
 }
 
-/*	6. FORSIDEBOKSER */
+/** 6. FORSIDEBOKSER */
 
 .overview {
 	display: flex;
@@ -211,7 +216,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	margin: auto;
 }
 
-/*	7. TABELL-LAYOUT */
+/** 7. TABELL-LAYOUT */
 
 .table {
 	display: table;
@@ -246,7 +251,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-color: lightgray;
 }
 
-/*	8. TABELL-LAYOUT-MOBIL */
+/** 8. TABELL-LAYOUT-MOBIL */
 
 @media (max-width: 420px) {
 	.table {
@@ -311,7 +316,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	padding-right: 10px;
 }
 
-/*	9. MESSAGES */
+/** 9. MESSAGES */
 
 .messages{
 	padding-left: 0px;
@@ -340,7 +345,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	text-align: center;
 }
 
-/*  10. LOG-IN */
+/** 10. LOG-IN */
 
 .login-container {
 	flex: 1;
