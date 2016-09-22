@@ -1,7 +1,8 @@
 {% extends "band/band_list.html" %}
 {% block breadcrumbs %}
     {{ block.super }}
-    <a class="breadcrumbs">»</a><a href="{% url 'band:detail' band.slug %}" class="breadcrumbs">{{ band.name }}</a>
+    <a class="breadcrumbs-arrow">»</a>
+    <a href="{% url 'band:detail' band.slug %}" class="breadcrumbs">{{ band.name }}</a>
 {% endblock %}
 {% block title %}{{ band.name }} - Band - Band Booking{% endblock %}
 {% block content %}
