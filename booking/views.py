@@ -30,7 +30,7 @@ class BookingReportCreateView(PermissionRequiredMixin, CreateView):
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user
-		return super(BookingCreateView, self).form_valid(form);
+		return super(BookingReportCreateView, self).form_valid(form);
 
 class BookingUpdateView(PermissionRequiredMixin, CreateView, SingleObjectMixin):
 	permission_required = 'booking.edit_booking'

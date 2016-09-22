@@ -133,10 +133,7 @@
 	</table>
 </section>
 <section>
-    <form method = "post">
-        <input type= "submit" value= "Create Report" name= "reported">
-    </form>
-
+    <a href="{% url 'report:create' %}" class="button">Create report</a>
 
 
 {% endblock %}
