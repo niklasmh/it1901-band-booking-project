@@ -41,3 +41,14 @@ class Booking(models.Model):
 		permissions = (
 			("accept_booking", "Accept or reject booking"),
 		)
+
+class Rapport(models.Model):
+	booking = models.OneToOneField(
+		Booking,
+		on_delete=models.CASCADE,
+		related_name="rapport",
+	)
+	attended_member = models.IntegerField()
+	attended = models.IntegerField()
+	additional_information = models.TextField(blank=True)
+	#skriv inn scenearbeidere her:
