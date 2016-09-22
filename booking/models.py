@@ -9,12 +9,14 @@ BOOKING_REJECTED = 'r'
 BOOKING_ACCEPTED = 'a'
 BOOKING_CANCELLED = 'c'
 BOOKING_REPLACED = 'm'
+BOOKING_FINISHED = 'f'
 BOOKING_CHOICES = (
 	(BOOKING_NONE, '-'),
 	(BOOKING_REJECTED, 'Rejected'),
 	(BOOKING_ACCEPTED, 'Accepted'),
 	(BOOKING_CANCELLED, 'Cancelled'),
 	(BOOKING_REPLACED, 'Replaced'),
+	(BOOKING_FINISHED, 'Finished'),
 )
 
 class Booking(models.Model):
