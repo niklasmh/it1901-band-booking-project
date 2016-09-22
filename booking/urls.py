@@ -13,7 +13,3 @@ urlpatterns = [
 	url(r'^create/$', views.BookingCreateView.as_view(), name='create'),
 	url(r'^(?P<booking>\d+)/', include(booking)),
 ]
-
-report = [
-    
-    ]
