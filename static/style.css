@@ -132,7 +132,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 /*	4. BREADCRUMBS*/
 
-.breadcrumbs {
+.breadcrumbs, .breadcrumbs-arrow {
 	color:black;
 	margin-top: 10px;
 	margin-right: 10px;
