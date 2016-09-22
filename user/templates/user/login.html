@@ -2,9 +2,9 @@
 {% block title %}Log in - Band Booking{% endblock %}
 {% block content %}
 <h1>Band Booking <small>log in</small></h1>
-<form method="POST">
+<form method="POST" class="login-container">
 	{% csrf_token %}
-	<table>
+	<table class="login">
 		{{ form.as_table }}
 		<tr>
 			<td></td>
