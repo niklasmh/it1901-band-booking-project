@@ -17,11 +17,12 @@
 </div>
 {% endif %}
 
-<section class="booking-box">
-<div class="booking-box-header">
-	<div>Booking Details</div>
-</div>
-<table class="booking-table">
+<div class="content-below-change">
+<div class="booking-box">
+	<div class="booking-box-header">
+		<div>Booking Details</div>
+	</div>
+	<table>
 
 	<tr>
 		<th>From:</th>
@@ -106,12 +107,14 @@
 	</form>
 {% endif %}
 <!--HHHHHHHHHHHHHHHHHHHHHH-->
-</section>
+</div>
 
-<section>
-	<h2><a href="{% url 'band:detail' booking.band.slug %}">{{ booking.band.name }}</a> <small>band</small></h2>
-	<section>
-		<h3>Contact person</h3>
+<div class="booking-box">
+	<div class="booking-box-header">
+		<div>Contact Details</div>
+	</div>
+
+	<div>
 		<table>
 			<tr>
 				<th>Name</th>
@@ -125,11 +128,15 @@
 				<th>Email</th>
 				<td>{{ booking.band.contact_email }}</td>
 			</tr>
+			<tr>
+				<td>
+					<a class="button" href="{% url 'band:detail' booking.band.slug %}">Go to {{ booking.band.name }}</a>
+				</td>
 		</table>
-	</section>
-</section>
+	</div>
+</div>
 
-<section>
+<div>
 	<h2><a href="{% url 'venue:detail' booking.venue.slug %}">{{ booking.venue.name }}</a> <small>venue</small></h2>
 	<table>
 		<tr>
@@ -149,8 +156,9 @@
 			<td>{{ booking.venue.stage_height }}m</td>
 		</tr>
 	</table>
-</section>
-<section>
+</div>
+
+</div>
 <a href="{% comment %}{% url 'report:create' %}{% endcomment %}" class="button">Create report</a>
 
 

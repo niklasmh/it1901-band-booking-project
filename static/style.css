@@ -348,6 +348,11 @@ button > .fa{
 	height: 20px;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	font-size: 16px;
+}
+
+.content-below-change {
+	f
 }
 
 .booking-table {
@@ -357,6 +362,10 @@ button > .fa{
 .booking-table th {
 	padding-right: 10px;
 	text-align: right;
+}
+
+.link-band-booking-header {
+	font-weight: 100px;
 }
 
 /** 9. MESSAGES */
@@ -397,4 +406,13 @@ button > .fa{
 
 .login {
 	margin: auto;
+}
+
+/* 11. Band Info Box */
+
+.band-info {
+	margin: 20px;
+	padding:20px;
+	max-width: 300px;
+	border: 3px dashed #a03033;
 }
