@@ -175,17 +175,21 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .button-form {
 	padding-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .button-accept, .button-reject {
 	width: 70px;
 	height: 25px;
-	margin: 5px 5px 0 0;
+	margin: 5px 20px 0 0;
 	padding: 5px;
 	background-color: #a03033;
 	color: white;
 	text-decoration: none;
 	border: none;
+
 }
 
 /** 6. FORSIDEBOKSER */
@@ -305,14 +309,18 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	}
 }
 
-
-
 .booking-box {
 	border: 3px solid #a03033;
 	width: 347px;
 	border-radius: 3px;
 	background: #eee;
 }
+
+.booking-box-header {
+	background-color: #a03033;
+	color: white;
+}
+
 .booking-table {
 	padding: 5px 20px 10px 20px;
 }
@@ -325,7 +333,6 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .messages{
 	padding-left: 0px;
-	
 }
 
 .warning, .error {
