@@ -152,6 +152,10 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 /** 5. KNAPP*/
 
+button > .fa{
+	font-size: 1.4em;
+}
+
 .button {
 	margin: 5px 5px 0 0;
 	padding: 5px;
@@ -165,12 +169,42 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	background-color: darkgray;
 }
 
-.button-accept:hover {
+.button-accept, .button-reject {
+	width: 70px;
+	height: 25px;
+	margin: 5px 20px 0 0;
+	padding: 5px;
+	color: white;
+	text-decoration: none;
+	border: none;
+}
+
+.button-accept {
 	background-color: green;
 }
 
+.button-reject {
+	background-color: #a03033;
+}
+
+.button-accept:hover {
+	background-color: #eee;
+	box-shadow: inset 0 0 0 2px green;
+	border-radius: 1px;
+}
+
+.button-accept:hover i {
+	color:green;
+}
+
 .button-reject:hover {
-	background-color: red;
+	background-color: #eee;
+	box-shadow: inset 0 0 0 2px #a03033;
+	border-radius: 1px;
+}
+
+.button-reject:hover i {
+	color:#a03033;
 }
 
 .button-form {
@@ -180,17 +214,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	justify-content: center;
 }
 
-.button-accept, .button-reject {
-	width: 70px;
-	height: 25px;
-	margin: 5px 20px 0 0;
-	padding: 5px;
-	background-color: #a03033;
-	color: white;
-	text-decoration: none;
-	border: none;
 
-}
 
 /** 6. FORSIDEBOKSER */
 
