@@ -134,12 +134,14 @@
 
 	</div>
 	<div class="button-go-to-band">
-				<a class="button"  href="{% url 'band:detail' booking.band.slug %}">Go to {{ booking.band.name }}</a>
-			</div>
+		<a class="button"  href="{% url 'band:detail' booking.band.slug %}">Go to {{ booking.band.name }}</a>
+	</div>
 </div>
 
-<div>
-	<h2><a href="{% url 'venue:detail' booking.venue.slug %}">{{ booking.venue.name }}</a> <small>venue</small></h2>
+<div class="booking-box">
+	<div class="booking-box-header">
+		<div>Venue Details</div>
+	</div>
 	<table>
 		<tr>
 			<th>Crowd capacity</th>
@@ -158,10 +160,15 @@
 			<td>{{ booking.venue.stage_height }}m</td>
 		</tr>
 	</table>
+		<div class="button-go-to-band">
+		<a class="button" href="{% url 'venue:detail' booking.venue.slug %}">Go to {{ booking.venue.name }}</a>
+	</div>
 </div>
 
 </div>
-<a href="{% comment %}{% url 'report:create' %}{% endcomment %}" class="button">Create report</a>
+<div class="controls">
+	<a href="{% comment %}{% url 'report:create' %}{% endcomment %}" class="button">Create report</a>
+</div>
 
 
 {% endblock %}
