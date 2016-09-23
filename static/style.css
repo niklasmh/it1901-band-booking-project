@@ -334,6 +334,7 @@ button > .fa{
 }
 
 .booking-box {
+	margin-top:20px;
 	border: 3px solid #a03033;
 	width: 347px;
 	border-radius: 3px;
