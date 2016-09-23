@@ -10,7 +10,7 @@
 
 {% block title %}{{ band.name }} - Band - Band Booking{% endblock %}
 {% block content %}
-<h1>{{ band.name }} <small>band</small></h1>
+<h1 class="title">{{ band.name }} <small>band</small></h1>
 {% if perms.band.edit_band %}
 <a href="{% url 'band:update' band.slug %}">Edit band</a><br/>
 {% endif %}

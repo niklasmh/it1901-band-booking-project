@@ -10,7 +10,7 @@
 
 {% block title %}Bands - Band Booking{% endblock %}
 {% block content %}
-<h1>Bands</h1>
+<h1 class="title">Bands</h1>
 {% if perms.band.add_band %}
 <a href="{% url 'band:create' %}" class="button">Add band</a>
 {% endif %}

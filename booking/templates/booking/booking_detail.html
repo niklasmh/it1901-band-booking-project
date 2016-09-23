@@ -10,7 +10,7 @@
 
 {% block title %}{{ booking }} - Booking - Band Booking{% endblock %}
 {% block content %}
-<h1>{{ booking }} <small>booking</small></h1>
+<h1 class="title">{{ booking }} <small>booking</small></h1>
 {% if perms.booking.change_booking and booking.state != 'm' %}
 <a href="{% url 'booking:change' booking.id %}">Change</a>
 {% endif %}
