@@ -163,6 +163,7 @@ button > .fa{
 	color: white;
 	text-decoration: none;
 	border: none;
+	cursor: pointer;
 }
 
 .button:hover {
@@ -170,6 +171,7 @@ button > .fa{
 }
 
 .button-accept, .button-reject {
+	cursor: pointer;
 	width: 70px;
 	height: 25px;
 	margin: 5px 20px 0 0;
