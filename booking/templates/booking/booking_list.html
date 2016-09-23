@@ -11,7 +11,9 @@
 {% block title %}Bookings - Band Booking{% endblock %}
 {% block content %}
 <h1 class="title">Bookings</h1>
-<a href="{% url 'booking:create' %}" class="button">Add booking</a>
+<div class="controls">
+	<a href="{% url 'booking:create' %}" class="button">Add booking</a>
+</div>
 <div class="table">
 	<div class="rowheader">
 		<div class="cell">Band</div>

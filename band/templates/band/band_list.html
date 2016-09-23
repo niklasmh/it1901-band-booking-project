@@ -12,7 +12,9 @@
 {% block content %}
 <h1 class="title">Bands</h1>
 {% if perms.band.add_band %}
-<a href="{% url 'band:create' %}" class="button">Add band</a>
+<div class="controls">
+	<a href="{% url 'band:create' %}" class="button">Add band</a>
+</div>
 {% endif %}
 <div class="table">
 	<div class="rowheader">
