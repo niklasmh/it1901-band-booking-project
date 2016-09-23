@@ -12,7 +12,7 @@
 {% block content %}
 <h1 class="title">{{ booking }} <small>booking</small></h1>
 {% if perms.booking.change_booking and booking.state != 'm' %}
-<a href="{% url 'booking:change' booking.id %}">Change</a>
+<a href="{% url 'booking:change' booking.id %}" class="button">Change</a>
 {% endif %}
 
 <section class="booking-box">
