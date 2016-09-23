@@ -257,6 +257,44 @@ button > .fa{
 
 /** 7. TABELL-LAYOUT */
 
+.create-form {
+	margin:auto;
+}
+
+.create-booking-table th {
+	text-align: right;
+}
+
+.create-booking-table label {
+	margin-right: 20px;
+}
+
+.create-booking-table select {
+	width: 100%;
+	-webkit-appearance: menulist-button;
+	height: 25px;
+	background-color: white;
+
+}
+
+.create-booking-table td input, .submit-button {
+	height: 25px;
+	width: 300px;
+	font-size: 14px;
+}
+
+.submit-button {
+	background-color: #a03033;
+	color:white;
+	border: none;
+}
+
+.submit-button:hover {
+	background-color: white;
+	color:#a03033;
+	border: 1px solid #a03033;
+}
+
 .table {
 	display: table;
 	margin: 20px 0 40px 0;

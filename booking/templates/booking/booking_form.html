@@ -30,15 +30,15 @@ Create
 	Booking <small>create</small>
 	{% endif %}
 </h1>
-<form method="POST">
+<form class="create-form" method="POST">
 	{% csrf_token %}
-	<table>
+	<table class="create-booking-table">
 		{{ form.as_table }}
 		<tr>
 			<td></td>
 			<td>
-				<input type="submit" value="Ok">
-			</td
+				<button class="submit-button" type="submit" value="Add">Add</button>
+			</td>
 		</tr>
 	</table>
 </form>
