@@ -1,9 +1,13 @@
 {% extends "venue/venue_list.html" %}
-{% block breadcrumbs %}
-    {{ block.super }} 
-    <a class="breadcrumbs-arrow">»</a> 
-    <a href="{% url 'venue:detail' venue.slug %}" class="breadcrumbs">{{ venue.name }}</a>
-{% endblock %}
+
+<div class="breadcrumb-container">
+	{% block breadcrumbs %}
+		{{ block.super }} 
+		<a class="breadcrumbs-arrow">»</a> 
+		<a href="{% url 'venue:detail' venue.slug %}" class="breadcrumbs">{{ venue.name }}</a>
+	{% endblock %}
+</div>
+
 {% block title %}{{ venue.name }} - Venue - Band Booking{% endblock %}
 {% block content %}
 <h1>{{ venue.name }} <small>venue</small></h1>

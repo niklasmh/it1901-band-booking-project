@@ -1,16 +1,18 @@
 {% extends "band/band_list.html" %}
 
-{% block breadcrumbs %}
+<div class="breadcrumb-container">
+	{% block breadcrumbs %}
 	{% if form.initial %}
-    	{{ block.super }} 
-    	<a class="breadcrumbs-arrow">»</a> 
-    	<a href="{% url 'band:create' %}" class="breadcrumbs">Edit Band</a>
+		{{ block.super }}
+		<a class="breadcrumbs-arrow">»</a>
+		<a href="{% url 'band:create' %}" class="breadcrumbs">Edit Band</a>
 	{% else %}
-    	{{ block.super }} 
-    	<a class="breadcrumbs-arrow">»</a> 
-    	<a href="{% url 'band:create' %}" class="breadcrumbs">Create Band</a>
-    {% endif %}
-{% endblock %}
+		{{ block.super }}
+		<a class="breadcrumbs-arrow">»</a>
+		<a href="{% url 'band:create' %}" class="breadcrumbs">Create Band</a>
+	{% endif %}
+	{% endblock %}
+</div>
 
 {% block title %}
 {% if form.initial %}

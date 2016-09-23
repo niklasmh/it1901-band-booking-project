@@ -1,9 +1,13 @@
 {% extends "base.html" %}
-{% block breadcrumbs %}
-    {{ block.super }} 
-    <a class="breadcrumbs-arrow">»</a> 
-    <a href="{% url 'venue:list' %}" class="breadcrumbs">Venues</a>
-{% endblock %}
+
+<div class="breadcrumb-container">
+	{% block breadcrumbs %}
+		{{ block.super }} 
+		<a class="breadcrumbs-arrow">»</a> 
+		<a href="{% url 'venue:list' %}" class="breadcrumbs">Venues</a>
+	{% endblock %}
+</div>
+
 {% block title %}Venues - Band Booking{% endblock %}
 {% block content %}
 <h1>Venues</h1>

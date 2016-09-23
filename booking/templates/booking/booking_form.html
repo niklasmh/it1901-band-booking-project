@@ -1,16 +1,18 @@
 {% extends "booking/booking_list.html" %}
 
-{% block breadcrumbs %}
-	{% if form.initial %}
-    	{{ block.super }} 
-    	<a class="breadcrumbs-arrow">»</a> 
-    	<a href="{% url 'booking:create' %}" class="breadcrumbs">Edit Booking</a>
-    {% else %}
-    	{{ block.super }} 
-    	<a class="breadcrumbs-arrow">»</a> 
-    	<a href="{% url 'booking:create' %}" class="breadcrumbs">Create Band</a>
-    {% endif %}
-{% endblock %}
+<div class="breadcrumb-container">
+	{% block breadcrumbs %}
+		{% if form.initial %}
+			{{ block.super }} 
+			<a class="breadcrumbs-arrow">»</a> 
+			<a href="{% url 'booking:create' %}" class="breadcrumbs">Edit Booking</a>
+		{% else %}
+			{{ block.super }} 
+			<a class="breadcrumbs-arrow">»</a> 
+			<a href="{% url 'booking:create' %}" class="breadcrumbs">Create Band</a>
+		{% endif %}
+	{% endblock %}
+</div>
 
 {% block title %}
 {% if booking %}

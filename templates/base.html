@@ -34,7 +34,11 @@
 			</ul>
 			{% endif %}
 
-			{% block breadcrumbs %}<a href="{% url 'index' %}" class="breadcrumbs">Home</a>{% endblock %}
+			<div class="breadcrumb-container">
+				{% block breadcrumbs %}
+				<a href="{% url 'index' %}" class="breadcrumbs">Home</a>
+				{% endblock %}
+			</div>
 
 			{% block content %}
 
