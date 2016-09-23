@@ -3,7 +3,7 @@
 <div class="breadcrumb-container">
 	{% block breadcrumbs %}
 		{{ block.super }} 
-		<a class="breadcrumbs-arrow">»</a> 
+		<a class="breadcrumbs-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></a> 
 		<a href="{% url 'venue:detail' venue.slug %}" class="breadcrumbs">{{ venue.name }}</a>
 	{% endblock %}
 </div>
