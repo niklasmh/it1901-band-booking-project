@@ -13,7 +13,7 @@
 <h1 class="title">{{ booking }} <small>booking</small></h1>
 {% if perms.booking.change_booking and booking.state != 'm' %}
 <div class="controls">
-	<a href="{% url 'booking:change' booking.id %}" class="button">Change <i class="fa fa-refresh"></i></a>
+	<a href="{% url 'booking:change' booking.id %}" class="button"><i class="fa fa-refresh"></i> Change</a>
 </div>
 {% endif %}
 
@@ -69,10 +69,12 @@
 </table>
 
 {% if booking.replacements.all %}
-<h3>Replacements</h3>
-<table>
+<table class="booking-table">
+
 	<thead>
+		<td><h6>Replaced with:</h6></td>
 		<tr>
+			
 			<th>Name</th>
 			<th>Created</th>
 			<th>State</th>
@@ -118,15 +120,15 @@
 	<div>
 		<table class="booking-table">
 			<tr>
-				<th>Name</th>
+				<th>Name:</th>
 				<td>{{ booking.band.contact_person }}</td>
 			</tr>
 			<tr>
-				<th>Phone</th>
+				<th>Phone:</th>
 				<td>{{ booking.band.contact_phone }}</td>
 			</tr>
 			<tr>
-				<th>Email</th>
+				<th>Email:</th>
 				<td>{{ booking.band.contact_email }}</td>
 			</tr>
 			
@@ -142,21 +144,21 @@
 	<div class="booking-box-header">
 		<div>Venue Details</div>
 	</div>
-	<table>
+	<table class="booking-table">
 		<tr>
-			<th>Crowd capacity</th>
+			<th>Crowd capacity:</th>
 			<td>{{ booking.venue.crowd_capacity }} people</td>
 		</tr>
 		<tr>
-			<th>Stage width</th>
+			<th>Stage width:</th>
 			<td>{{ booking.venue.stage_width }}m</td>
 		</tr>
 		<tr>
-			<th>Stage depth</th>
+			<th>Stage depth:</th>
 			<td>{{ booking.venue.stage_depth }}m</td>
 		</tr>
 		<tr>
-			<th>Stage height</th>
+			<th>Stage height:</th>
 			<td>{{ booking.venue.stage_height }}m</td>
 		</tr>
 	</table>
