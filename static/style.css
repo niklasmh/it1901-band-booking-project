@@ -319,6 +319,10 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .booking-box-header {
 	background-color: #a03033;
 	color: white;
+	text-align: center;
+	height: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .booking-table {
@@ -327,6 +331,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .booking-table th {
 	padding-right: 10px;
+	text-align: right;
 }
 
 /** 9. MESSAGES */
