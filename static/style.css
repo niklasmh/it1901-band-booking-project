@@ -92,7 +92,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .head > .user {
-	justify-self: flex-end;
+	justify-content: flex-end;
 	color: white;
 }
 
@@ -126,7 +126,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .foot p {
 	width: 100%;
-	top:0.3em;
+	top: 0.3em;
 	text-align: center;
 	color: white;
 	position: absolute;
@@ -141,21 +141,20 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 /** 4. BREADCRUMBS*/
 
 .breadcrumbs, .breadcrumbs-arrow {
-	color:black;
+	color: black;
 	margin-top: 10px;
 	margin-right: 10px;
 }
 
 .breadcrumbs:hover {
-	color:#a03033;
+	color: #a03033;
 }
 
 /** 5. KNAPP*/
 
 .button {
 	margin: 5px 5px 0 0;
-	padding:5px;
-	top:-15px;
+	padding: 5px;
 	background-color: #a03033;
 	color: white;
 	text-decoration: none;
@@ -167,8 +166,6 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .button-form {
-	position: relative;
-	left:40px;
 	padding-bottom: 10px;
 }
 
@@ -176,7 +173,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	width: 70px;
 	height: 25px;
 	margin: 5px 5px 0 0;
-	padding:5px;
+	padding: 5px;
 	background-color: #a03033;
 	color: white;
 	text-decoration: none;
@@ -192,7 +189,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .overview-element {
 	flex: 1 0 160px;
-	border:3px solid #a03033;
+	border: 3px solid #a03033;
 	height: 130px;
 	padding: 15px;
 	box-sizing: border-box;
@@ -208,8 +205,8 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .overview-element:hover {
 	background-color: #a03033;
 	transition-duration: .05s;
-	color:white;
-	border:3px solid #a03033;
+	color: white;
+	border: 3px solid #a03033;
 }
 
 .overview-element p {
@@ -225,10 +222,10 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .rowheader {
-	background:#a03033;
+	background: #a03033;
 	width: 100%;
 	display: table-row;
-	color:white;
+	color: white;
 }
 
 .cell {
@@ -237,14 +234,14 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .row:nth-of-type(odd) {
-	background:#e9e9e9;
+	background: #e9e9e9;
 }
 
 .row {
 	display: table-row;
 	background-color: #f6f6f6;
 	text-decoration: none;
-	color:black;
+	color: black;
 }
 
 .row:hover {
@@ -303,10 +300,10 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 
 .booking-box {
-	border:3px solid #a03033;
+	border: 3px solid #a03033;
 	width: 347px;
 	border-radius: 3px;
-	background:#eee;
+	background: #eee;
 }
 .booking-table {
 	padding: 5px 20px 10px 20px;
@@ -324,15 +321,15 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .warning, .error {
-	background-color:#FFBABA;
+	background-color: #FFBABA;
 }
 
 .info {
-	background-color:#00529B;
+	background-color: #00529B;
 }
 
 .success {
-	background-color:#DFF2BF;
+	background-color: #DFF2BF;
 }
 
 .debug {
