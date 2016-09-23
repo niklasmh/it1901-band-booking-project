@@ -107,6 +107,7 @@
 	</form>
 {% endif %}
 <!--HHHHHHHHHHHHHHHHHHHHHH-->
+
 </div>
 
 <div class="booking-box">
@@ -128,12 +129,13 @@
 				<th>Email</th>
 				<td>{{ booking.band.contact_email }}</td>
 			</tr>
-			<tr>
-				<td>
-					<a class="button" href="{% url 'band:detail' booking.band.slug %}">Go to {{ booking.band.name }}</a>
-				</td>
+			
 		</table>
+
 	</div>
+	<div class="button-go-to-band">
+				<a class="button"  href="{% url 'band:detail' booking.band.slug %}">Go to {{ booking.band.name }}</a>
+			</div>
 </div>
 
 <div>

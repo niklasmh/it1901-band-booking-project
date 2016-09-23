@@ -170,6 +170,10 @@ button > .fa{
 	background-color: darkgray;
 }
 
+.button-go-to-band {
+	margin: 10px 10px 10px 5px;
+}
+
 .button-accept, .button-reject {
 	cursor: pointer;
 	width: 70px;
@@ -351,6 +355,7 @@ button > .fa{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	font-size: 16px;
+	margin-bottom: 10px;
 }
 
 .content-below-change {
