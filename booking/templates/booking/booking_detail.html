@@ -114,7 +114,7 @@
 
 <div class="booking-box">
 	<div class="booking-box-header">
-		<div>Contact Details</div>
+		<div>Band Details</div>
 	</div>
 
 	<div>
@@ -129,7 +129,7 @@
 			</tr>
 			<tr>
 				<th>Email:</th>
-				<td>{{ booking.band.contact_email }}</td>
+				<td><a href="mailto:{{ booking.band.contact_email }}">{{ booking.band.contact_email }}</a></td>
 			</tr>
 			
 		</table>
