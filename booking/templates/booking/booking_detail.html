@@ -3,8 +3,7 @@
 <div class="breadcrumb-container">
 	{% block breadcrumbs %}
 		{{ block.super }}
-		<a class="breadcrumbs-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-		<a href="{% url 'booking:detail' booking.id  %}" class="breadcrumbs">{{ booking }}</a>
+		<span class="breadcrumbs"><a href="{% url 'booking:detail' booking.id  %}">{{ booking }}</a></span>
 	{% endblock %}
 </div>
 
