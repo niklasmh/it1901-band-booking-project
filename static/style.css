@@ -162,8 +162,16 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	border: none;
 }
 
-.button:hover, .button-booking:hover {
+.button:hover {
 	background-color: darkgray;
+}
+
+.button-accept:hover {
+	background-color: green;
+}
+
+.button-reject:hover {
+	background-color: red;
 }
 
 .button-form {
@@ -172,7 +180,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	padding-bottom: 10px;
 }
 
-.button-booking {
+.button-accept, .button-reject {
 	width: 70px;
 	height: 25px;
 	margin: 5px 5px 0 0;

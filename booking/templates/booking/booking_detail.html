@@ -92,8 +92,8 @@
 {% if perms.booking.accept_booking and booking.state == ' ' %}
 	<form class="button-form" method="post" action = "{%url 'booking:setstate'  booking.id %}">
 		{% csrf_token %}
-		<input type= "submit" value= "Accept" name= "accepted" class="button-booking">
-		<input type= "submit" value= "Reject" name= "rejected" class="button-booking">
+		<input type= "submit" value= "Accept" name= "accepted" class="button-accept">
+		<input type= "submit" value= "Reject" name= "rejected" class="button-reject">
 	</form>
 {% endif %}
 <!--HHHHHHHHHHHHHHHHHHHHHH-->
