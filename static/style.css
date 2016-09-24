@@ -369,6 +369,15 @@ button > .fa{
 	background-color: lightgray;
 }
 
+.row, .cell, .cell:before {
+	transition-property: background-color, border-color;
+	transition-duration: .2s;
+	transition-timing-function: ease-in-out;
+}
+.row:hover, .row:hover > .cell, .row:hover > .cell:before {
+	transition-duration: .05s;
+}
+
 /** 8. TABELL-LAYOUT-MOBIL */
 
 @media (max-width: 420px) {
