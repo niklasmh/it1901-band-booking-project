@@ -13,7 +13,10 @@
 {% if perms.booking.change_booking and booking.state != 'm' %}
 <div class="controls">
 	<a href="{% url 'booking:change' booking.id %}" class="button"><i class="fa fa-refresh"></i> Change</a>
+
+	<a href="{% comment %}{% url 'report:create' %}{% endcomment %}" class="button">Create report</a>
 </div>
+
 {% endif %}
 
 <div class="content-below-change">
@@ -172,11 +175,9 @@
 		<div class="button-go-to-band">
 		<a class="button" href="{% url 'venue:detail' booking.venue.slug %}">Go to {{ booking.venue.name }}</a>
 	</div>
-</div>
 
 </div>
-<div class="controls">
-	<a href="{% comment %}{% url 'report:create' %}{% endcomment %}" class="button">Create report</a>
+
 </div>
 
 
