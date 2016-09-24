@@ -14,9 +14,10 @@
  * 6. FORSIDEBOKSER
  * 7. TABELL-LAYOUT
  * 8. TABELL-LAYOUT-MOBIL
- * 9. MESSAGES
- * 10. LOG-IN
- * 11. Band Info Box
+ * 9. Booking details
+ * 10. MESSAGES
+ * 11. LOG-IN
+ * 12. Band Info Box
  *
  * @project Band Booking
  * @version 1.0
@@ -164,6 +165,10 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 /** 5. KNAPP*/
+
+button {
+	cursor:pointer;
+}
 
 button > .fa{
 	font-size: 1.4em;
@@ -399,6 +404,8 @@ button > .fa{
 	}
 }
 
+/** 9. Booking details */
+
 .booking-box {
 	margin-right: 20px;
 	margin-top:20px;
@@ -420,10 +427,6 @@ button > .fa{
 	margin-bottom: 10px;
 }
 
-.content-below-change {
-	
-}
-
 .booking-table {
 	padding: 5px 20px 10px 20px;
 }
@@ -437,7 +440,7 @@ button > .fa{
 	font-weight: 100px;
 }
 
-/** 9. MESSAGES */
+/** 10. MESSAGES */
 
 .messages{
 	padding-left: 0px;
@@ -465,7 +468,7 @@ button > .fa{
 	text-align: center;
 }
 
-/** 10. LOG-IN */
+/** 11. LOG-IN */
 
 .login-container {
 	flex: 1;
@@ -477,7 +480,7 @@ button > .fa{
 	margin: auto;
 }
 
-/* 11. Band Info Box */
+/* 12. Band Info Box */
 
 .band-info {
 	margin: 20px;
