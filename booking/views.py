@@ -6,10 +6,43 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.forms import model_to_dict
 from booking import models, forms
-from datetime import datetime
+from datetime import datetime, date, timedelta
+import re
+
+def get_week_number(date):
+	return date.strftime('%Y-W%W')
+
+def get_weekspan(date):
+	weeklist_begin = date - timedelta(days=date.weekday())
+	weeklist_end = weeklist_begin + timedelta(days=7)
+	return weeklist_begin, weeklist_end
+
+def get_weekspan_from_number(week, year):
+	weeklist_begin = datetime.strptime("%s-W%s-1" % (year, week), "%Y-W%W-%w")
+	weeklist_end = weeklist_begin + timedelta(days=7)
+	return weeklist_begin, weeklist_end
 
 class BookingListView(ListView):
 	model = models.Booking
+
+	def get_context_data(self, **kwargs):
+		context = super(BookingListView, self).get_context_data(**kwargs)
+		today = date.today()
+
+		weeklist_begin, weeklist_end = get_weekspan(today)
+		if 'week' in self.request.GET:
+			m = re.match("([0-9]{4})-W([0-9]+)", self.request.GET.get('week'))
+			if m:
+				year, week = m.group(1, 2)
+				weeklist_begin, weeklist_end = get_weekspan_from_number(week, year)
+		context['weeklist'] = {
+			'week': (weeklist_begin),
+			'week_next': (weeklist_begin + timedelta(days=7)),
+			'week_previous': (weeklist_begin - timedelta(days=7)),
+			'list': self.model.objects.filter(state__in=(models.BOOKING_ACCEPTED, models.BOOKING_NONE),
+											  begin__range=(weeklist_begin, weeklist_end)),
+		}
+		return context
 
 	def get_queryset(self):
 		qs = super(BookingListView, self).get_queryset()
@@ -45,7 +78,6 @@ class BookingCreateView(PermissionRequiredMixin, CreateView):
 			except ValueError:
 				pass
 			initial['venue'] = models.Venue.objects.get(**q)
-		print(initial)
 		return initial
 
 	def form_valid(self, form):
