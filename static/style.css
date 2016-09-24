@@ -517,7 +517,8 @@ button > .fa{
 /* 12. Weeklist */
 
 .weeklist {
-	display: table;
+	display: block;
+	overflow-x: auto;
 	margin-top: 20px;
 }
 
