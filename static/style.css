@@ -155,6 +155,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .breadcrumbs:not(:first-child):before {
+	font-family: "FontAwesome";
 	content: "\f105";
 	margin-right: 10px;
 	color: black;
