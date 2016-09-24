@@ -547,10 +547,12 @@ button > .fa{
 .weeklist .rowheader .cell {
 	display: table-cell;
 	padding: 5px;
+	text-align: center;
 }
 
 .weeklist .rowheader .cell .date {
-	color: #f59c9f;
+	display: block;
+	color: rgba(255, 255, 255, .5);
 }
 
 .weeklist .row {
