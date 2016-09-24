@@ -533,7 +533,6 @@ button > .fa{
 
 .weeklist {
 	display: block;
-	overflow-x: auto;
 	margin-top: 20px;
 }
 
@@ -584,5 +583,14 @@ button > .fa{
 }
 
 .layout-cell {
-	margin-right: 10px;
+	overflow-x: auto;
+}
+
+.layout-cell.center {
+	text-align: center;
+}
+
+.layout-cell.corner-spacing {
+	padding-right: 10px;
+	padding-bottom: 20px;
 }
