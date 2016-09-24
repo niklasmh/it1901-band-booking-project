@@ -14,13 +14,13 @@
 	<a href="{% url 'booking:create' %}" class="button"><i class="fa fa-plus"></i> Add booking</a>
 </div>
 {% load weeklist %}
-<div class="weeklist">
+<div class="weeklist table-style">
 	<div class="rowheader">
 		<div class="cell"></div>
 		{% for e in 0|weekdays:"2016-W38" %}
 		<div class="cell">
 			<span class="dayname">{{ e.date|date:"l" }}</span>
-			<span class="date">{{ e.date|date:"d.m.Y" }}</span>
+			<span class="date">{{ e.date|date:"d.m" }}</span>
 		</div>
 		{% endfor %}
 	</div>
@@ -53,7 +53,7 @@
 	{% endfor %}
 </div>
 
-<div class="table">
+<div class="table table-style">
 	<div class="rowheader">
 		<div class="cell">Band</div>
 		<div class="cell">Venue</div>

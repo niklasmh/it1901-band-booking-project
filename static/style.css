@@ -343,9 +343,12 @@ button > .fa{
 }
 
 .table .rowheader {
-	background: #a03033;
 	width: 100%;
 	display: table-row;
+}
+
+.table-style .rowheader {
+	background: #a03033;
 	color: white;
 }
 
@@ -354,27 +357,35 @@ button > .fa{
 	display: table-cell;
 }
 
-.table .row:nth-of-type(odd) {
+.table .row {
+	display: table-row;
+	text-decoration: none;
+}
+
+.table-style .row:nth-of-type(odd) {
 	background: #e9e9e9;
 }
 
-.table .row {
-	display: table-row;
+.table-style .row {
 	background-color: #f6f6f6;
-	text-decoration: none;
 	color: black;
 }
 
-.table .row:hover {
+.table-style .row:hover {
 	background-color: lightgray;
 }
 
-.row, .cell, .cell:before {
+.table-style > .row,
+.table-style .cell,
+.table-style .cell:before {
 	transition-property: background-color, border-color;
 	transition-duration: .2s;
 	transition-timing-function: ease-in-out;
 }
-.row:hover, .row:hover > .cell, .row:hover > .cell:before {
+
+.table-style > .row:hover,
+.table-style > .row:hover > .cell,
+.table-style > .row:hover > .cell:before {
 	transition-duration: .05s;
 }
 
@@ -404,13 +415,16 @@ button > .fa{
 		font-size: .8em;
 		font-weight: bold;
 		padding: 4px 10px 4px 6px;
-		background: #a03033;
-		color: #fff;
 		text-align: right;
 		border-right: 10px solid #f6f6f6;
 	}
+	.table-style .cell:before {
+		border-right: 10px solid #f6f6f6;
+		background: #a03033;
+		color: #fff;
+	}
 
-	.table .row:nth-of-type(odd) .cell:before {
+	.table-style .row:nth-of-type(odd) .cell:before {
 		background: #903029;
 		border-color: #e9e9e9;
 	}
@@ -423,7 +437,7 @@ button > .fa{
 		padding-bottom: 10px;
 	}
 
-	.table .row:hover .cell:before {
+	.table-style .row:hover .cell:before {
 		background: #803022;
 		border-color: lightgray;
 	}
