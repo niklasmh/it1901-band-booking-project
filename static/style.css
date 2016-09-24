@@ -342,30 +342,30 @@ button > .fa{
 	width: 100%;
 }
 
-.rowheader {
+.table .rowheader {
 	background: #a03033;
 	width: 100%;
 	display: table-row;
 	color: white;
 }
 
-.cell {
+.table .cell {
 	padding: 6px 12px;
 	display: table-cell;
 }
 
-.row:nth-of-type(odd) {
+.table .row:nth-of-type(odd) {
 	background: #e9e9e9;
 }
 
-.row {
+.table .row {
 	display: table-row;
 	background-color: #f6f6f6;
 	text-decoration: none;
 	color: black;
 }
 
-.row:hover {
+.table .row:hover {
 	background-color: lightgray;
 }
 
@@ -376,20 +376,20 @@ button > .fa{
 		display: block;
 	}
 
-	.rowheader {
+	.table .rowheader {
 		display: none;
 	}
 
-	.row {
+	.table .row {
 		display: block;
 	}
 
-	.cell {
+	.table .cell {
 		display: table-row;
 		padding: 0 4px;
 	}
 
-	.cell:before {
+	.table .cell:before {
 		display: table-cell;
 		content: attr(data-col) ": ";
 		font-size: .8em;
@@ -401,19 +401,19 @@ button > .fa{
 		margin-right: 10px;
 	}
 
-	.row:nth-of-type(odd) .cell:before {
+	.table .row:nth-of-type(odd) .cell:before {
 		background: #903029;
 	}
 
-	.cell:first-child:before {
+	.table .cell:first-child:before {
 		padding-top: 10px;
 	}
 
-	.cell:last-child:before {
+	.table .cell:last-child:before {
 		padding-bottom: 10px;
 	}
 
-	.row:hover .cell:before {
+	.table .row:hover .cell:before {
 		background: #803022;
 	}
 }
