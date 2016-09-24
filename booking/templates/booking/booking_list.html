@@ -14,10 +14,17 @@
 	<a href="{% url 'booking:create' %}" class="button"><i class="fa fa-plus"></i> Add booking</a>
 </div>
 {% load weeklist %}
+{% load url_replace %}
+<span>
+	<a href="?{% url_replace request 'week' weeklist.week_previous|date:'Y-\WW' %}">Last week</a> |
+	<span>Week {{ weeklist.week|date:'W, Y' }}</span> |
+	<a href="?{% url_replace request 'week' weeklist.week_next|date:'Y-\WW' %}">Next week</a>
+</span>
+{% with current_week_str=weeklist.week|date:'Y-\WW' %}
 <div class="weeklist table-style">
 	<div class="rowheader">
 		<div class="cell"></div>
-		{% for e in 0|weekdays:weeklist.week %}
+		{% for e in 0|weekdays:current_week_str %}
 		<div class="cell">
 			<span class="dayname">{{ e.date|date:"l" }}</span>
 			<span class="date">{{ e.date|date:"d.m" }}</span>
@@ -27,7 +34,7 @@
 	{% for venue in weeklist.list|booking_venue_list %}
 	<div class="row">
 		<div class="cell">{{ venue.venue }}</div>
-		{% for date in venue.booking_list|booking_weeklist:weeklist.week %}
+		{% for date in venue.booking_list|booking_weeklist:current_week_str %}
 		{% if date.accepted %}
 		<a class="cell accepted" href="{% url 'booking:detail' date.booking.id %}" title="View booking">
 			{{ date.booking.band }}
@@ -51,6 +58,7 @@
 	</div>
 	{% endfor %}
 </div>
+{% endwith %}
 
 <div class="table table-style">
 	<div class="rowheader">

@@ -36,7 +36,9 @@ class BookingListView(ListView):
 				year, week = m.group(1, 2)
 				weeklist_begin, weeklist_end = get_weekspan_from_number(week, year)
 		context['weeklist'] = {
-			'week': get_week_number(weeklist_begin),
+			'week': (weeklist_begin),
+			'week_next': (weeklist_begin + timedelta(days=7)),
+			'week_previous': (weeklist_begin - timedelta(days=7)),
 			'list': self.model.objects.filter(state__in=(models.BOOKING_ACCEPTED, models.BOOKING_NONE),
 											  begin__range=(weeklist_begin, weeklist_end)),
 		}
