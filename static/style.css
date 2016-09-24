@@ -18,6 +18,7 @@
  * 10. MESSAGES
  * 11. LOG-IN
  * 12. Band Info Box
+ * 13. Layout
  *
  * @project Band Booking
  * @version 1.0
@@ -572,4 +573,16 @@ button > .fa{
 
 .weeklist .row .cell.pending {
 	background-color: #ffff64;
+}
+
+/* 12. Weeklist */
+
+.layout-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.layout-cell {
+	margin-right: 10px;
 }
