@@ -10,10 +10,10 @@
 	</head>
 	<body>
 		<header class="head">
-			<span class="head-side"></span>
+			<!--<span class="head-side"></span>-->
 			<a href="{% url 'index' %}" class="logo"></a>
 			{% if user.is_authenticated %}
-			<span class="user head-side">
+			<span class="user">
 				{% if user.is_staff %}
 				<a href="{% url 'admin:index' %}">Administration</a> /
 				{% endif %}
@@ -21,7 +21,7 @@
 				<a href="{% url 'user:logout' %}">Log out</a>
 			</span>
 			{% else %}
-			<span class="head-side"></span>
+			<!--<span class="head-side"></span>-->
 			{% endif %}
 		</header>
 

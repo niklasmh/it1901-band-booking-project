@@ -48,8 +48,7 @@ body {
 	max-width: 960px;
 	margin: auto;
 	position: relative;
-	top: 10px;
-	padding: 60px 10px 100px 10px;
+	padding: 80px 10px 100px 10px;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
@@ -80,13 +79,13 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	position: fixed;
 	width: 100%;
 	height: 60px;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-color: #a03033;
 	z-index: 1;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: flex-end;
 }
 
 .head > .head-side {
@@ -94,8 +93,11 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .head > .user {
-	justify-content: flex-end;
+	margin: auto 10px;
 	color: white;
+    min-width: 234px;
+    width: calc(50% - 279px);
+    text-align: right;
 }
 
 .head > .user > a {
@@ -103,8 +105,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .logo {
-	display: block;
-	margin-left: 15%;
+	margin: 10px;
 	width: 496px;
 	height: 30px;
 	/* Using the .svg as the default logo, with the png as fallback.
