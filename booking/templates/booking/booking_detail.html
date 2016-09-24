@@ -119,6 +119,10 @@
 	<div>
 		<table class="booking-table">
 			<tr>
+				<th>Band:</th>
+				<td><a href="{% url 'band:detail' booking.band.slug %}">{{ booking.band.name }}</a></td>
+			</tr>
+			<tr>
 				<th>Name:</th>
 				<td>{{ booking.band.contact_person }}</td>
 			</tr>
@@ -144,6 +148,10 @@
 		<div>Venue Details</div>
 	</div>
 	<table class="booking-table">
+		<tr>
+			<th>Venue:</th>
+			<td><a href="{% url 'venue:detail' booking.venue.slug %}">{{ booking.venue.name }}</a></td>
+		</tr>
 		<tr>
 			<th>Crowd capacity:</th>
 			<td>{{ booking.venue.crowd_capacity }} people</td>
