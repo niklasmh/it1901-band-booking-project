@@ -394,15 +394,16 @@ button > .fa{
 		content: attr(data-col) ": ";
 		font-size: .8em;
 		font-weight: bold;
-		padding: 4px 6px;
+		padding: 4px 10px 4px 6px;
 		background: #a03033;
 		color: #fff;
 		text-align: right;
-		margin-right: 10px;
+		border-right: 10px solid #f6f6f6;
 	}
 
 	.table .row:nth-of-type(odd) .cell:before {
 		background: #903029;
+		border-color: #e9e9e9;
 	}
 
 	.table .cell:first-child:before {
@@ -415,6 +416,7 @@ button > .fa{
 
 	.table .row:hover .cell:before {
 		background: #803022;
+		border-color: lightgray;
 	}
 }
 
