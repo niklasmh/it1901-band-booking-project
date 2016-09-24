@@ -502,3 +502,46 @@ button > .fa{
 	max-width: 300px;
 	border: 3px dashed #a03033;
 }
+
+/* 12. Weeklist */
+
+.weeklist {
+	display: table;
+	margin-top: 20px;
+}
+
+.weeklist .rowheader {
+	display: table-row;
+	background: #a03033;
+	width: 100%;
+	color: white;
+	height: 50px;
+}
+
+.weeklist .rowheader .cell {
+	display: table-cell;
+	padding: 5px;
+}
+
+.weeklist .rowheader .cell .date {
+	color: #f59c9f;
+}
+
+.weeklist .row {
+	display: table-row;
+	height: 50px;
+}
+
+.weeklist .row .cell {
+	display: table-cell;
+	padding: 5px;
+	color: black;
+}
+
+.weeklist .row .cell.accepted {
+	background-color: #61fe61;
+}
+
+.weeklist .row .cell.pending {
+	background-color: #ffff64;
+}

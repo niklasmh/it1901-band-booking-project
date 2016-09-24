@@ -6,9 +6,22 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.forms import model_to_dict
 from booking import models, forms
+from datetime import datetime
 
 class BookingListView(ListView):
 	model = models.Booking
+
+	def get_queryset(self):
+		qs = super(BookingListView, self).get_queryset()
+		if 'date' in self.request.GET:
+			qs = qs.filter(begin__date=datetime.strptime(self.request.GET.get('date'), '%Y-%m-%d'))
+		if 'venue' in self.request.GET:
+			try:
+				i = int(self.request.GET.get('venue'))
+				qs = qs.filter(venue__id=i)
+			except ValueError:
+				qs = qs.filter(venue__slug=self.request.GET.get('venue'))
+		return qs
 
 class BookingDetailView(DetailView):
 	model = models.Booking
@@ -18,6 +31,22 @@ class BookingCreateView(PermissionRequiredMixin, CreateView):
 	permission_required = 'booking.add_booking'
 	model = models.Booking
 	fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'price_member', 'price')
+
+	def get_initial(self):
+		initial = {}
+		if 'date' in self.request.GET:
+			initial['begin'] = datetime.strptime(self.request.GET.get('date') + " 18:00", '%Y-%m-%d %H:%M')
+			initial['end'] = datetime.strptime(self.request.GET.get('date') + " 20:00", '%Y-%m-%d %H:%M')
+		if 'venue' in self.request.GET:
+			q = {'slug': self.request.GET.get('venue')}
+			try:
+				i = int(self.request.GET.get('venue'))
+				q = {'id': i}
+			except ValueError:
+				pass
+			initial['venue'] = models.Venue.objects.get(**q)
+		print(initial)
+		return initial
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user
