@@ -33,6 +33,7 @@ Create
 	{% endif %}
 </h1>
 <form class="create-form" method="POST">
+	<p>Please enter the band information below.</p>
 	{% csrf_token %}
 	<table class="create-booking-table">
 		{{ form.as_table }}

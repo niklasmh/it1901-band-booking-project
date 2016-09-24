@@ -274,7 +274,13 @@ button > .fa{
 /** 7. TABELL-LAYOUT */
 
 .create-form {
-	margin:auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.create-form p {
+	font-weight: 100;
+	text-align: center;
 }
 
 .create-booking-table th {
