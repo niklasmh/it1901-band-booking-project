@@ -180,7 +180,10 @@ button > .fa{
 }
 
 .button:hover {
-	background-color: darkgray;
+	background-color: rgba(0,0,0,0);
+	color: #a03033;
+	box-shadow: inset 0 0 0 2px #a03033;
+	border-radius: 1px;
 }
 
 .button-go-to-band {
@@ -207,7 +210,7 @@ button > .fa{
 }
 
 .button-accept:hover {
-	background-color: #eee;
+	background-color: rgba(0,0,0,0);
 	box-shadow: inset 0 0 0 2px green;
 	border-radius: 1px;
 }
@@ -217,7 +220,7 @@ button > .fa{
 }
 
 .button-reject:hover {
-	background-color: #eee;
+	background-color: rgba(0,0,0,0);
 	box-shadow: inset 0 0 0 2px #a03033;
 	border-radius: 1px;
 }
@@ -396,7 +399,7 @@ button > .fa{
 	border: 3px solid #a03033;
 	width: 347px;
 	border-radius: 3px;
-	background: #eee;
+	background: white;
 	float: left;
 }
 
