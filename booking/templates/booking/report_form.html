@@ -1,0 +1,28 @@
+{% extends "booking/booking_list.html" %}
+
+{% block title %}
+{% if report %}
+{{ report }} - Edit
+{% else %}
+Create
+{% endif %}
+ - Report
+{% endblock %}
+{% block content %}
+<h1>
+	Report <small>create</small>
+</h1>
+<form class="create-form" method="POST">
+	<p>Please enter the report information below.</p>
+	{% csrf_token %}
+	<table class="create-booking-table">
+		{{ form.as_table }}
+		<tr>
+			<td></td>
+			<td>
+				<button class="submit-button" type="submit" value="Add">Add</button>
+			</td>
+		</tr>
+	</table>
+</form>
+{% endblock %}

@@ -83,11 +83,11 @@ class BookingCreateView(PermissionRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.user = self.request.user
 		return super(BookingCreateView, self).form_valid(form)
-    
+
 class BookingReportCreateView(PermissionRequiredMixin, CreateView):
 	permission_required = 'booking.add_report'
 	model = models.Report
-	fields = ('attended_member', 'attended', 'additional_information')
+	fields = ('booking','attended_member', 'attended', 'additional_information')
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user

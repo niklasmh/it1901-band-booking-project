@@ -12,4 +12,5 @@ urlpatterns = [
 	url(r'^$', views.BookingListView.as_view(), name='list'),
 	url(r'^create/$', views.BookingCreateView.as_view(), name='create'),
 	url(r'^(?P<booking>\d+)/', include(booking)),
+	url(r'^createreport/$', views.BookingReportCreateView.as_view(), name='createreport'),
 ]

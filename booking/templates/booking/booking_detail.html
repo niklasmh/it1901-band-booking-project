@@ -13,8 +13,7 @@
 {% if perms.booking.change_booking and booking.state != 'm' %}
 <div class="controls">
 	<a href="{% url 'booking:change' booking.id %}" class="button"><i class="fa fa-refresh"></i> Change</a>
-
-	<a href="{% comment %}{% url 'report:create' %}{% endcomment %}" class="button">Create report</a>
+	<a href="{% url 'booking:createreport' %}{% comment %}{% endcomment %}" class="button">Create report</a>
 </div>
 
 {% endif %}
@@ -76,7 +75,7 @@
 	<thead>
 		<td><h6>Replaced with:</h6></td>
 		<tr>
-			
+
 			<th>Name</th>
 			<th>Created</th>
 			<th>State</th>
@@ -137,7 +136,7 @@
 				<th>Email:</th>
 				<td><a href="mailto:{{ booking.band.contact_email }}">{{ booking.band.contact_email }}</a></td>
 			</tr>
-			
+
 		</table>
 
 	</div>
@@ -178,7 +177,32 @@
 
 </div>
 
-</div>
+{% if booking.report %}
+	<div class="booking-box">
+		<div class="booking-box-header">
+			<div>Booking Report</div>
+		</div>
+		<table class="booking-table">
+			<tr>
+				<th>Members attended:</th>
+				<td>{{ booking.report.attended_member }}</td>
+			</tr>
+			<tr>
+				<th>Non members attended:</th>
+				<td>{{ booking.report.attended }}</td>
+			</tr>
+			{% if booking.report.additional_information %}
+			<tr>
+				<th>Additional information:</th>
+				<td>{{ booking.report.additional_information }}</td>
+			</tr>
+			{% endif %}
+		</table>
+		</div>
 
+	</div>
+{% endif %}
+
+</div>
 
 {% endblock %}
