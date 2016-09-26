@@ -36,7 +36,7 @@
 				{% endfor %}
 			</div>
 			{% for venue in weeklist.list|booking_venue_list %}
-			<div class="row">
+			<div class="row-col">
 				<div class="cell">{{ venue.venue }}</div>
 				{% for date in venue.booking_list|booking_weeklist:current_week_str %}
 				{% if date.accepted %}
