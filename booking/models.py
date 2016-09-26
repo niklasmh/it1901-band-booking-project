@@ -53,4 +53,9 @@ class Report(models.Model):
 	attended_member = models.IntegerField()
 	attended = models.IntegerField()
 	additional_information = models.TextField(blank=True)
-	#skriv inn scenearbeidere her:
+
+	def get_absolute_url(self):
+			return reverse('booking:detail', kwargs={ 'booking': self.booking.id })
+
+
+#skriv inn scenearbeidere her:
