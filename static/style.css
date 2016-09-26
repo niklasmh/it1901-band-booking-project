@@ -591,7 +591,8 @@ button > .fa{
 }
 
 .weeklist .row-col .cell:first-child{
-	background-color: white !important;
+	background-color: #a03033 !important;
+	color: white;
 }
 
 .weeklist .row-col .cell.accepted {
