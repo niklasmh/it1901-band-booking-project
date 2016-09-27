@@ -618,6 +618,11 @@ button > .fa{
 	overflow-x: auto;
 }
 
+.layout-cell span a{
+	font-weight: bold;
+    color: black;
+}
+
 .layout-cell.center {
 	text-align: center;
 }
