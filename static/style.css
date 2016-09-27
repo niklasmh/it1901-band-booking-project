@@ -653,17 +653,19 @@ button > .fa{
 	box-sizing: border-box;
 	margin: 12px 0;
 	justify-content: space-around;
+	font-size: 1.2em;
+	font-weight: bold;
 }
 
 .nav-bar > .tab {
+	font-size: 1em;
 	padding: 10px 12px;
 	text-align: center;
-	border-radius: 3px;
-	transition: background-color .05 ease-in-out;
+	transition: border-color .05 ease-in-out;
 	text-decoration: none;
 	color: #000;
 }
 
-.nav-bar > .tab:hover {
-	background-color: #eee;
+.nav-bar > .tab:hover:not(.img) {
+	box-shadow: inset 0 -3px 0 #000;
 }
