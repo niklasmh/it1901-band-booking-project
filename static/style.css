@@ -49,7 +49,7 @@ body {
 	max-width: 960px;
 	margin: auto;
 	position: relative;
-	padding: 80px 10px 100px 10px;
+	padding: 40px 10px 70px 10px;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
@@ -79,15 +79,15 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .head {
 	position: fixed;
 	width: 100%;
-	min-height: 60px;
+	min-height: 30px;
 	flex-wrap: wrap;
 	top: 0;
 	left: 0;
-	background-color: #a03033;
+	background-color: black; /** Endret fra #a03033 **/
 	z-index: 1;
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 
 .head > .head-side {
@@ -98,7 +98,6 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	margin: 10px;
 	color: white;
     min-width: 234px;
-    width: calc(50% - 279px);
     text-align: right;
 }
 
@@ -108,10 +107,10 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 .logo {
 	margin: 10px;
-	max-width: 496px;
+	max-width: 250px;
 	min-width: 140px;
 	flex: 1 1;
-	height: 30px;
+	height: 20px;
 	/* Using the .svg as the default logo, with the png as fallback.
 	 * Css will load the last valid image file for background-image.
 	 */
@@ -135,18 +134,17 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 /** 3. FOOTER */
 
 .foot {
-	position: relative;
 	width: 100%;
-	height: 60px;
-	background-color: #a03033;
+	height: 30px;
+	background-color: black; /** Endret fra #a03033 **/
+	display: flex;
+	align-items: center;
 }
 
 .foot p {
 	width: 100%;
-	top: 0.3em;
 	text-align: center;
 	color: white;
-	position: absolute;
 }
 
 .footerlink {
@@ -157,14 +155,36 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 /** 4. BREADCRUMBS*/
 
+.breadcrumb-container {
+	display: inline-block;
+	font-size: 0;
+	margin-top: 10px;
+
+}
+
+.breadcrumbs:first-of-type {
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.breadcrumbs:last-of-type {
+	border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
 .breadcrumbs {
 	color: black;
 	margin-top: 10px;
-	margin-right: 10px;
+	padding-right: 10px;
+	box-sizing: border-box;
+	background-color: #eee;
+	font-size: 1rem;
+	padding: 6px 10px;
 }
 
 .breadcrumbs a {
 	color: black;
+	text-decoration: none;
 }
 
 .breadcrumbs a:hover {
@@ -543,7 +563,7 @@ button > .fa{
 	border: 3px dashed #a03033;
 }
 
-/* 12. Weeklist */
+/* 13. Weeklist */
 
 .weeklist {
 	display: block;
@@ -620,6 +640,7 @@ button > .fa{
 	background-color: #ffff64 !important;
 }
 
+/** 13. Layout */
 
 .layout-row {
 	display: flex;
@@ -645,4 +666,41 @@ button > .fa{
 .layout-cell.corner-spacing {
 	padding-right: 10px;
 	padding-bottom: 20px;
+}
+
+/** 14. Nav-Bar */
+
+.nav-bar {
+	display: flex;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 12px 0;
+	justify-content: space-around;
+	font-size: 1.2em;
+	font-weight: bold;
+	align-items: center;
+}
+
+.nav-bar > .tab {
+	font-size: 1em;
+	padding: 10px 12px;
+	text-align: center;
+	transition: box-shadow .2s ease-in-out;
+	text-decoration: none;
+	color: #000;
+	height: 1em;
+}
+
+.nav-bar > .tab:hover:not(.img) {
+	box-shadow: inset 0 -3px 0 #000;
+	transition-duration: .05s;
+}
+
+.nav-bar > .tab.img {
+	background-image: url('/static/img/samfundet-small.red.svg');
+	background-size: 90%;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 50px;
+	width: 50px;
 }
