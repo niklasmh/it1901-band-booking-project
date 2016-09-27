@@ -1,8 +1,10 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView
 from django.views.generic.detail import SingleObjectMixin
+from django.views.generic.edit import ModelFormMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.forms import model_to_dict
 from booking import models, forms
@@ -84,17 +86,34 @@ class BookingCreateView(PermissionRequiredMixin, CreateView):
 		form.instance.user = self.request.user
 		return super(BookingCreateView, self).form_valid(form)
 
-class BookingReportCreateView(PermissionRequiredMixin, CreateView):
+class BookingReportCreateView(PermissionRequiredMixin, FormView, ModelFormMixin):
+	template_name = 'booking/report_form.html'
 	permission_required = 'booking.add_report'
 	model = models.Report
-	fields = ('booking','attended_member', 'attended', 'additional_information')
+	pk_url_kwarg = 'booking'
+	fields = ('attended_member', 'attended', 'additional_information')
+
+	def dispatch(self, request, *args, **kwargs):
+		if not self.pk_url_kwarg in kwargs:
+			raise Http404()
+		self.booking = get_object_or_404(models.Booking, pk=kwargs[self.pk_url_kwarg])
+		self.object = self.booking.report if hasattr(self.booking, 'report') else None
+		return super(BookingReportCreateView, self).dispatch(request, *args, **kwargs)
+
+	def get_context_data(self, **kwargs):
+		context = super(BookingReportCreateView, self).get_context_data(**kwargs)
+		context['booking'] = self.booking
+		return context
 
 	def form_valid(self, form):
-		form.instance.user = self.request.user
+		if not form.initial:
+			form.instance.user = self.request.user
+			form.instance.booking = self.booking
+		form.save()
 		return super(BookingReportCreateView, self).form_valid(form)
 
 class BookingUpdateView(PermissionRequiredMixin, CreateView, SingleObjectMixin):
-	permission_required = 'booking.edit_booking'
+	permission_required = 'booking.change_report'
 	model = models.Booking
 	pk_url_kwarg = 'booking'
 	fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'price_member', 'price')

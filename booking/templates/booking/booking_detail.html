@@ -10,13 +10,14 @@
 {% block title %}{{ booking }} - Booking - Band Booking{% endblock %}
 {% block content %}
 <h1 class="title">{{ booking }} <small>booking</small></h1>
-{% if perms.booking.change_booking and booking.state != 'm' %}
 <div class="controls">
+	{% if perms.booking.change_booking and booking.state != 'm' %}
 	<a href="{% url 'booking:change' booking.id %}" class="button"><i class="fa fa-refresh"></i> Change</a>
-	<a href="{% url 'booking:createreport' %}{% comment %}{% endcomment %}" class="button">Create report</a>
+	{% endif %}
+	{% if perms.booking.change_report %}
+	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Edit report</a>
+	{% endif %}
 </div>
-
-{% endif %}
 
 <div class="content-below-change">
 <div class="booking-box">
