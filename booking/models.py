@@ -26,8 +26,9 @@ class Booking(models.Model):
 	begin = models.DateTimeField()
 	end = models.DateTimeField()
 	band_fee = models.DecimalField(max_digits=10, decimal_places=2)
-	price_member = models.DecimalField(max_digits=10, decimal_places=2)
-	price = models.DecimalField(max_digits=10, decimal_places=2)
+	ticket_price_member = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Ticket price member')
+	ticket_price_non_member = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Ticket price non-member')
+	total_tickets_for_sale = models.IntegerField()
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
 	state = models.CharField(max_length=1, default=' ', choices=BOOKING_CHOICES)
@@ -53,8 +54,8 @@ class Report(models.Model):
 		on_delete=models.CASCADE,
 		related_name="report",
 	)
-	attended_member = models.IntegerField()
-	attended_non_member = models.IntegerField()
+	ticket_sold_member = models.IntegerField()
+	ticket_sold_non_member = models.IntegerField()
 	additional_information = models.TextField(blank=True)
 
 	def get_absolute_url(self):

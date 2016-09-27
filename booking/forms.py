@@ -35,8 +35,8 @@ class BookingForm(forms.ModelForm):
 		return cleaned_data
 	class Meta:
 		model = models.Booking
-		fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'price_member', 'price')
+		fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'ticket_price_member', 'ticket_price_non_member')
 
 class BookingSetStateForm(forms.Form): 
-    accepted = forms.BooleanField(required = False) 
-    rejected = forms.BooleanField(required = False) 
+	accepted = forms.BooleanField(required = False)
+	rejected = forms.BooleanField(required = False)
