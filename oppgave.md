@@ -22,13 +22,13 @@ Undervisningsassistent eller studentassistent for gruppen er produkteier.
  - [ ] ID: 4 - ønsker jeg å kunne se nøkkelinformasjon om et band, som popularitet i strømmetjenester, salgstall for album og tidligere konserter i Norge for å vurdere om bandet skal få tilbud om å bli booket.
  - [ ] ID: 5 - så skal jeg kunne søke opp band som har spilt på en scene tidligere, og se nøkkelinformasjon om bandet og om tidligere konserter slik at jeg kan vurdere hvilke band som bør få tilbud om å bli booket.
  - [ ] ID: 6 - skal jeg kunne sende tilbud til manager for et band på booking på en spesifikk dato og med en spesifikk pris. Tilbudet skal være godkjent av bookingsjef.
- - [ ] ID: 13 - skal jeg kunne legge inn booking.
+ - [x] ID: 13 - skal jeg kunne legge inn booking.
 
 ### Som bookingsjef
  - [ ] ID: 7 - ønsker jeg å kunne få generert et forslag til billettpris som tar høyde for markedsinformasjon og faktiske kostnader, og få forslag til billettpris på scener med ulik størrelse slik at konserter går i økonomisk balanse.
- - [ ] ID: 8 - så skal jeg å kunne se en rapport om konserter som viser publikumstall, kostnader og økonomisk resultat for alle konserter på en scene slik at jeg kan vurdere marked for band og sjangre.
+ - [x] ID: 8 - så skal jeg å kunne se en rapport om konserter som viser publikumstall, kostnader og økonomisk resultat for alle konserter på en scene slik at jeg kan vurdere marked for band og sjangre.
  - [ ] ID: 9 - skal jeg kunne få en oversikt over antall konsertdatoer booket, antall tilbud sendt og antall ledige datoer.
- - [ ] ID: 10 - skal jeg kunne godkjenne eller avslå tilbud til band som er forberedt av bookingansvarlige.
+ - [x] ID: 10 - skal jeg kunne godkjenne eller avslå tilbud til band som er forberedt av bookingansvarlige.
  - [ ] ID: 11 - skal jeg kunne se en oversikt over bookingtilbud som er sendt til band.
 
 ### Som lyd eller lystekniker
