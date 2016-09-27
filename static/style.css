@@ -550,7 +550,7 @@ button > .fa{
 	border: 3px dashed #a03033;
 }
 
-/* 12. Weeklist */
+/* 13. Weeklist */
 
 .weeklist {
 	display: block;
@@ -624,6 +624,7 @@ button > .fa{
 	background-color: #ffff64 !important;
 }
 
+/** 13. Layout */
 
 .layout-row {
 	display: flex;
@@ -642,4 +643,27 @@ button > .fa{
 .layout-cell.corner-spacing {
 	padding-right: 10px;
 	padding-bottom: 20px;
+}
+
+/** 14. Nav-Bar */
+
+.nav-bar {
+	display: flex;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 12px 0;
+	justify-content: space-around;
+}
+
+.nav-bar > .tab {
+	padding: 10px 12px;
+	text-align: center;
+	border-radius: 3px;
+	transition: background-color .05 ease-in-out;
+	text-decoration: none;
+	color: #000;
+}
+
+.nav-bar > .tab:hover {
+	background-color: #eee;
 }
