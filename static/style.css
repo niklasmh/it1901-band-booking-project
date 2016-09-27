@@ -264,7 +264,7 @@ button > .fa{
 	color: white;
 	text-decoration: none;
 	border: none;
-	cursor: pointer;
+	cursor: default;
 }
 
 .button[disabled]:hover {
