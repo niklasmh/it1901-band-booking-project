@@ -655,15 +655,17 @@ button > .fa{
 	justify-content: space-around;
 	font-size: 1.2em;
 	font-weight: bold;
+	align-items: center;
 }
 
 .nav-bar > .tab {
 	font-size: 1em;
 	padding: 10px 12px;
 	text-align: center;
-	transition: border-color .05 ease-in-out;
+	transition: box-shadow .2s ease-in-out;
 	text-decoration: none;
 	color: #000;
+	height: 1em;
 }
 
 .nav-bar > .tab:hover:not(.img) {
@@ -672,10 +674,9 @@ button > .fa{
 
 .nav-bar > .tab.img {
 	background-image: url('/static/img/samfundet-small.red.svg');
-	/*background-size: 100%;*/
+	background-size: 90%;
 	background-repeat: no-repeat;
 	background-position: center;
-	background-origin: center center;
-	height: 30px;
-	width: 30px;
+	height: 50px;
+	width: 50px;
 }
