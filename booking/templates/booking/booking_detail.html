@@ -20,6 +20,8 @@
 	{% else %}
 	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Create report</a>
 	{% endif %}
+	{% else %}
+	<a class="button" disabled>Create report</a>
 	{% endif %}
 </div>
 
