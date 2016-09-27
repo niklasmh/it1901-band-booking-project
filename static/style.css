@@ -162,12 +162,12 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 }
 
-.breadbrumbs:first-of-type {
+.breadcrumbs:first-of-type {
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 }
 
-.breadbrumbs:last-of-type {
+.breadcrumbs:last-of-type {
 	border-bottom-right-radius: 3px;
 	border-top-right-radius: 3px;
 }
