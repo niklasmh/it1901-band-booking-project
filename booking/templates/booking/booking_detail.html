@@ -205,17 +205,7 @@
 				<th>Additional information:</th>
 				<td>{{ booking.report.additional_information }}</td>
 			</tr>
-			{% endif %}
-		</table>
-		</div>
-
-	</div>
-	<div class="booking-box">
-		<div class="booking-box-header">
-			<div>Booking Report</div>
-		</div>
-		<table class="booking-table">
-			<tr>
+						<tr>
 				<th>Entry</th>
 				<th>Expence</th>
 				<th>Income</th>
@@ -250,10 +240,11 @@
 				<th></th>
 				<td>{{ booking.report.sum }}</td>
 			</tr>
+
+			{% endif %}
 		</table>
 		</div>
 
-	</div>
 {% endif %}
 
 </div>
