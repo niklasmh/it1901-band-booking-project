@@ -176,6 +176,12 @@ class BookingSetStateView(PermissionRequiredMixin, FormView):
 			return self.form_invalid(form)
 
 		if form.cleaned_data['accepted']:
+			qs = models.Booking.objects.filter(venue=booking.venue,
+											   begin__date=booking.begin.date(),
+											   state=models.BOOKING_ACCEPTED)
+			if len(qs) > 0:
+				messages.warning(self.request, 'The booking %s is already accepted on this day.' % qs[0])
+				return self.form_invalid(form)
 			booking.state = models.BOOKING_ACCEPTED
 			replaces = booking.replaces
 			if replaces:
