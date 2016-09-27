@@ -65,7 +65,7 @@ class BookingDetailView(DetailView):
 class BookingCreateView(PermissionRequiredMixin, CreateView):
 	permission_required = 'booking.add_booking'
 	model = models.Booking
-	fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'price_member', 'price')
+	form_class = forms.BookingForm
 
 	def get_initial(self):
 		initial = {}
