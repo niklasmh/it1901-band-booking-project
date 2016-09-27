@@ -14,7 +14,8 @@
 	{% if perms.booking.change_booking and booking.state != 'm' %}
 	<a href="{% url 'booking:change' booking.id %}" class="button"><i class="fa fa-refresh"></i> Change</a>
 	{% endif %}
-	{% if perms.booking.change_report and booking.report_ready %}
+	{% if perms.booking.change_report %}
+	{% if booking.report_ready %}
 	{% if booking.report %}
 	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Edit report</a>
 	{% else %}
@@ -22,6 +23,7 @@
 	{% endif %}
 	{% else %}
 	<a class="button" disabled>Create report</a>
+	{% endif %}
 	{% endif %}
 </div>
 
