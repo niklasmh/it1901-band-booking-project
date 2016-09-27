@@ -638,6 +638,8 @@ button > .fa{
 
 .layout-cell.center {
 	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .layout-cell.corner-spacing {
