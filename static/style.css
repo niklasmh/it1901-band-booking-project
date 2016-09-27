@@ -277,7 +277,7 @@ button > .fa{
 	text-align: center;
 	display: flex;
 	transition: .2s ease-in-out;
-	transition-property: background-color, color;
+	transition-property: background-color, color, border-color;
 	background-color: #2B2626;
 }
 
