@@ -549,11 +549,14 @@ button > .fa{
 	display: table-cell;
 	padding: 5px;
 	text-align: center;
+	width: 80px;
+	max-width: 80px;
 }
 
 .weeklist .rowheader .cell .date {
 	display: block;
 	color: rgba(255, 255, 255, .5);
+
 }
 
 .weeklist .row-col {
