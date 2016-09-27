@@ -26,6 +26,13 @@
 		</header>
 
 		<div class="content">
+			<div class="nav-bar">
+				<a href="{% url 'band:list' %}" class="tab">Bands</a>
+				<a href="{% url 'venue:list' %}" class="tab">Venues</a>
+				<a href="{% url 'index' %}" class="tab img"></a>
+				<a href="{% url 'booking:list' %}" class="tab">Bookings</a>
+				<a href="{% url 'booking:list' %}" class="tab">Overview</a>
+			</div>
 
 			{% if messages %}
 			<ul class="messages">
