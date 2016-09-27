@@ -123,8 +123,8 @@ class BookingReportCreateView(PermissionRequiredMixin, FormView, ModelFormMixin)
 class BookingUpdateView(PermissionRequiredMixin, CreateView, SingleObjectMixin):
 	permission_required = 'booking.change_report'
 	model = models.Booking
+	form_class = forms.BookingForm
 	pk_url_kwarg = 'booking'
-	fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'price_member', 'price')
 
 	def dispatch(self, request, *args, **kwargs):
 		self.object_original = self.get_object()
@@ -135,6 +135,11 @@ class BookingUpdateView(PermissionRequiredMixin, CreateView, SingleObjectMixin):
 			return HttpResponseRedirect(reverse('booking:detail',
 												kwargs={'booking': self.object_original.id}))
 		return super(BookingUpdateView, self).dispatch(request, *args, **kwargs)
+
+	def get_form_kwargs(self):
+		kwargs = super(BookingUpdateView, self).get_form_kwargs()
+		kwargs['original_booking'] = self.object_original
+		return kwargs
 
 	def get_initial(self):
 		return model_to_dict(self.object_original)
