@@ -15,7 +15,11 @@
 	<a href="{% url 'booking:change' booking.id %}" class="button"><i class="fa fa-refresh"></i> Change</a>
 	{% endif %}
 	{% if perms.booking.change_report %}
+	{% if booking.report %}
 	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Edit report</a>
+	{% else %}
+	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Create report</a>
+	{% endif %}
 	{% endif %}
 </div>
 

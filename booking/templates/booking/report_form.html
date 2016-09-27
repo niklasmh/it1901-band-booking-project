@@ -1,8 +1,13 @@
 {% extends "booking/booking_list.html" %}
 
 {% block title %}
+{% if booking.report %}
 Edit report
  - {{ booking }} - Band Booking
+ {% else %}
+ Create report
+  - {{ booking }} - Band Booking
+{% endif %}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -10,15 +15,27 @@ Edit report
 <span class="breadcrumbs">
 	<a href="{% url 'booking:detail' booking.id %}">{{ booking }}</a>
 </span>
+{% if booking.report %}
 <span class="breadcrumbs">
 	<a href="{% url 'booking:report_edit' booking.id %}">Edit report</a>
 </span>
+{% else %}
+<span class="breadcrumbs">
+	<a href="{% url 'booking:report_edit' booking.id %}">Create report</a>
+</span>
+{% endif %}
 {% endblock %}
 
 {% block content %}
+{% if booking.report %}
 <h1>
 	{{ booking }} <small>edit report</small>
 </h1>
+{% else %}
+<h1>
+	{{ booking }} <small>create report</small>
+</h1>
+{% endif %}
 <form class="create-form" method="POST">
 	<p>Please enter the report information below.</p>
 	{% csrf_token %}
