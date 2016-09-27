@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.forms import model_to_dict
 from booking import models, forms
 from datetime import datetime, date, timedelta
+import itertools
 import re
 
 def get_week_number(date):
@@ -56,6 +57,13 @@ class BookingListView(ListView):
 				qs = qs.filter(venue__id=i)
 			except ValueError:
 				qs = qs.filter(venue__slug=self.request.GET.get('venue'))
+		states = list(itertools.chain.from_iterable(self.request.GET.getlist('state')))
+		for i, e in enumerate(states):
+			if e == '-':
+				states[i] = models.BOOKING_NONE
+		qs = qs.filter(state__in=(
+			states or (models.BOOKING_ACCEPTED, models.BOOKING_NONE))
+		)
 		return qs
 
 class BookingDetailView(DetailView):
