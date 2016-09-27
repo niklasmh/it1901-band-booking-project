@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from band.models import Band
 from venue.models import Venue
+from django.utils import timezone
 
 BOOKING_NONE = ' '
 BOOKING_REJECTED = 'r'
@@ -39,7 +40,7 @@ class Booking(models.Model):
 		return reverse('booking:detail', kwargs={ 'booking': self.id })
 
 	def report_ready(self):
-		return self.status=='a' and self.end < datetime.datetime.now()
+		return self.state=='a' and self.end < timezone.now()
 
 	class Meta:
 		permissions = (
