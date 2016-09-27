@@ -58,6 +58,20 @@ class Report(models.Model):
 	ticket_sold_non_member = models.IntegerField()
 	additional_information = models.TextField(blank=True)
 
+	def sum_member_tickets(self):
+		return self.ticket_sold_member * self.booking.ticket_price_member
+	def sum_non_member_tickets(self):
+		return self.ticket_sold_non_member * self.booking.ticket_price_non_member
+	def sum_tickets(self):
+		return self.sum_member_tickets() + self.sum_non_member_tickets()
+
+	def sum_income(self):
+		return self.sum_tickets()
+	def sum_expences(self):
+		return self.booking.band_fee
+	def sum(self):
+		return self.sum_income() - self.sum_expences()
+
 	def get_absolute_url(self):
 			return reverse('booking:detail', kwargs={ 'booking': self.booking.id })
 

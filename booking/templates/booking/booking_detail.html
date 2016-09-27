@@ -194,11 +194,11 @@
 		<table class="booking-table">
 			<tr>
 				<th>Members attended:</th>
-				<td>{{ booking.report.attended_member }}</td>
+				<td>{{ booking.report.ticket_sold_member }}</td>
 			</tr>
 			<tr>
 				<th>Non members attended:</th>
-				<td>{{ booking.report.attended_non_member }}</td>
+				<td>{{ booking.report.ticket_sold_non_member }}</td>
 			</tr>
 			{% if booking.report.additional_information %}
 			<tr>
@@ -206,6 +206,50 @@
 				<td>{{ booking.report.additional_information }}</td>
 			</tr>
 			{% endif %}
+		</table>
+		</div>
+
+	</div>
+	<div class="booking-box">
+		<div class="booking-box-header">
+			<div>Booking Report</div>
+		</div>
+		<table class="booking-table">
+			<tr>
+				<th>Entry</th>
+				<th>Expence</th>
+				<th>Income</th>
+			</tr>
+			<tr>
+				<th>Sum member tickets:</th>
+				<td></td>
+				<td>{{ booking.report.sum_non_member_tickets }}</td>
+			</tr>
+			<tr>
+				<th>Sum non-member tickets:</th>
+				<td></td>
+				<td>{{ booking.report.sum_member_tickets }}</td>
+			</tr>
+			<tr>
+				<th>Sum tickets:</th>
+				<td></td>
+				<td>{{ booking.report.sum_tickets }}</td>
+			</tr>
+			<tr>
+				<th>Band fee:</th>
+				<td>{{ booking.band_fee }}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<td>{{ booking.report.sum_expences }}</td>
+				<td>{{ booking.report.sum_income }}</td>
+			</tr>
+			<tr>
+				<th></th>
+				<th></th>
+				<td>{{ booking.report.sum }}</td>
+			</tr>
 		</table>
 		</div>
 
