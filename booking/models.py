@@ -51,7 +51,7 @@ class Report(models.Model):
 		related_name="report",
 	)
 	attended_member = models.IntegerField()
-	attended = models.IntegerField()
+	attended_non_member = models.IntegerField()
 	additional_information = models.TextField(blank=True)
 
 	def get_absolute_url(self):

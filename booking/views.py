@@ -99,7 +99,7 @@ class BookingReportCreateView(PermissionRequiredMixin, FormView, ModelFormMixin)
 	permission_required = 'booking.add_report'
 	model = models.Report
 	pk_url_kwarg = 'booking'
-	fields = ('attended_member', 'attended', 'additional_information')
+	fields = ('attended_member', 'attended_non_member', 'additional_information')
 
 	def dispatch(self, request, *args, **kwargs):
 		if not self.pk_url_kwarg in kwargs:
