@@ -14,20 +14,11 @@
 	{% if perms.booking.change_booking and booking.state != 'm' %}
 	<a href="{% url 'booking:change' booking.id %}" class="button"><i class="fa fa-refresh"></i> Change</a>
 	{% endif %}
-
-	{% comment %}
-	Because django dosent allow "()" in logic statements i have nested the if statements.
-	when/if a finished state is added change it to:
-	{% if perms.booking.change_report and booking.state == 'f' %}
-	{% endcomment %}
-
-	{% if booking.state == 'a' or booking.state == 'f' %}
-	{% if perms.booking.change_report %}
+	{% if perms.booking.change_report and booking.state == 'a' %}
 	{% if booking.report %}
 	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Edit report</a>
 	{% else %}
 	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Create report</a>
-	{% endif %}
 	{% endif %}
 	{% endif %}
 </div>

@@ -16,7 +16,6 @@ BOOKING_CHOICES = (
 	(BOOKING_ACCEPTED, 'Accepted'),
 	(BOOKING_CANCELLED, 'Cancelled'),
 	(BOOKING_REPLACED, 'Replaced'),
-	(BOOKING_FINISHED, 'Finished'),
 )
 
 class Booking(models.Model):
@@ -56,6 +55,5 @@ class Report(models.Model):
 
 	def get_absolute_url(self):
 			return reverse('booking:detail', kwargs={ 'booking': self.booking.id })
-
 
 #skriv inn scenearbeidere her:
