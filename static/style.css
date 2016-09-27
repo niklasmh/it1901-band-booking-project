@@ -155,14 +155,36 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 
 /** 4. BREADCRUMBS*/
 
+.breadcrumb-container {
+	display: inline-block;
+	font-size: 0;
+	margin-top: 10px;
+
+}
+
+.breadbrumbs:first-of-type {
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.breadbrumbs:last-of-type {
+	border-bottom-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
 .breadcrumbs {
 	color: black;
 	margin-top: 10px;
-	margin-right: 10px;
+	padding-right: 10px;
+	box-sizing: border-box;
+	background-color: #eee;
+	font-size: 1rem;
+	padding: 6px 10px;
 }
 
 .breadcrumbs a {
 	color: black;
+	text-decoration: none;
 }
 
 .breadcrumbs a:hover {
