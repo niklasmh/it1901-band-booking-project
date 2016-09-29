@@ -45,14 +45,10 @@ class Booking(models.Model):
 		return self.state=='a' and self.end < timezone.now()
 
 	def is_past_due(self):
-		if date.today() > self.begin.date():
-			return True
-		return False
+		return date.today() > self.begin.date()
 
 	def state_accepted(self):
-		if self.state == BOOKING_ACCEPTED:
-			return True
-		return False
+		return self.state == BOOKING_ACCEPTED
 
 	class Meta:
 		permissions = (
