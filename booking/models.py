@@ -20,8 +20,8 @@ BOOKING_CHOICES = (
 )
 
 class Booking(models.Model):
-	band = models.ForeignKey(Band)
-	venue = models.ForeignKey(Venue)
+	band = models.ForeignKey(Band, related_name='bookings')
+	venue = models.ForeignKey(Venue, related_name='bookings')
 	user = models.ForeignKey(User)
 	begin = models.DateTimeField()
 	end = models.DateTimeField()
