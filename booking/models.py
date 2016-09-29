@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from band.models import Band
 from venue.models import Venue
 from django.utils import timezone
+from datetime import date
 
 BOOKING_NONE = ' '
 BOOKING_REJECTED = 'r'
@@ -42,6 +43,16 @@ class Booking(models.Model):
 
 	def report_ready(self):
 		return self.state=='a' and self.end < timezone.now()
+
+	def is_past_due(self):
+		if date.today() > self.begin.date():
+			return True
+		return False
+
+	def state_accepted(self):
+		if self.state == BOOKING_ACCEPTED:
+			return True
+		return False
 
 	class Meta:
 		permissions = (

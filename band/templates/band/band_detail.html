@@ -13,17 +13,13 @@
 {% if perms.band.edit_band %}
 <a href="{% url 'band:update' band.slug %}">Edit band</a><br/>
 {% endif %}
-<img src="{{ band_meta.images.0.url }}" width="300px">
+<img src="{{ band_meta.images.0.url }}" width="300px"> 
 
 <!-- width="{{ band_meta.images.0.width }}" height="{{ band_meta.images.0.height }}"> -->
 <table>
 	<tr>
-		<td>Popularity:</td>
+		<td>Popularity</td>
 		<td>{{ band_meta.popularity }}</td>
-	</tr>
-	<tr>
-		<td>Genres:</td>
-		<td>{{ band.genres }}</td>
 	</tr>
 </table>
 <h2>Contact</h2>
@@ -38,4 +34,29 @@
 		<td>{{ band.contact_email }}</td>
 	</tr>
 </table>
+
+<!-- CONCERTS DONE BEFORE -->
+
+<h2>Prior Concerts</h2>
+<div class="table table-style">
+	<div class="rowheader">
+		<div class="cell">Date</div>
+		<div class="cell">Venue</div>
+		<div class="cell">Band fee</div>
+		<div class="cell">Total surplus</div>
+	</div>
+	
+	{% for booking in band.bookings.all %}
+	{% if booking.is_past_due and booking.state_accepted %}
+
+	<a href="{% url 'booking:detail' booking.id %}" class="row">
+		<div class="cell" data-col="Date">{{ booking.begin|date:"d M Y H:i" }}</div>
+		<div class="cell" data-col="Venue">{{ booking.venue.name }}</div>
+		<div class="cell" data-col="Band fee">{{ booking.band_fee }}kr</div>
+		<div class="cell" data-col="">{{ booking.report.sum  }}kr</div>
+	</a>
+	{% endif %}
+	{% endfor %}
+</div>
+
 {% endblock %}
