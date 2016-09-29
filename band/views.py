@@ -38,6 +38,7 @@ class BandCreateView(PermissionRequiredMixin, CreateView):
 			if data['artists']['items']:
 				artist = data['artists']['items'][0]
 				form.instance.spotify_artist_id = artist['id']
+				form.instance.genres = ', '.join(artist['genres'])
 			return super(BandCreateView, self).form_valid(form)
 
 class BandUpdateView(PermissionRequiredMixin, UpdateView):
