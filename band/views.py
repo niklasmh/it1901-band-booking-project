@@ -2,15 +2,16 @@ from django.shortcuts import render
 from django.utils.encoding import escape_uri_path
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from json_views.views import JsonListMixin, JsonDetailMixin
 from band import models
 import requests, json
 
-class BandListView(ListView):
+class BandListView(JsonListMixin, ListView):
 	model = models.Band
 
-class BandDetailView(DetailView):
+class BandDetailView(JsonDetailMixin, DetailView):
 	model = models.Band
-	pk_url_kwarg = 'band'
+	pk_url_kwarg = 'band_pk'
 	slug_url_kwarg = 'band_slug'
 
 	def get_context_data(self, **kwargs):

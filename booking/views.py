@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.forms import model_to_dict
+from json_views.views import JsonListMixin, JsonDetailMixin
 from booking import models, forms
 from datetime import datetime, date, timedelta
 import itertools
@@ -25,7 +26,7 @@ def get_weekspan_from_number(week, year):
 	weeklist_end = weeklist_begin + timedelta(days=7)
 	return weeklist_begin, weeklist_end
 
-class BookingListView(ListView):
+class BookingListView(JsonListMixin, ListView):
 	model = models.Booking
 
 	def get_context_data(self, **kwargs):
@@ -66,7 +67,7 @@ class BookingListView(ListView):
 		)
 		return qs
 
-class BookingDetailView(DetailView):
+class BookingDetailView(JsonDetailMixin, DetailView):
 	model = models.Booking
 	pk_url_kwarg = 'booking'
 
