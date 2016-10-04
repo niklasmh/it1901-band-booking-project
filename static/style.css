@@ -426,7 +426,7 @@ button > .fa{
 
 /** 8. TABELL-LAYOUT-MOBIL */
 
-@media (max-width: 420px) {
+@media (max-width: 512px) {
 	.table {
 		display: block;
 	}
@@ -568,6 +568,7 @@ button > .fa{
 .weeklist {
 	display: block;
 	margin-top: 20px;
+	overflow-x: auto;
 }
 
 .weeklist .rowheader {
@@ -649,7 +650,7 @@ button > .fa{
 }
 
 .layout-cell {
-	overflow-x: auto;
+	width: 100%;
 }
 
 .layout-cell span a{
