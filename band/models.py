@@ -10,6 +10,7 @@ class Band(models.Model):
 	genres = models.CharField(max_length=200, blank=True, null=True)
 	active = models.BooleanField(default=True)
 	slug = models.SlugField(null=True, editable=False)
+	concerts = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.name
