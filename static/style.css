@@ -158,8 +158,8 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .breadcrumb-container {
 	display: inline-block;
 	font-size: 0;
-	margin-top: 10px;
-
+	margin: 16px 0;
+	line-height: 1.6;
 }
 
 .breadcrumbs:first-of-type {
@@ -426,7 +426,7 @@ button > .fa{
 
 /** 8. TABELL-LAYOUT-MOBIL */
 
-@media (max-width: 420px) {
+@media (max-width: 512px) {
 	.table {
 		display: block;
 	}
@@ -568,6 +568,7 @@ button > .fa{
 .weeklist {
 	display: block;
 	margin-top: 20px;
+	overflow-x: auto;
 }
 
 .weeklist .rowheader {
@@ -649,7 +650,7 @@ button > .fa{
 }
 
 .layout-cell {
-	overflow-x: auto;
+	width: 100%;
 }
 
 .layout-cell span a{
@@ -703,4 +704,20 @@ button > .fa{
 	background-position: center;
 	height: 50px;
 	width: 50px;
+}
+
+@media (max-width: 512px) {
+	.nav-bar {
+		flex-wrap: wrap;
+	}
+
+	.nav-bar > .tab.img {
+		display: none;
+	}
+}
+
+@media (max-width: 412px) {
+	.nav-bar > .tab {
+		flex: 1 1 120px;
+	}
 }
