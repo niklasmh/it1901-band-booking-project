@@ -24,7 +24,8 @@
 	{% else %}
 	<a class="button" disabled>Create report</a>
 	{% endif %}
-	<a class="button" href="mailto:{{ booking.band.contact_email }}">Send bookingoffer to band</a>
+	
+	<script language="JavaScript">document.write("<a class='button' href=\"mailto:{{ booking.band.contact_email }}?subject=" + encodeURIComponent("Bookingrequest {{ booking.begin|date:'d M Y, H:i' }} @ {{ booking.venue.name }}") +  "\">Send bookingrequest</a>")</script>
 	{% endif %}
 </div>
 
