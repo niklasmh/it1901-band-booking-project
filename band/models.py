@@ -11,6 +11,7 @@ class Band(models.Model):
 	active = models.BooleanField(default=True)
 	slug = models.SlugField(null=True, editable=False)
 	concerts = models.IntegerField(default=0)
+	sold_albums = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.name
