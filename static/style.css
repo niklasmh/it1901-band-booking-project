@@ -703,3 +703,19 @@ button > .fa{
 	height: 50px;
 	width: 50px;
 }
+
+@media (max-width: 512px) {
+	.nav-bar {
+		flex-wrap: wrap;
+	}
+
+	.nav-bar > .tab.img {
+		display: none;
+	}
+}
+
+@media (max-width: 412px) {
+	.nav-bar > .tab {
+		flex: 1 1 120px;
+	}
+}
