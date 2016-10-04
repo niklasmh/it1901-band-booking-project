@@ -328,8 +328,7 @@ button > .fa{
 /** 7. TABELL-LAYOUT */
 
 .create-form {
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
 }
 
 .create-form p {
@@ -345,18 +344,99 @@ button > .fa{
 	margin-right: 20px;
 }
 
-.create-booking-table select {
+.submit-button {
 	width: 100%;
-	-webkit-appearance: menulist-button;
-	height: 25px;
-	background-color: white;
-
 }
 
-.create-booking-table td input, .submit-button {
-	height: 25px;
-	width: 300px;
-	font-size: 14px;
+.create-booking-table input[type="text"],
+.create-booking-table input[type="tel"],
+.create-booking-table input[type="number"],
+.create-booking-table input[type="password"],
+.create-booking-table textarea,
+.create-booking-table select {
+	width: 100%;
+}
+
+@media (max-width: 512px) {
+	.create-booking-table {
+		width: 100%;
+	}
+
+	.create-booking-table,
+	.create-booking-table tbody,
+	.create-booking-table tr,
+	.create-booking-table tr th,
+	.create-booking-table .submit-button,
+	.create-booking-table tr td {
+		display: block;
+	}
+
+	.create-booking-table tr th {
+		text-align: left;
+	}
+
+	.create-booking-table tr td {
+		margin-bottom: 10px;
+	}
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+	width: 32px;
+	height: 32px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+textarea,
+select,
+button {
+	background-color: #eee;
+	transition: background-color .2s ease-in-out;
+	border: none;
+	outline: none;
+	padding: 6px 10px;
+	font-size: 1em;
+	box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+input[type="text"]:invalid,
+input[type="tel"]:invalid,
+input[type="email"]:invalid,
+input[type="number"]:invalid,
+input[type="password"]:invalid,
+textarea:invalid {
+	background-color: #fdd;
+}
+
+select {
+	position: relative;
+}
+
+select::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	border: .5em solid #000;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	background-color: #ccc;
 }
 
 .submit-button {

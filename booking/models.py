@@ -53,7 +53,7 @@ class Booking(models.Model):
 
 	def check_offer_sent(self):
 		if self.offer_sent == False:
-			self.offer_sent = True;
+			self.offer_sent = True
 			return True
 		elif self.offer_sent == True:
 			return False
