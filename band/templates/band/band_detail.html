@@ -6,51 +6,63 @@
 		<span class="breadcrumbs"><a href="{% url 'band:detail' band.slug %}">{{ band.name }}</a></span>
 	{% endblock %}
 </div>
-
 {% block title %}{{ band.name }} - Band - Band Booking{% endblock %}
 {% block content %}
-<h1 class="title">{{ band.name }} <small>band</small></h1>
-{% if perms.band.edit_band %}
-<div class="controls">
-	<a href="{% url 'band:update' band.slug %}" class="button">
-		<i class="fa fa-refresh"></i> Edit band
-	</a>
-</div>
-<br/>
-{% endif %}
-<img src="{{ band_meta.images.0.url }}" width="300px"> 
+<div class="layout-row">
+	<div class="">
+		<h1 class="title">{{ band.name }} <small>band</small></h1>
+		{% if perms.band.edit_band %}
+		<div class="controls">
+			<a href="{% url 'band:update' band.slug %}" class="button">
+				<i class="fa fa-refresh"></i> Edit band
+			</a>
+		</div>
+		<br/>
+		{% endif %}
+		<img src="{{ band_meta.images.0.url }}" width="300px" /> 
 
-<!-- width="{{ band_meta.images.0.width }}" height="{{ band_meta.images.0.height }}"> -->
-<table>
-	<tr>
-		<td>Popularity:</td>
-		<td>{{ band_meta.popularity_verdi }}</td>
-	</tr>
-	
-	<tr>
-		<td>Earlier concerts in Norway: </td>
-		<td>{{band.concerts}}</td>
-	</tr>
-	
-	<tr>
-		<td>Sold albums: </td>
-		<td>{{band.sold_albums}}</td>
-	</tr>
-	
-</table>
-<h2>Contact</h2>
-<table>
-	<tr><td colspan="2"><b>{{ band.contact_person }}</b></td></tr>
-	<tr>
-		<td>Phone</td>
-		<td>{{ band.contact_phone }}</td>
-	</tr>
-	<tr>
-		<td>Email</td>
-		<td>{{ band.contact_email }}</td>
-	</tr>
-</table>
-<iframe src="https://embed.spotify.com/?uri=spotify:trackset:Top 10 songs:{{song_ids}}" width="300" height="500" view="list" frameborder="0" allowtransparency="true"></iframe>
+		<!-- width="{{ band_meta.images.0.width }}" height="{{ band_meta.images.0.height }}"> -->
+		<table class="table table-style inline-table">
+			<tr class="rowheader">
+				<td class="cell">Popularity:</td>
+				<td class="cell">{{ band_meta.popularity_verdi }}</td>
+			</tr>
+			<tr class="row">
+				<td class="cell">Earlier concerts in Norway: </td>
+				<td class="cell" data-col="Popularity">{{band.concerts}}</td>
+			</tr>
+			<tr class="row">
+				<td class="cell">Sold albums: </td>
+				<td class="cell" data-col="Popularity">{{band.sold_albums}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="">
+		<h2>Contact</h2>
+		<table class="table table-style inline-table">
+			<tr class="rowheader">
+				<td class="cell" colspan="2">
+					<b>{{ band.contact_person }}</b>
+				</td>
+			</tr>
+			<tr class="row">
+				<td class="cell">Phone</td>
+				<td class="cell" data-col="Phone">{{ band.contact_phone }}</td>
+			</tr>
+			<tr class="row">
+				<td class="cell">Email</td>
+				<td class="cell" data-col="Email">{{ band.contact_email }}</td>
+			</tr>
+		</table>
+		<iframe src="https://embed.spotify.com/?uri=spotify:trackset:Top 10 songs:{{song_ids}}"
+			width="300"
+			height="380"
+			view="list"
+			frameborder="0"
+			allowtransparency="true">
+		</iframe>
+	</div>
+</div>
 
 <!-- CONCERTS DONE BEFORE -->
 

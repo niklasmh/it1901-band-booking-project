@@ -455,6 +455,7 @@ select:focus {
 	display: table;
 	margin: 20px 0 40px 0;
 	width: 100%;
+	border-spacing: 0;
 }
 
 .table .rowheader {
@@ -465,6 +466,10 @@ select:focus {
 .table-style .rowheader {
 	background: #a03033;
 	color: white;
+}
+
+.inline-table {
+	width: auto;
 }
 
 .table .cell {
@@ -532,6 +537,11 @@ select:focus {
 		padding: 4px 10px 4px 6px;
 		text-align: right;
 		border-right: 10px solid #f6f6f6;
+	}
+	.table .cell[data-col="hidden"]:before,
+	.table .cell:not([data-col]):before,
+	.table .cell[data-col=""]:before {
+		content: "\00a0";
 	}
 	.table-style .cell:before {
 		border-right: 10px solid #f6f6f6;
