@@ -40,3 +40,7 @@ class BookingForm(forms.ModelForm):
 class BookingSetStateForm(forms.Form): 
 	accepted = forms.BooleanField(required = False)
 	rejected = forms.BooleanField(required = False)
+
+class BookingOfferSentForm(forms.Form):
+	accepted = forms.BooleanField(required = False)
+	rejected = forms.BooleanField(required = False)
