@@ -11,7 +11,12 @@
 {% block content %}
 <h1 class="title">{{ band.name }} <small>band</small></h1>
 {% if perms.band.edit_band %}
-<a href="{% url 'band:update' band.slug %}">Edit band</a><br/>
+<div class="controls">
+	<a href="{% url 'band:update' band.slug %}" class="button">
+		<i class="fa fa-refresh"></i> Edit band
+	</a>
+</div>
+<br/>
 {% endif %}
 <img src="{{ band_meta.images.0.url }}" width="300px"> 
 
