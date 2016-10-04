@@ -158,8 +158,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 .breadcrumb-container {
 	display: inline-block;
 	font-size: 0;
-	margin-top: 10px;
-
+	margin: 16px 0;
 }
 
 .breadcrumbs:first-of-type {
