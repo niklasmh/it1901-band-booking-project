@@ -24,8 +24,8 @@
 	{% else %}
 	<a class="button" disabled>Create report</a>
 	{% endif %}
-	
-	<script language="JavaScript">document.write("<a class='button' href=\"mailto:{{ booking.band.contact_email }}?subject=" + encodeURIComponent("Bookingrequest {{ booking.begin|date:'d M Y, H:i' }} @ {{ booking.venue.name }}") +  "\">Send bookingrequest</a>")</script>
+	<script language="JavaScript">document.write("<a class='button' href=\"mailto:{{ booking.band.contact_email }}?subject=" + encodeURIComponent("Bookingrequest {{ booking.begin|date:'d M Y, H:i' }} @ {{ booking.venue.name }}" ) + 
+		"&body=" + encodeURIComponent("Hey {{ booking.band.name }}!\r\n\r\n Please see the bookingrequest information below.\r\n\r\n Bookingdate: {{ booking.begin|date:'d M Y, H:i' }} to {{ booking.end|date:'d M Y, H:i' }}.\r\n\r\n Your fee will be {{ booking.band_fee }}kr.\r\n\r\nYou will be playing at {{ booking.venue.name }} with a crowd capacity of {{ booking.venue.crowd_capacity }} people.\r\n\r\n Please get back to me if you would like to accept this booking.\r\n\r\n\r\n - {{ booking.user.get_full_name|default:booking.user.username }} @ Samfundet") + "\">Send bookingrequest</a>")</script>
 	{% endif %}
 </div>
 
