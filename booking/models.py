@@ -34,6 +34,7 @@ class Booking(models.Model):
 	modified = models.DateTimeField(auto_now=True)
 	state = models.CharField(max_length=1, default=' ', choices=BOOKING_CHOICES)
 	replaces = models.ForeignKey('Booking', null=True, blank=True, related_name='replacements')
+	offer_sent = models.BooleanField(default=False)
 
 	def __str__(self):
 		return "%s @ %s" % (self.band, self.venue)
@@ -49,6 +50,14 @@ class Booking(models.Model):
 
 	def state_accepted(self):
 		return self.state == BOOKING_ACCEPTED
+
+	def check_offer_sent(self):
+		if self.offer_sent == False:
+			self.offer_sent = True;
+			return True
+		elif self.offer_sent == True:
+			return False
+		return False
 
 	class Meta:
 		permissions = (

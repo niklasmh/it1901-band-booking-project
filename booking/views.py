@@ -206,3 +206,22 @@ class BookingSetStateView(PermissionRequiredMixin, FormView):
 			return reverse('booking:detail', kwargs={'booking': self.kwargs['booking']})
 		else:
 			return reverse('booking:list')
+
+class BookingOfferRequestView(PermissionRequiredMixin, FormView):
+	permission_required = 'booking.accept_booking'
+	form_class = forms.BookingSetStateForm
+
+	def get(self, request,booking, **kwargs):
+		return HttpResponseRedirect(reverse('booking:detail', kwargs={'booking': booking}))
+	
+	def form_valid(self,form):
+		booking = models.Booking.objects.get(id = self.kwargs["booking"])
+		booking.offer_sent = True
+		booking.save()
+		return super(BookingOfferRequestView, self).form_valid(form)
+
+	def form_invalid(self, form):
+		return HttpResponseRedirect(reverse('booking:detail', kwargs={'booking': self.kwargs['booking']}))
+
+	def get_success_url(self):
+		return reverse('booking:detail', kwargs={'booking': self.kwargs['booking']})
