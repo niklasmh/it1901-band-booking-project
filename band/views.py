@@ -21,8 +21,26 @@ class BandDetailView(JsonDetailMixin, DetailView):
 				self.object.spotify_artist_id
 			))
 			if artist_req.status_code == 200:
-				context['band_meta'] \
-					= json.loads(artist_req.content.decode('utf8'))
+                                                        
+                                                        context['band_meta'] \
+                                                                = json.loads(artist_req.content.decode('utf8'))
+                                                        popularitet = context['band_meta']['popularity']
+                                                        valueString = ''
+                                                        if popularitet >= 90:
+                                                                valueString = 'Extremely popular'
+                                                        elif popularitet >= 80:
+                                                                valueString = 'High popular'
+                                                        elif popularitet >= 70:
+                                                                valueString = 'Above medium popular'
+                                                        elif popularitet >=40:
+                                                                valueString = 'Medium popular'
+                                                        elif popularitet >= 20:
+                                                                valueString = 'Under medium popular.'
+                                                        else:
+                                                                valueString = 'Not popular band'
+                                                                
+                                                        context['band_meta']['popularity_verdi'] = valueString
+				
 		return context
 
 class BandCreateView(PermissionRequiredMixin, CreateView):
