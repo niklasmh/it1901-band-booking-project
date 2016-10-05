@@ -217,6 +217,8 @@ button > .fa{
 	text-decoration: none;
 	border: none;
 	cursor: pointer;
+	font-size: 16px;
+	font-family: 'Roboto', Sans-serif;
 }
 
 .button:hover {
@@ -274,6 +276,15 @@ button > .fa{
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.button-form-accept {
+	display: inline-block;
+	margin: 5px 5px 0 0;
+	background-color: none;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
 }
 
 .button[disabled] {

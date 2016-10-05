@@ -29,7 +29,7 @@
 		"&body=" + encodeURIComponent("Hey {{ booking.band.name }}!\r\n\r\n Please see the bookingrequest information below.\r\n\r\n Bookingdate: {{ booking.begin|date:'d M Y, H:i' }} to {{ booking.end|date:'d M Y, H:i' }}.\r\n\r\n Your fee will be {{ booking.band_fee }}kr.\r\n\r\nYou will be playing at {{ booking.venue.name }} with a crowd capacity of {{ booking.venue.crowd_capacity }} people.\r\n\r\n Please get back to me if you would like to accept this booking.\r\n\r\n\r\n - {{ booking.user.get_full_name|default:booking.user.username }} @ Samfundet") + "\">Send bookingrequest</a>")</script>
 	{% endif %}
 	{% if booking.state == 'a' %}
-	<form class="button-form" method="post" action = "{%url 'booking:offerrequest'  booking.id %}">
+	<form class="button-form-accept" method="post" action = "{%url 'booking:offerrequest'  booking.id %}">
 		{% csrf_token %}
 		<input type="submit" name="accepted" value="Request sent" class="button"></input>
 	</form>
