@@ -54,7 +54,7 @@ class BandDetailView(JsonDetailMixin, DetailView):
 class BandCreateView(PermissionRequiredMixin, CreateView):
 	permission_required = 'band.add_band'
 	model = models.Band
-	fields = '__all__'
+	fields = ('name', 'contact_person', 'contact_phone', 'contact_email', 'spotify_artist_id', 'active')
 
 	def form_valid(self, form):
 		search_req = requests.get('https://api.spotify.com/v1/search?q=%s&type=artist&market=NO&limit=1' % (
@@ -65,7 +65,14 @@ class BandCreateView(PermissionRequiredMixin, CreateView):
 			if data['artists']['items']:
 				artist = data['artists']['items'][0]
 				form.instance.spotify_artist_id = artist['id']
-				form.instance.genres = ', '.join(artist['genres'])
+				form.instance.save()
+				for genre in range(0,len(artist['genres'])):
+					if models.Genre.objects.filter(name=artist['genres'][genre]).exists():
+						models.Genre.objects.get(name=artist['genres'][genre]).bands.add(form.instance)
+					else:
+						g = models.Genre(name=artist['genres'][genre])
+						g.save()
+						models.Genre.objects.get(name=artist['genres'][genre]).bands.add(form.instance)
 			return super(BandCreateView, self).form_valid(form)
 
 class BandUpdateView(PermissionRequiredMixin, UpdateView):
