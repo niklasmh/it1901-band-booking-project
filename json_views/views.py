@@ -1,5 +1,6 @@
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
+import re
 
 class JsonBaseMixin:
 	json_response_class = JsonResponse
@@ -43,5 +44,12 @@ class JsonDetailMixin(JsonBaseMixin):
 		return model_to_dict(obj, fields=self.fields, exclude=self.exclude)
 
 class OrderableMixin(object):
+	orderable_fields = '__all__'
 	def get_ordering(self):
-		return self.request.GET.get('order', self.ordering);
+		order = self.request.GET.get('order', self.ordering)
+		if self.orderable_fields == '__all__':
+			return order
+		m = re.match('-?([0-9a-zA-Z_]+)', order)
+		if m and m.group(1) in self.orderable_fields:
+			return order
+		return self.ordering
