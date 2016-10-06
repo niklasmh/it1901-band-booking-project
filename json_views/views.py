@@ -41,3 +41,7 @@ class JsonDetailMixin(JsonBaseMixin):
 
 	def serialize(self, obj):
 		return model_to_dict(obj, fields=self.fields, exclude=self.exclude)
+
+class OrderableMixin(object):
+	def get_ordering(self):
+		return self.request.GET.get('order', self.ordering);

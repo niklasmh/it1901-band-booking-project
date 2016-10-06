@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.utils.encoding import escape_uri_path
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from json_views.views import JsonListMixin, JsonDetailMixin
+from json_views.views import JsonListMixin, JsonDetailMixin, OrderableMixin
 from band import models
 import requests, json
 
-class BandListView(JsonListMixin, ListView):
+class BandListView(JsonListMixin, OrderableMixin, ListView):
+	ordering = 'name'
 	model = models.Band
 
 class BandDetailView(JsonDetailMixin, DetailView):

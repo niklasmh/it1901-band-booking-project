@@ -1,9 +1,10 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import render
-from json_views.views import JsonListMixin, JsonDetailMixin
+from json_views.views import JsonListMixin, JsonDetailMixin, OrderableMixin
 from venue import models
 
-class VenueListView(JsonListMixin, ListView):
+class VenueListView(JsonListMixin, OrderableMixin, ListView):
+	ordering = 'name'
 	model = models.Venue
 
 class VenueDetailView(JsonDetailMixin, DetailView):
