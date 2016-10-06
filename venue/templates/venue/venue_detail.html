@@ -29,24 +29,23 @@
 	</tr>
 </table>
 <h2 class="title">Bookings</h2>
-<table class="table table-style inline-table no-wrap">
-{% for booking in venue.get_bookings %}
-	<tr class="row">
-		<th class="cell">Band</th>
-		<td class="cell">{{ booking.band }}</td>
-	</tr>
-	<tr class="row">
-		<th class="cell">Date</th>
-		<td class="cell">{{ booking.begin|date:"d M Y" }}</td>
-	</tr>
-	<tr class="row">
-		<th class="cell">Attended</th>
-		<td class="cell">{{ booking.report.sum_tickets }}</td>
-	</tr>
-	<tr class="row">
-		<th class="cell">Income</th>
-		<td class="cell">{{ booking.report.sum }}</td>
-	</tr>
-{% endfor %}
-</table>
+
+<div class="table table-style">
+	<div class="rowheader">
+		<div class="cell">Band</div>
+		<div class="cell">Date</div>
+		<div class="cell">Attended</div>
+		<div class="cell">Income</div>
+	</div>
+
+	{% for booking in venue.get_bookings %}
+	<a href="{% url 'booking:detail' booking.id %}" class="row">
+		<div class="cell" data-col="Band">{{ booking.band.name }}</div>
+		<div class="cell" data-col="Date">{{ booking.begin|date:"d M Y" }}</div>
+		<div class="cell" data-col="Sum_tickets">{{ booking.report.sum_tickets }}</div>
+		<div class="cell" data-col="Sum">{{ booking.report.sum}}</div>
+	</a>
+	{% endfor %}
+</div>
+
 {% endblock %}
