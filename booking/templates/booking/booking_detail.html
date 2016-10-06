@@ -15,25 +15,15 @@
 	<a href="{% url 'booking:change' booking.id %}" class="button"><i class="fa fa-refresh"></i> Change</a>
 	{% endif %}
 	{% if perms.booking.change_report %}
-	{% if booking.report_ready %}
-	{% if booking.report %}
-	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Edit report</a>
-	{% else %}
-	<a href="{% url 'booking:report_edit' booking.id %}" class="button">Create report</a>
-	{% endif %}
-	{% else %}
-	<a class="button" disabled>Create report</a>
-	{% endif %}
-	{% if booking.state == 'a' %}
-	<script language="JavaScript">document.write("<a class='button' href=\"mailto:{{ booking.band.contact_email }}?subject=" + encodeURIComponent("Bookingrequest {{ booking.begin|date:'d M Y, H:i' }} @ {{ booking.venue.name }}" ) + 
-		"&body=" + encodeURIComponent("Hey {{ booking.band.name }}!\r\n\r\n Please see the bookingrequest information below.\r\n\r\n Bookingdate: {{ booking.begin|date:'d M Y, H:i' }} to {{ booking.end|date:'d M Y, H:i' }}.\r\n\r\n Your fee will be {{ booking.band_fee }}kr.\r\n\r\nYou will be playing at {{ booking.venue.name }} with a crowd capacity of {{ booking.venue.crowd_capacity }} people.\r\n\r\n Please get back to me if you would like to accept this booking.\r\n\r\n\r\n - {{ booking.user.get_full_name|default:booking.user.username }} @ Samfundet") + "\">Send bookingrequest</a>")</script>
-	{% endif %}
-	{% if booking.state == 'a' %}
-	<form class="button-form-accept" method="post" action = "{%url 'booking:offerrequest'  booking.id %}">
-		{% csrf_token %}
-		<input type="submit" name="accepted" value="Request sent" class="button"></input>
-	</form>
-	{% endif %}
+		{% if booking.report_ready %}
+			{% if booking.report %}
+				<a href="{% url 'booking:report_edit' booking.id %}" class="button">Edit report</a>
+			{% else %}
+				<a href="{% url 'booking:report_edit' booking.id %}" class="button">Create report</a>
+			{% endif %}
+		{% else %}
+			<a class="button" disabled>Create report</a>
+		{% endif %}
 	{% endif %}
 </div>
 
@@ -215,7 +205,7 @@
 				<th>Additional information:</th>
 				<td>{{ booking.report.additional_information }}</td>
 			</tr>
-						<tr>
+			<tr>
 				<th>Entry</th>
 				<th>Expence</th>
 				<th>Income</th>
@@ -253,9 +243,38 @@
 
 			{% endif %}
 		</table>
-		</div>
+	</div>
 
 {% endif %}
+
+
+<div class="booking-box">
+	<div class="booking-box-header">
+		<div>Booking Status</div>
+	</div>
+	<table class="booking-table">
+		{% if booking.state == 'a' %}
+			<tr>
+				<th>
+					<script language="JavaScript">document.write("<a class='button' href=\"mailto:{{ booking.band.contact_email }}?subject=" + encodeURIComponent("Bookingrequest {{ booking.begin|date:'d M Y, H:i' }} @ {{ booking.venue.name }}" ) + 
+						"&body=" + encodeURIComponent("Hey {{ booking.band.name }}!\r\n\r\n Please see the bookingrequest information below.\r\n\r\n Bookingdate: {{ booking.begin|date:'d M Y, H:i' }} to {{ booking.end|date:'d M Y, H:i' }}.\r\n\r\n Your fee will be {{ booking.band_fee }}kr.\r\n\r\nYou will be playing at {{ booking.venue.name }} with a crowd capacity of {{ booking.venue.crowd_capacity }} people.\r\n\r\n Please get back to me if you would like to accept this booking.\r\n\r\n\r\n - {{ booking.user.get_full_name|default:booking.user.username }} @ Samfundet") + "\">Send bookingrequest</a>")</script>
+				</th>
+			</tr>
+		{% endif %}
+
+		{% if booking.state == 'a' %}
+			<tr>
+				<th>
+					<form class="button-form-accept" method="post" action = "{%url 'booking:offerrequest'  booking.id %}">
+						{% csrf_token %}
+						<input type="submit" name="accepted" value="Request sent" class="button"></input>
+					</form>
+				</th>
+			</tr>
+		{% endif %}
+
+	</table>
+</div>
 
 </div>
 
