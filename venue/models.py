@@ -22,7 +22,7 @@ class Venue(models.Model):
 		bookings = self.bookings.exclude(report__isnull=True)
 		genres = []
 		for booking in range(0, len(bookings)):
-			for genre in range(0, len(bookings[booking].band.genre_set.all())):
-				if bookings[booking].band.genre_set.all()[genre].name not in genres:
-					genres.append(bookings[booking].band.genre_set.all()[genre].name)
+			for genre in range(0, len(bookings[booking].band.genres.all())):
+				if bookings[booking].band.genres.all()[genre].name not in genres:
+					genres.append(bookings[booking].band.genres.all()[genre].name)
 		return genres
