@@ -2,12 +2,15 @@ from django.shortcuts import render
 from django.utils.encoding import escape_uri_path
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from json_views.views import JsonListMixin, JsonDetailMixin, OrderableMixin
+from json_views.views import JsonListMixin, JsonDetailMixin, OrderableMixin, FilterMixin
 from band import models
 import requests, json
 
-class BandListView(JsonListMixin, OrderableMixin, ListView):
+class BandListView(JsonListMixin, OrderableMixin, FilterMixin, ListView):
 	ordering = 'name'
+	allowed_filters = {
+		"genre": "genres__name"
+	}
 	model = models.Band
 
 class BandDetailView(JsonDetailMixin, DetailView):
@@ -19,10 +22,10 @@ class BandDetailView(JsonDetailMixin, DetailView):
 		context = super(BandDetailView, self).get_context_data(**kwargs)
 		if self.object.spotify_artist_id:
 			artist_req = requests.get('https://api.spotify.com/v1/artists/%s/' % (
-				self.object.spotify_artist_id	
+				self.object.spotify_artist_id
 			))
 			if artist_req.status_code == 200:
-														
+
 				context['band_meta'] \
 						= json.loads(artist_req.content.decode('utf8'))
 				popularitet = context['band_meta']['popularity']
@@ -39,11 +42,11 @@ class BandDetailView(JsonDetailMixin, DetailView):
 						valueString = 'Under medium popular.'
 				else:
 						valueString = 'Not popular band'
-						
+
 				context['band_meta']['popularity_verdi'] = valueString
-				
+
 			artist_req = requests.get('https://api.spotify.com/v1/artists/%s/top-tracks?country=NO' % (
-				self.object.spotify_artist_id	
+				self.object.spotify_artist_id
 			))
 
 			if artist_req.status_code == 200:

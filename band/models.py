@@ -19,11 +19,11 @@ class Band(models.Model):
 		return reverse('band:detail', kwargs={ 'band_slug': self.slug })
 
 	def get_genres(self):
-		return ', '.join([str(i.name) for i in self.genre_set.all()][:3])
+		return ', '.join([str(i.name) for i in self.genres.all()][:3])
 
 class Genre(models.Model):
 	name = models.CharField(max_length=50)
-	bands = models.ManyToManyField(Band)
+	bands = models.ManyToManyField(Band, related_name="genres")
 
 	def __str__(self):
 		return self.name

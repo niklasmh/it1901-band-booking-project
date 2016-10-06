@@ -55,7 +55,6 @@ class OrderableMixin(object):
 		return self.ordering
 
 class FilterMixin(object):
-	filterable_fields = '__all__'
 	allowed_filters = {}
 	def get_queryset(self):
 		qs = super(FilterMixin, self).get_queryset()
