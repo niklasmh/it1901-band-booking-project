@@ -582,13 +582,17 @@ select:focus {
 /** 9. Booking details */
 
 .booking-box {
-	margin-right: 20px;
-	margin-top:20px;
+	margin: 10px;
 	border: 3px solid #a03033;
 	width: 347px;
 	border-radius: 3px;
 	background: white;
 	float: left;
+	flex: 1 0 300px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
 }
 
 .booking-box-header {
@@ -599,11 +603,15 @@ select:focus {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	font-size: 16px;
-	margin-bottom: 10px;
+	width: 100%;
 }
 
 .booking-table {
-	padding: 5px 20px 10px 20px;
+	padding: 0;
+	margin-top: 4px;
+	border-spacing: 0;
+	box-sizing: border-box;
+	width: 100%;
 }
 
 .booking-table th {
@@ -611,8 +619,29 @@ select:focus {
 	text-align: right;
 }
 
+.booking-table tr {
+	background-color: transparent;
+	line-height: 1.6;
+}
+.booking-table tr:nth-child(even) {
+	background-color: #eee;
+}
+
 .link-band-booking-header {
 	font-weight: 100px;
+}
+
+.booking-box > [class^="button"] {
+	flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-below-change {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 /** 10. MESSAGES */
