@@ -650,6 +650,10 @@ select:focus {
 	justify-content: center;
 }
 
+.select-genre {
+	text-transform: capitalize;
+}
+
 /** 10. MESSAGES */
 
 .messages{

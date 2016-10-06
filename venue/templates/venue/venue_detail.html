@@ -32,16 +32,16 @@
 
 <form action="" method="post">
 	{% csrf_token %}
-	<select name="genre">
+	<select name="genre" class="select-genre" id="select-genre">
+			<option value="alle">All</option>
 		{% for genre in venue.get_genres %}
 			<option value="{{ genre }}">{{ genre }}</option>
 		{% endfor %}
 	</select>
-	<button class="button" type="submit">Filtrer</button>
 </form>
 
 
-<div class="table table-style">
+<div class="table table-style" id="booking-table">
 	<div class="rowheader">
 		<div class="cell">Band</div>
 		<div class="cell">Date</div>
@@ -58,5 +58,25 @@
 	</a>
 	{% endfor %}
 </div>
+
+<script>
+	/**
+	 * Filter genres based on one genre dropdown.
+	 */
+	var _genre = document.querySelector('#select-genre')
+	var _display = document.querySelector('#booking-table > .row').style.display
+	_genre.addEventListener('change', function (evt) {
+		var _table = document.querySelectorAll('#booking-table > .row')
+		var _self = this
+		_table.forEach(function (el) {
+			var _test = new RegExp(_self.value).test(el.dataset.genres)
+			if (_self.value === 'alle')
+				el.style.display = _display
+			else
+				el.style.display = _test ? _display : 'none'
+		})
+	})
+
+</script>
 
 {% endblock %}
