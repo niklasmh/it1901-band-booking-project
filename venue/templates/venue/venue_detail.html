@@ -30,6 +30,15 @@
 </table>
 <h2 class="title">Bookings</h2>
 
+<form action="" method="post">
+	{% csrf_token %}
+	<select name="genre">
+		<option value="rock">Rock</option>
+		<option value="metall">Metall</option>
+	</select>
+	<button class="button" type="submit">Filtrer</button>
+</form>
+
 <div class="table table-style">
 	<div class="rowheader">
 		<div class="cell">Band</div>
