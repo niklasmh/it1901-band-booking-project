@@ -19,7 +19,7 @@ class Band(models.Model):
 		return reverse('band:detail', kwargs={ 'band_slug': self.slug })
 
 	def get_genres(self):
-		return ', '.join([str(i.name) for i in self.genre_set.all()])
+		return ', '.join([str(i.name) for i in self.genre_set.all()][:3])
 
 class Genre(models.Model):
 	name = models.CharField(max_length=50)
