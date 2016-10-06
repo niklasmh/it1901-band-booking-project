@@ -523,24 +523,24 @@ select:focus {
 /** 8. TABELL-LAYOUT-MOBIL */
 
 @media (max-width: 512px) {
-	.table {
+	:not(.no-wrap).table {
 		display: block;
 	}
 
-	.table .rowheader {
+	:not(.no-wrap).table .rowheader {
 		display: none;
 	}
 
-	.table .row {
+	:not(.no-wrap).table .row {
 		display: block;
 	}
 
-	.table .cell {
+	:not(.no-wrap).table .cell {
 		display: table-row;
 		padding: 0 4px;
 	}
 
-	.table .cell:before {
+	:not(.no-wrap).table .cell:before {
 		display: table-cell;
 		content: attr(data-col) ": ";
 		font-size: .8em;
@@ -549,31 +549,37 @@ select:focus {
 		text-align: right;
 		border-right: 10px solid #f6f6f6;
 	}
-	.table .cell[data-col="hidden"]:before,
-	.table .cell:not([data-col]):before,
-	.table .cell[data-col=""]:before {
-		content: "\00a0";
+
+	:not(.no-wrap).table .cell[data-col="hidden"]:before,
+	:not(.no-wrap).table .cell:not([data-col]):before,
+	:not(.no-wrap).table .cell[data-col=""]:before {
+		content: "";
+		height: 1em;
+		width: 0;
+		padding: 10px 0;
+		border: none;
 	}
-	.table-style .cell:before {
+
+	:not(.no-wrap).table-style .cell:before {
 		border-right: 10px solid #f6f6f6;
 		background: #a03033;
 		color: #fff;
 	}
 
-	.table-style .row:nth-of-type(odd) .cell:before {
+	:not(.no-wrap).table-style .row:nth-of-type(odd) .cell:before {
 		background: #903029;
 		border-color: #e9e9e9;
 	}
 
-	.table .cell:first-child:before {
+	:not(.no-wrap).table .cell:first-child:before {
 		padding-top: 10px;
 	}
 
-	.table .cell:last-child:before {
+	:not(.no-wrap).table .cell:last-child:before {
 		padding-bottom: 10px;
 	}
 
-	.table-style .row:hover .cell:before {
+	:not(.no-wrap).table-style .row:hover .cell:before {
 		background: #803022;
 		border-color: lightgray;
 	}
