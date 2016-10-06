@@ -53,3 +53,15 @@ class OrderableMixin(object):
 		if m and m.group(1) in self.orderable_fields:
 			return order
 		return self.ordering
+
+class FilterMixin(object):
+	filterable_fields = '__all__'
+	allowed_filters = {}
+	def get_queryset(self):
+		qs = super(FilterMixin, self).get_queryset()
+		filters = {}
+		for field in self.allowed_filters:
+			if field in self.request.GET:
+				filters[self.allowed_filters[field]] = self.request.GET.get(field)
+		qs = qs.filter(**filters)
+		return qs
