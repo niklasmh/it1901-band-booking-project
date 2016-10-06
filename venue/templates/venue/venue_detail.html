@@ -28,4 +28,25 @@
 		<td>{{ venue.stage_height }}m</td>
 	</tr>
 </table>
+<h2 class="title">Bookings</h2>
+<table>
+{% for booking in venue.get_bookings %}
+	<tr>
+		<td>Band:</td>
+		<td>{{ booking.band }}</td>
+	</tr>
+	<tr>
+		<td>Date:</td>
+		<td>{{ booking.begin|date:"d M Y" }}</td>
+	</tr>
+	<tr>
+		<td>Attended:</td>
+		<td>{{ booking.report.sum_tickets }}</td>
+	</tr>
+	<tr>
+		<td>Income:</td>
+		<td>{{ booking.report.sum }}</td>
+	</tr>
+{% endfor %}
+</table>
 {% endblock %}

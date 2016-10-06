@@ -14,3 +14,6 @@ class Venue(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('venue:detail', kwargs={ 'venue_slug': self.slug })
+
+	def get_bookings(self):
+		return self.bookings.exclude(report__isnull=True)
