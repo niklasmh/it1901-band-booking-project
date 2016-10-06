@@ -10,43 +10,42 @@
 {% block title %}{{ venue.name }} - Venue - Band Booking{% endblock %}
 {% block content %}
 <h1 class="title">{{ venue.name }} <small>venue</small></h1>
-<table>
-	<tr>
-		<td>Crowd capacity</td>
-		<td>{{ venue.crowd_capacity }} people</td>
+<table class="table table-style inline-table no-wrap">
+	<tr class="row">
+		<th class="cell">Crowd capacity</th>
+		<td class="cell">{{ venue.crowd_capacity }} people</td>
 	</tr>
-	<tr>
-		<td>Stage width</td>
-		<td>{{ venue.stage_width }}m</td>
+	<tr class="row">
+		<th class="cell">Stage width</th>
+		<td class="cell">{{ venue.stage_width }}m</td>
 	</tr>
-	<tr>
-		<td>Stage depth</td>
-		<td>{{ venue.stage_depth }}m</td>
+	<tr class="row">
+		<th class="cell">Stage depth</th>
+		<td class="cell">{{ venue.stage_depth }}m</td>
 	</tr>
-	<tr>
-		<td>Stage height</td>
-		<td>{{ venue.stage_height }}m</td>
+	<tr class="row">
+		<th class="cell">Stage height</th>
+		<td class="cell">{{ venue.stage_height }}m</td>
 	</tr>
 </table>
 <h2 class="title">Bookings</h2>
-<table>
-{% for booking in venue.get_bookings %}
-	<tr>
-		<td>Band:</td>
-		<td>{{ booking.band }}</td>
-	</tr>
-	<tr>
-		<td>Date:</td>
-		<td>{{ booking.begin|date:"d M Y" }}</td>
-	</tr>
-	<tr>
-		<td>Attended:</td>
-		<td>{{ booking.report.sum_tickets }}</td>
-	</tr>
-	<tr>
-		<td>Income:</td>
-		<td>{{ booking.report.sum }}</td>
-	</tr>
-{% endfor %}
-</table>
+
+<div class="table table-style">
+	<div class="rowheader">
+		<div class="cell">Band</div>
+		<div class="cell">Date</div>
+		<div class="cell">Attended</div>
+		<div class="cell">Income</div>
+	</div>
+
+	{% for booking in venue.get_bookings %}
+	<a href="{% url 'booking:detail' booking.id %}" class="row">
+		<div class="cell" data-col="Band">{{ booking.band.name }}</div>
+		<div class="cell" data-col="Date">{{ booking.begin|date:"d M Y" }}</div>
+		<div class="cell" data-col="Sum_tickets">{{ booking.report.sum_tickets }}</div>
+		<div class="cell" data-col="Sum">{{ booking.report.sum}}</div>
+	</a>
+	{% endfor %}
+</div>
+
 {% endblock %}

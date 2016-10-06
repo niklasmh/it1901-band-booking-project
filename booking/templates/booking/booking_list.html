@@ -17,7 +17,8 @@
 		</div>
 	</div>
 </div>
-	<div class="layout-cell center">
+<div id="toggleCalendar"></div>
+	<div class="layout-cell center" id="weekcalendar">
 		{% load weeklist %}
 		{% load url_replace %}
 		<span>
@@ -65,7 +66,13 @@
 		</div>
 		{% endwith %}
 	</div>
+	<div class="layout-cell center" id="monthCalendar">
 
+
+	CONTENT GOES HERE
+
+
+	</div>
 
 <div class="table table-style">
 	<div class="rowheader">
@@ -92,4 +99,6 @@
 	</a>
 	{% endfor %}
 </div>
+{% load staticfiles %}
+<script type="text/javascript" src='{% static "booking/toggleButtonCalendar.js" %}'></script>
 {% endblock %}
