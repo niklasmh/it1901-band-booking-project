@@ -21,6 +21,9 @@ class Band(models.Model):
 	def get_genres(self):
 		return ', '.join([str(i.name) for i in self.genres.all()][:3])
 
+	def get_all_genres(self):
+		return ', '.join([str(i.name) for i in self.genres.all()])
+
 class Genre(models.Model):
 	name = models.CharField(max_length=50)
 	bands = models.ManyToManyField(Band, related_name="genres")

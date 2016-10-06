@@ -48,7 +48,7 @@
 	</div>
 
 	{% for booking in venue.get_bookings %}
-	<a href="{% url 'booking:detail' booking.id %}" class="row">
+	<a href="{% url 'booking:detail' booking.id %}" class="row" data-genres="{{ booking.band.get_all_genres }}">
 		<div class="cell" data-col="Band">{{ booking.band.name }}</div>
 		<div class="cell" data-col="Date">{{ booking.begin|date:"d M Y" }}</div>
 		<div class="cell" data-col="Sum_tickets">{{ booking.report.sum_tickets }}</div>
