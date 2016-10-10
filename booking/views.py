@@ -35,7 +35,7 @@ def do_transition(request, booking, transition):
 		messages.warning(request, 'You do not have the permissions to do this')
 		return False
 
-	booking.state_transition(transition, False)
+	booking.state_transition(transition, request.user)
 
 	if booking.state in models.BOOKING_IS_ACCEPTED:
 		qs = models.Booking.objects.filter(venue=booking.venue,
@@ -47,7 +47,7 @@ def do_transition(request, booking, transition):
 			return False
 		replaces = booking.replaces
 		if replaces:
-			replaces.state_transition(models.BOOKING_TRANSITION_REPLACE)
+			replaces.state_transition(models.BOOKING_TRANSITION_REPLACE, request.user)
 	booking.save()
 	return True
 
@@ -180,7 +180,7 @@ class BookingUpdateView(PermissionRequiredMixin, CreateView, SingleObjectMixin):
 		form.instance.user = self.request.user
 		res = super(BookingUpdateView, self).form_valid(form)
 		if self.object_original.state == models.BOOKING_NONE:
-			self.object_original.state_transition(models.BOOKING_TRANSITION_REPLACE)
+			self.object_original.state_transition(models.BOOKING_TRANSITION_REPLACE, request.user)
 			self.object_original.save()
 		return res
 
