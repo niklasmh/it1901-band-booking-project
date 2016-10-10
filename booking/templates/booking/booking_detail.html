@@ -106,20 +106,6 @@
 </table>
 {% endif %}
 
-<!-- Can only be seen by those that have permission to "Accept or reject booking" -->
-{% if perms.booking.accept_booking and booking.state == ' ' %}
-	<form class="button-form" method="post" action = "{%url 'booking:setstate'  booking.id %}">
-		{% csrf_token %}
-		<button type= "submit" value= "Accept" name= "accepted" class="button-accept">
-			<i class="fa fa-check" aria-hidden="true"></i>
-		</button>
-		<button type= "submit" value= "Reject" name= "rejected" class="button-reject">
-			<i class="fa fa-times" aria-hidden="true"></i>
-		</button>
-	</form>
-{% endif %}
-<!--HHHHHHHHHHHHHHHHHHHHHH-->
-
 </div>
 
 <div class="booking-box">
@@ -251,26 +237,63 @@
 		<div>Booking Status</div>
 	</div>
 	<table class="booking-table">
-		{% if booking.state == 'a' %}
+
+		{% if booking.state == ' ' %}
+			<tr><th>Waiting for the booking to be accepted internally</th></tr>
+		{% elif booking.state == 'a' %}
+			<tr><th>Waiting for the offer email to be sent</th></tr>
+		{% elif booking.state == 'e' %}
+			<tr><th>Waiting for the band to accept the offer</th></tr>
+		{% elif booking.state == 'b' and not booking.is_past_due %}
+			<tr><th>The booking is accepted :)</th></tr>
+		{% elif booking.state == 'b' %}
+			<tr><th>The booking is finished :)</th></tr>
+		{% endif %}
+		{% if booking.state == ' ' and perms.booking.accept_booking or booking.state == 'e' %}
+		<tr>
+			<th>
+				<form class="button-form" method="post" action = "{%url 'booking:transition'  booking.id %}">
+					{% csrf_token %}
+					<button type= "submit" value= "Accept" name= "accept" class="button-accept">
+						<i class="fa fa-check" aria-hidden="true"></i>
+					</button>
+					<button type= "submit" value= "Reject" name= "reject" class="button-reject">
+						<i class="fa fa-times" aria-hidden="true"></i>
+					</button>
+				</form>
+			</th>
+		</tr>
+		{% elif booking.state == 'a' %}
 			<tr>
 				<th>
 					<script language="JavaScript">document.write("<a class='button' href=\"mailto:{{ booking.band.contact_email }}?subject=" + encodeURIComponent("Bookingrequest {{ booking.begin|date:'d M Y, H:i' }} @ {{ booking.venue.name }}" ) + 
 						"&body=" + encodeURIComponent("Hey {{ booking.band.name }}!\r\n\r\n Please see the bookingrequest information below.\r\n\r\n Bookingdate: {{ booking.begin|date:'d M Y, H:i' }} to {{ booking.end|date:'d M Y, H:i' }}.\r\n\r\n Your fee will be {{ booking.band_fee }}kr.\r\n\r\nYou will be playing at {{ booking.venue.name }} with a crowd capacity of {{ booking.venue.crowd_capacity }} people.\r\n\r\n Please get back to me if you would like to accept this booking.\r\n\r\n\r\n - {{ booking.user.get_full_name|default:booking.user.username }} @ Samfundet") + "\">Send bookingrequest</a>")</script>
 				</th>
 			</tr>
-		{% endif %}
-
-		{% if booking.state == 'a' %}
 			<tr>
 				<th>
-					<form class="button-form-accept" method="post" action = "{%url 'booking:offerrequest'  booking.id %}">
+					<form class="button-form-accept" method="post" action = "{%url 'booking:transition'  booking.id %}">
 						{% csrf_token %}
-						<input type="submit" name="accepted" value="Request sent" class="button"></input>
+						<input type="submit" name="send_offer" value="Request sent" class="button"></input>
+
 					</form>
 				</th>
 			</tr>
 		{% endif %}
-
+	</table>
+</div>
+<div class="booking-box">
+	<div class="booking-box-header">
+		<div>Events</div>
+	</div>
+	<table class="booking-table">
+		{% for event in booking.events.all %}
+		<tr>
+			<td>{{ event }}</td>
+			<td>{{ event.time }}</td>
+			<td>{{ event.user.get_full_name|default:event.user.username }}</td>
+		</tr>
+		{% endfor %}
 	</table>
 </div>
 

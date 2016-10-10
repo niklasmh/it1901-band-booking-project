@@ -33,13 +33,19 @@ def booking_weeklist(value, week):
 	first_day = datetime.strptime("%s-1" % week, "%Y-W%W-%w")
 	res = [{'date': first_day + timedelta(days=i), 'list': [], 'accepted': False, 'pending': False } for i in range(0, 7)]
 	for entry in value:
-		if not entry.state in (models.BOOKING_ACCEPTED, models.BOOKING_NONE):
+		if not entry.state in models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,):
 			continue
 		diff = (entry.begin.date() - first_day.date()).days
 		if diff >= 7 or diff < 0:
 			continue
 		if entry.state == models.BOOKING_ACCEPTED:
 			res[diff]['accepted'] = True
+			res[diff]['booking'] = entry
+		elif entry.state == models.BOOKING_OFFER_ACCEPTED:
+			res[diff]['offer_accepted'] = True
+			res[diff]['booking'] = entry
+		elif entry.state == models.BOOKING_OFFER_SENT:
+			res[diff]['offer_sent'] = True
 			res[diff]['booking'] = entry
 		elif entry.state == models.BOOKING_NONE:
 			res[diff]['pending'] = True

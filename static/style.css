@@ -773,7 +773,16 @@ select:focus {
 	color: white;
 }
 
+.weeklist .row-col .cell.offer_sent {
+	background-color: #0722f1 !important;
+	color: white;
+}
+
 .weeklist .row-col .cell.accepted {
+	background-color: #27e7e7 !important;
+}
+
+.weeklist .row-col .cell.offer_accepted {
 	background-color: #61fe61 !important;
 }
 

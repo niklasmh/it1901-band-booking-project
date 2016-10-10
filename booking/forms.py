@@ -37,10 +37,7 @@ class BookingForm(forms.ModelForm):
 		model = models.Booking
 		fields = ('band', 'venue', 'begin', 'end', 'band_fee', 'ticket_price_member', 'ticket_price_non_member', 'total_tickets_for_sale')
 
-class BookingSetStateForm(forms.Form): 
-	accepted = forms.BooleanField(required = False)
-	rejected = forms.BooleanField(required = False)
-
-class BookingOfferSentForm(forms.Form):
-	accepted = forms.BooleanField(required = False)
-	rejected = forms.BooleanField(required = False)
+class BookingTransitionForm(forms.Form): 
+	accept = forms.BooleanField(required = False)
+	reject = forms.BooleanField(required = False)
+	send_offer = forms.BooleanField(required = False)
