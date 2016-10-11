@@ -58,7 +58,7 @@ class BandDetailView(JsonDetailMixin, DetailView):
 class BandCreateView(PermissionRequiredMixin, CreateView):
 	permission_required = 'band.add_band'
 	model = models.Band
-	fields = ('name', 'contact_person', 'contact_phone', 'contact_email', 'spotify_artist_id', 'active')
+	fields = ('name', 'contact_person', 'contact_phone', 'contact_email', 'spotify_artist_id', 'concerts','sold_albums','active',)
 
 	def form_valid(self, form):
 		search_req = requests.get('https://api.spotify.com/v1/search?q=%s&type=artist&market=NO&limit=1' % (
