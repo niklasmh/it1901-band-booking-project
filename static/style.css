@@ -704,11 +704,13 @@ select:focus {
 }
 
 /* 13. Weeklist */
-
 .weeklist {
 	display: block;
 	margin-top: 20px;
 	overflow-x: auto;
+	margin: auto;
+	width: 65%;
+	padding-top: 20px;
 }
 
 .weeklist .rowheader {
