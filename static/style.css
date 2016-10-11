@@ -710,7 +710,8 @@ select:focus {
 	margin-top: 20px;
 	overflow-x: auto;
 	margin: auto;
-	width: 65%;
+	width: 100%;
+	max-width: 655px;
 	padding-top: 20px;
 }
 
