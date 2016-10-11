@@ -36,6 +36,15 @@ Create
 	<p>Please enter the booking information below.</p>
 	{% csrf_token %}
 	<table class="create-booking-table">
+		<tr>
+			<td></td>
+			<td style="padding-bottom: 6px">
+				<a class="button"
+					value="Add band"
+					href="{% url 'band:create' %}"
+					target="_blank">Add Band</a>
+			</td>
+		</tr>
 		{{ form.as_table }}
 		<tr>
 			<td></td>
