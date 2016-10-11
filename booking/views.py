@@ -10,8 +10,10 @@ from django.forms import model_to_dict
 from json_views.views import JsonListMixin, JsonDetailMixin, OrderableMixin
 from booking import models, forms
 from datetime import datetime, date, timedelta
+from venue.models import Venue
 import itertools
 import re
+import calendar
 
 def get_week_number(date):
 	return date.strftime('%Y-W%W')
@@ -26,6 +28,11 @@ def get_weekspan_from_number(week, year):
 	weeklist_end = weeklist_begin + timedelta(days=7)
 	return weeklist_begin, weeklist_end
 
+def get_month(date):
+	month_begin = date.replace(day=1)
+	month_end = month_begin + timedelta(days=calendar.monthrange(date.year, date.month)[1])
+	return month_begin, month_end
+
 class BookingListView(JsonListMixin, OrderableMixin, ListView):
 	ordering = 'begin'
 	model = models.Booking
@@ -33,13 +40,32 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 	def get_context_data(self, **kwargs):
 		context = super(BookingListView, self).get_context_data(**kwargs)
 		today = date.today()
+		venue = Venue.objects.first()
 
 		weeklist_begin, weeklist_end = get_weekspan(today)
+		monthlist_begin, monthlist_end = get_month(today)
 		if 'week' in self.request.GET:
 			m = re.match("([0-9]{4})-W([0-9]+)", self.request.GET.get('week'))
 			if m:
 				year, week = m.group(1, 2)
 				weeklist_begin, weeklist_end = get_weekspan_from_number(week, year)
+		if 'monthlist_venue' in self.request.GET:
+			venue = Venue.objects.get(slug=self.request.GET.get('monthlist_venue'))
+		if 'month' in self.request.GET:
+			m = re.match("([0-9]{4})-([0-9]+)", self.request.GET.get('month'))
+			if m:
+				year, month = m.group(1, 2)
+				monthlist_begin, monthlist_end = get_month(date(year,month,1))
+
+
+		context['monthlist'] = {
+			'weeks': [monthlist_begin + timedelta(days=7*i) for i in range(6)],
+			'venue_this': venue,
+			'list': self.model.objects.filter(state__in=(models.BOOKING_ACCEPTED, models.BOOKING_NONE),
+											begin__range=(monthlist_begin, monthlist_end),
+											venue=venue),
+		}
+
 		context['weeklist'] = {
 			'week': (weeklist_begin),
 			'week_next': (weeklist_begin + timedelta(days=7)),

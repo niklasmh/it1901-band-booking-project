@@ -66,11 +66,63 @@
 		</div>
 		{% endwith %}
 	</div>
+
 	<div class="layout-cell center" id="monthCalendar">
+		{% load weeklist %}
+		{% load url_replace %}
 
+		<form action="" method="get">
+  			<select name="monthlist_venue" onchange="this.form.submit()">
+  				{% for venue in weeklist.list|booking_venue_list %}
+  				{% ifequal venue.venue monthlist.venue_this %}
+  					<option value="{{ venue.venue.slug }}" selected="selected">{{ venue.venue}}</option>
+  				{% else %}
+    				<option value="{{ venue.venue.slug }}">{{ venue.venue }}</option>
+    			{% endifequal %}
+    			{% endfor %}
+  			</select>
+		</form>
 
-	CONTENT GOES HERE
+		{% with current_week_str=weeklist.week|date:'Y-\WW' %}
+		<div class="weeklist table-style">
+			<div class="rowheader">
+				{% for e in 0|weekdays:current_week_str %}
+				<div class="cell">
+					<span class="dayname">{{ e.date|date:"l" }}</span>
+				</div>
+				{% endfor %}
+			</div>
+		{% endwith %}
 
+		{% for week in monthlist.weeks %}
+			{% with current_week_str=week|date:'Y-\WW' %}
+			<div class="row-col">
+				{% for date in monthlist.list|booking_weeklist:current_week_str %}
+				{% if date.accepted %}
+				<a class="cell accepted" href="{% url 'booking:detail' date.booking.id %}" title="View booking">
+					{{ date.booking.band }}
+				</a>
+				{% elif date.pending %}
+				{% if date.list|length_is:"1" %}
+				{% with booking=date.list|first %}
+				<a class="cell pending" href="{% url 'booking:detail' booking.id %}" title="View booking">
+					{{ booking.band }}
+				</a>
+				{% endwith %}
+				{% else %}
+				<a class="cell pending" href="{% url 'booking:list' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="View bookings">
+					Multiple bookings
+				</a>
+
+				{% endif %}
+				{% else %}
+				<a class="cell" href="{% url 'booking:create' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="Create booking"></a>
+				{% endif %}
+				{% endfor %}
+			</div>
+			{% endwith %}
+		{% endfor %}
+		</div>
 
 	</div>
 
