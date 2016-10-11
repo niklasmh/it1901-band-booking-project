@@ -88,7 +88,6 @@
 		<div class="cell">Venue</div>
 		<div class="cell">Date</div>
 		<div class="cell">Band fee</div>
-		<div class="cell">Offer sent</div>
 		<div class="cell">State</div>
 	</div>
 
@@ -98,11 +97,6 @@
 		<div class="cell" data-col="Venue">{{ booking.venue.name }}</div>
 		<div class="cell" data-col="Date">{{ booking.begin|date:"d M Y" }}</div>
 		<div class="cell" data-col="Band fee">{{ booking.band_fee }}kr</div>
-		{% if booking.offer_sent %}
-		<div class="cell" data-col="Offer sent">Sent</div>
-		{% else %}
-		<div class="cell" data-col="Offer sent">Not sent</div>
-		{% endif %}
 		<div class="cell" data-col="State">{{ booking.get_state_display }}</div>
 	</a>
 	{% endfor %}
