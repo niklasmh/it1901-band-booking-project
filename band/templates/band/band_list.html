@@ -13,10 +13,11 @@
 {% if perms.band.add_band %}
 <div class="controls">
 	<a href="{% url 'band:create' %}" class="button"><i class="fa fa-plus"></i> Add band</a>
+	<input type="text" id="band-search" placeholder="Søk på band" />
 </div>
 
 {% endif %}
-<div class="table table-style">
+<div class="table table-style" id="band-table">
 	<div class="rowheader">
 		<div class="cell">ARTIST</div>
 		<div class="cell">CONTACT PERSON</div>
@@ -25,7 +26,11 @@
 	</div>
 	
 	{% for band in band_list %}
-	<a href="{% url 'band:detail' band.slug %}" class="row">
+	<a href="{% url 'band:detail' band.slug %}" class="row"
+		data-search="{{ band.name }},
+			{{ band.contact_person }},
+			{{ band.contact_phone }},
+			{{ band.contact_email }}">
 		<div class="cell" data-col="ARTIST">{{ band.name }}</div>
 		<div class="cell" data-col="PERSON">{{ band.contact_person }}</div>
 		<div class="cell" data-col="PHONE">{{ band.contact_phone }}</div>
@@ -33,4 +38,25 @@
 	</a>
 	{% endfor %}
 </div>
+
+<script>
+	/**
+	 * Filter band based on search.
+	 */
+	var _search = document.querySelector('#band-search')
+	var _display = document.querySelector('#band-table > .row').style.display
+	_search.addEventListener('keyup', function (evt) {
+		var _table = document.querySelectorAll('#band-table > .row')
+		var _self = this
+		_table.forEach(function (el) {
+			var _test = new RegExp(_self.value).test(el.dataset.search)
+			if (!_self.value.length)
+				el.style.display = _display
+			else
+				el.style.display = _test ? _display : 'none'
+		})
+	})
+
+</script>
+
 {% endblock %}
