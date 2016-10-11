@@ -95,7 +95,7 @@
 		{% keep_get_params request "monthlist_venue,monthlist_month,monthlist_year" %}
 	</form>
 	
-	<div class="weeklist monthlist">
+	<div class="monthlist">
 		<div class="rowheader">
 			{% with current_week_str=monthlist.weeks.0|date:'Y-\WW' %}
 			{% for e in 0|weekdays:current_week_str %}

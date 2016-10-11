@@ -704,7 +704,8 @@ select:focus {
 }
 
 /* 13. Weeklist */
-.weeklist {
+
+.weeklist, .monthlist {
 	display: block;
 	margin-top: 20px;
 	overflow-x: auto;
@@ -713,7 +714,7 @@ select:focus {
 	padding-top: 20px;
 }
 
-.weeklist .rowheader {
+.weeklist .rowheader, .monthlist .rowheader {
 	display: table-row;
 	background: #a03033;
 	width: 100%;
@@ -721,7 +722,7 @@ select:focus {
 	height: 50px;
 }
 
-.weeklist .rowheader .cell {
+.weeklist .rowheader .cell,.monthlist .rowheader .cell {
 	display: table-cell;
 	padding: 5px;
 	text-align: center;
@@ -729,13 +730,13 @@ select:focus {
 	max-width: 80px;
 }
 
-.weeklist .rowheader .cell .date {
+.weeklist .rowheader .cell .date, .monthlist .rowheader .cell .date  {
 	display: block;
 	color: rgba(255, 255, 255, .5);
 	position: relative;
 }
 
-.weeklist .row-col {
+.weeklist .row-col, .monthlist .row-col {
 	display: table-row;
 	height: 60px;
 }
@@ -773,25 +774,30 @@ select:focus {
 
 .weeklist .row-col .cell:nth-child(1){
 	background-color: white;
+	color:black;
 }
 
-.weeklist .row-col:nth-child(odd) .cell:nth-child(odd){
+.weeklist .row-col:nth-child(odd) .cell:nth-child(odd),.monthlist .row-col:nth-child(odd) .cell:nth-child(odd) {
 	background-color: #e9e9e9;
 }
 
-.weeklist .row-col:nth-child(odd) .cell:nth-child(even){
+.weeklist .row-col:nth-child(odd) .cell:nth-child(even),.monthlist .row-col:nth-child(odd) .cell:nth-child(even){
 	background-color: #f6f6f6;
 }
 
-.weeklist .row-col:nth-child(even) .cell:nth-child(even){
+.weeklist .row-col:nth-child(even) .cell:nth-child(even),.monthlist .row-col:nth-child(even) .cell:nth-child(even){
 	background-color: #e9e9e9;
 }
 
-.weeklist .row-col:nth-child(even) .cell:nth-child(odd){
+.weeklist .row-col:nth-child(even) .cell:nth-child(odd),.monthlist .row-col:nth-child(even) .cell:nth-child(odd){
 	background-color: #f6f6f6;
 }
 
 .weeklist .row-col .cell:hover{
+	background-color: lightgray !important;
+}
+
+.monthlist .row-col .cell:hover{
 	background-color: lightgray !important;
 }
 
@@ -800,12 +806,9 @@ select:focus {
 	color: white;
 }
 
-.monthlist .row-col:nth-child(odd) .cell:first-child{
-	background-color: #e9e9e9 !important;
-}
-
-.monthlist .row-col:nth-child(even) .cell:first-child{
-	background-color: #f6f6f6 !important;
+.weeklist .row-col .cell:first-child{
+	background-color: #a03033 ;
+	color: white;
 }
 
 .monthlist .row-col:nth-child(even) .deactivated:nth-child(odd),.monthlist .row-col:nth-child(odd) .deactivated:nth-child(odd),.monthlist .row-col:nth-child(odd) .deactivated:nth-child(even),.monthlist .row-col:nth-child(even) .deactivated:nth-child(even) {
@@ -815,7 +818,6 @@ select:focus {
 .form-select-venue {
 	margin-top: 20px;
 	text-align: left;
-
 }
 
 .date-cal {
@@ -826,21 +828,41 @@ select:focus {
 	color: black;
 }
 
-.weeklist .row-col .cell.offer_sent {
+.weeklist .row-col .cell.offer_sent,.monthlist .row-col .cell.offer_sent {
 	background-color: #0722f1 !important;
-	color: white;
+	color: black;
 }
 
-.weeklist .row-col .cell.accepted {
+.weeklist .row-col .cell.offer_sent:hover, .monthlist .row-col .cell.offer_sent:hover {
+	background-color: purple !important;
+	color: black;
+}
+
+.weeklist .row-col .cell.accepted, .monthlist .row-col .cell.accepted{
 	background-color: #27e7e7 !important;
 }
 
-.weeklist .row-col .cell.offer_accepted {
+.weeklist .row-col .cell.accepted:hover, .monthlist .row-col .cell.accepted:hover{
+	background-color: darkblue !important;
+	color: white;
+}
+
+.weeklist .row-col .cell.offer_accepted, .monthlist .row-col .cell.offer_accepted  {
 	background-color: #61fe61 !important;
 }
 
-.weeklist .row-col .cell.pending {
+.weeklist .row-col .cell.offer_accepted:hover , .monthlist .row-col .cell.offer_accepted:hover  {
+	background-color: darkgreen !important;
+	color: white;
+}
+
+.weeklist .row-col .cell.pending, .monthlist .row-col .cell.pending {
 	background-color: #ffff64 !important;
+}
+
+.weeklist .row-col .cell.pending:hover, .monthlist .row-col .cell.pending:hover {
+	background-color: #CCCC00 !important;
+	color:white;
 }
 
 /** 13. Layout */
