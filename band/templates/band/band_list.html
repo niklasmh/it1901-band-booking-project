@@ -49,7 +49,7 @@
 		var _table = document.querySelectorAll('#band-table > .row')
 		var _self = this
 		_table.forEach(function (el) {
-			var _test = new RegExp(_self.value).test(el.dataset.search)
+			var _test = new RegExp(_self.value, "i").test(el.dataset.search)
 			if (!_self.value.length)
 				el.style.display = _display
 			else
