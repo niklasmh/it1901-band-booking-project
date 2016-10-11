@@ -94,65 +94,53 @@
 		</select>
 		{% keep_get_params request "monthlist_venue,monthlist_month,monthlist_year" %}
 	</form>
-
-	<div class="rowheader">
-		{% with current_week_str=monthlist.weeks.0|date:'Y-\WW' %}
-		{% for e in 0|weekdays:current_week_str %}
-		<div class="cell">
-			<span class="dayname">{{ e.date|date:"l" }}</span>
+	
+	<div class="weeklist monthlist">
+		<div class="rowheader">
+			{% with current_week_str=monthlist.weeks.0|date:'Y-\WW' %}
+			{% for e in 0|weekdays:current_week_str %}
+			<div class="cell">
+				<span class="dayname">{{ e.date|date:"l" }}</span>
+			</div>
+			{% endfor %}
+			{% endwith %}
 		</div>
-		{% endfor %}
-		{% endwith %}
-	</div>
 
 		{% for week in monthlist.weeks %}
-			{% with current_week_str=week|date:'Y-\WW' %}
-			<div class="row-col">
-				{% for date in monthlist.list|booking_weeklist:current_week_str %}
-				{% if date.date|date:"m" != monthlist.weeks.0|date:"m" %}
-				<span class="cell deactivated"></span>
-				{% elif date.accepted %}
-				<a class="cell accepted" href="{% url 'booking:detail' date.booking.id %}" title="View booking">
-					{{ date.booking.band }}
-					<span class="date-cal">{{ date.date|date:"d" }}</span>
-				</a>
-				{% elif date.pending %}
-				{% if date.list|length_is:"1" %}
-				{% with booking=date.list|first %}
-				<a class="cell pending" href="{% url 'booking:detail' booking.id %}" title="View booking">
-					{{ booking.band }}
-					<span class="date-cal">{{ date.date|date:"d" }}</span>
-				</a>
-				{% endwith %}
-				{% else %}
-				<a class="cell pending" href="{% url 'booking:list' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="View bookings">
-					Multiple bookings
-					<span class="date-cal">{{ date.date|date:"d" }}</span>
-				</a>
-
-				{% endif %}
-				{% else %}
-				<a class="cell" href="{% url 'booking:create' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="Create booking">
-					<span class="date-cal">{{ date.date|date:"d" }}</span>
-				</a>
-				
-				{% endif %}
-				{% endfor %}
-			</div>
+		{% with current_week_str=week|date:'Y-\WW' %}
+		<div class="row-col">
+			{% for date in monthlist.list|booking_weeklist:current_week_str %}
+			{% if date.date|date:"m" != monthlist.weeks.0|date:"m" %}
+			<span class="cell deactivated"></span>
+			{% elif date.accepted %}
+			<a class="cell accepted" href="{% url 'booking:detail' date.booking.id %}" title="View booking">
+				{{ date.booking.band }}
+				<span class="date-cal">{{ date.date|date:"d" }}</span>
+			</a>
+			{% elif date.pending %}
+			{% if date.list|length_is:"1" %}
+			{% with booking=date.list|first %}
+			<a class="cell pending" href="{% url 'booking:detail' booking.id %}" title="View booking">
+				{{ booking.band }}
+				<span class="date-cal">{{ date.date|date:"d" }}</span>
+			</a>
 			{% endwith %}
 			{% else %}
 			<a class="cell pending" href="{% url 'booking:list' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="View bookings">
 				Multiple bookings
+				<span class="date-cal">{{ date.date|date:"d" }}</span>
 			</a>
 
 			{% endif %}
 			{% else %}
-			<a class="cell" href="{% url 'booking:create' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="Create booking"></a>
+			<a class="cell" href="{% url 'booking:create' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="Create booking">
+				<span class="date-cal">{{ date.date|date:"d" }}</span>
+			</a>
 			{% endif %}
 			{% endfor %}
+			{% endwith %}
 		</div>
-		{% endwith %}
-		{% endfor %}
+{% endfor %}
 	</div>
 </div>
 {% endif %}
