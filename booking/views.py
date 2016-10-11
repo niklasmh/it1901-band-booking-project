@@ -71,15 +71,19 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 
 		if self.request.GET.get('list_type', None) == 'month':
 			venue = Venue.objects.first()
-			monthlist_begin, monthlist_end = get_month(today)
+			month = today.month
+			year = today.year
 			if 'monthlist_venue' in self.request.GET:
 				venue = Venue.objects.get(slug=self.request.GET.get('monthlist_venue'))
-			if 'month' in self.request.GET:
-				m = re.match("([0-9]{4})-([0-9]+)", self.request.GET.get('month'))
-				if m:
-					year, month = m.group(1, 2)
-					monthlist_begin, monthlist_end = get_month(date(year,month,1))
+			if 'monthlist_month' in self.request.GET:
+				month = int(self.request.GET.get('monthlist_month'))
+			if 'monthlist_year' in self.request.GET:
+				year = int(self.request.GET.get('monthlist_year'))
+			monthlist_begin, monthlist_end = get_month(date(year, month, 1))
 			context['monthlist'] = {
+				'year': str(year),
+				'month': str(month),
+				'months': [date(year, m, 1) for m in range(1,13)],
 				'weeks': [monthlist_begin + timedelta(days=7*i) for i in range(6)],
 				'venue_this': venue,
 				'venues': Venue.objects.filter(active=True),

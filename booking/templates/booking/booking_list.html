@@ -81,12 +81,18 @@
 {% else %}
 <div class="layout-cell center">
 	<form action="" method="get">
-		<select name="monthlist_venue" onchange="this.form.submit()">
-			{% for venue in monthlist.venues %}
-			<option value="{{ venue.slug }}"{% if venue == monthlist.venue_this %} selected="selected"{% endif %}>{{ venue }}</option>
+		<input type="text" name="monthlist_year" value="{{ monthlist.year }}">
+		<select name="monthlist_month" onchange="this.form.submit()">
+			{% for month in monthlist.months %}
+			<option value="{{ month|date:'n' }}"{% if month|date:'n' == monthlist.month %} selected{% endif %}>{{ month|date:"F" }}</option>
 			{% endfor %}
 		</select>
-		{% keep_get_params request "monthlist_venue" %}
+		<select name="monthlist_venue" onchange="this.form.submit()">
+			{% for venue in monthlist.venues %}
+			<option value="{{ venue.slug }}"{% if venue == monthlist.venue_this %} selected{% endif %}>{{ venue }}</option>
+			{% endfor %}
+		</select>
+		{% keep_get_params request "monthlist_venue,monthlist_month,monthlist_year" %}
 	</form>
 
 	<div class="rowheader">
