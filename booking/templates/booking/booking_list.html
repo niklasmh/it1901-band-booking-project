@@ -117,6 +117,16 @@
 				{{ date.booking.band }}
 				<span class="date-cal">{{ date.date|date:"d" }}</span>
 			</a>
+			{% elif date.offer_accepted %}
+			<a class="cell offer_accepted" href="{% url 'booking:detail' date.booking.id %}" title="View booking">
+				{{ date.booking.band }}
+				<span class="date-cal">{{ date.date|date:"d" }}</span>
+			</a>
+			{% elif date.offer_sent %}
+			<a class="cell offer_sent" href="{% url 'booking:detail' date.booking.id %}" title="View booking">
+				{{ date.booking.band }}
+				<span class="date-cal">{{ date.date|date:"d" }}</span>
+			</a>
 			{% elif date.pending %}
 			{% if date.list|length_is:"1" %}
 			{% with booking=date.list|first %}
@@ -130,7 +140,6 @@
 				Multiple bookings
 				<span class="date-cal">{{ date.date|date:"d" }}</span>
 			</a>
-
 			{% endif %}
 			{% else %}
 			<a class="cell" href="{% url 'booking:create' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="Create booking">

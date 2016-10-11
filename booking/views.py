@@ -88,8 +88,8 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 				'venue_this': venue,
 				'venues': Venue.objects.filter(active=True),
 				'list': self.model.objects.filter(state__in=models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,),
-												begin__range=(monthlist_begin, monthlist_end),
-												venue=venue),
+												  begin__range=(monthlist_begin, monthlist_end),
+												  venue=venue),
 			}
 		else:
 			weeklist_begin, weeklist_end = get_weekspan(today)
