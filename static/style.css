@@ -735,7 +735,7 @@ select:focus {
 
 .weeklist .row-col {
 	display: table-row;
-	height: 50px;
+	height: 60px;
 }
 
 .weeklist .row-col .cell {
@@ -745,16 +745,19 @@ select:focus {
 	position: relative;
 	font-size: 0.8em;
 	text-decoration: none;
+	vertical-align: middle;
 }
 
 .monthlist .row-col .cell {
 	display: table-cell;
-	padding: 20px;
+	padding: 5px;
 	color: black;
 	position: relative;
 	font-size: 0.8em;
 	text-decoration: none;
 	border: 1px solid #B0B0B0;
+	max-height: 80px;
+	vertical-align: middle;
 }
 
 .monthlist .rowheader .cell {
