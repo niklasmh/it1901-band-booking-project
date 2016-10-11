@@ -925,13 +925,13 @@ select:focus {
 /* 15. Scrollbar */
 
 ::selection {
-	background-color:rgba(0, 0, 0, 0);
-	text-shadow: 0px 0px 1px #000;
+	background-color:#a03033;
+	color: white;
 }
 
 a::selection, .link::selection {
-	background-color:rgba(0, 0, 0, 0);
-	text-shadow: 0px 0px 1px #a03033;
+	background-color:#a03033;
+	color: white;
 }
 
 ::-webkit-scrollbar {
