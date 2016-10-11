@@ -39,9 +39,9 @@ def do_transition(request, booking, transition):
 	if new_state:
 		if new_state in models.BOOKING_IS_ACCEPTED:
 			qs = models.Booking.objects.filter(venue=booking.venue,
-												begin__date=booking.begin.date(),
-												state__in=models.BOOKING_IS_ACCEPTED)
-			qs = qs.exclude(id__in=(booking.id,) + (booking.replaces.id,) if booking.replaces else ())
+											   begin__date=booking.begin.date(),
+											   state__in=models.BOOKING_IS_ACCEPTED)
+			qs = qs.exclude(id__in=(booking.id,) + ((booking.replaces.id,) if booking.replaces else ()))
 			if len(qs) > 0:
 				messages.warning(request, 'The booking %s is already accepted on this day.' % qs[0])
 				return False
@@ -227,7 +227,7 @@ class BookingTransitionView(FormView):
 		return HttpResponseRedirect(reverse('booking:detail', kwargs={'booking': self.kwargs['booking']}))
 
 	def get_success_url(self):
-		if self.object.state in models.BOOKING_IS_ACCEPTED:
+		if self.object.state in models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,):
 			return reverse('booking:detail', kwargs={'booking': self.kwargs['booking']})
 		else:
 			return reverse('booking:list')
