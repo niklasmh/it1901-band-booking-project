@@ -21,7 +21,7 @@ class BookingForm(forms.ModelForm):
 
 		qs = models.Booking.objects.filter(venue=venue,
 										   begin__date=begin.date(),
-										   state__in=(models.BOOKING_ACCEPTED))
+										   state__in=models.BOOKING_IS_ACCEPTED)
 		if self.original_booking:
 			qs = qs.exclude(id=self.original_booking.id)
 

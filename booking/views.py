@@ -35,20 +35,20 @@ def do_transition(request, booking, transition):
 		messages.warning(request, 'You do not have the permissions to do this')
 		return False
 
-	booking.state_transition(transition, request.user)
-
-	if booking.state in models.BOOKING_IS_ACCEPTED:
-		qs = models.Booking.objects.filter(venue=booking.venue,
-											begin__date=booking.begin.date(),
-											state__in=models.BOOKING_IS_ACCEPTED)
-		qs = qs.exclude(id__in=(booking.id, booking.replaces.id))
-		if len(qs) > 0:
-			messages.warning(request, 'The booking %s is already accepted on this day.' % qs[0])
-			return False
-		replaces = booking.replaces
-		if replaces:
-			replaces.state_transition(models.BOOKING_TRANSITION_REPLACE, request.user)
-	booking.save()
+	new_state = booking.state_transition_legal(transition)
+	if new_state:
+		if new_state in models.BOOKING_IS_ACCEPTED:
+			qs = models.Booking.objects.filter(venue=booking.venue,
+												begin__date=booking.begin.date(),
+												state__in=models.BOOKING_IS_ACCEPTED)
+			qs = qs.exclude(id__in=(booking.id,) + (booking.replaces.id,) if booking.replaces else ())
+			if len(qs) > 0:
+				messages.warning(request, 'The booking %s is already accepted on this day.' % qs[0])
+				return False
+			replaces = booking.replaces
+			if replaces:
+				replaces.state_transition(models.BOOKING_TRANSITION_REPLACE, request.user)
+		booking.state_transition(transition, request.user)
 	return True
 
 class BookingListView(JsonListMixin, FilterMixin, OrderableMixin, ListView):

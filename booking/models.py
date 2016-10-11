@@ -110,6 +110,7 @@ class Booking(models.Model):
 								 pre_transition_state=old_state,
 								 transition=transition,
 								 user=user)
+			event.save()
 		else:
 			raise InvalidTransition(*tr)
 	def state_transition_legal(self, transition):
@@ -160,13 +161,14 @@ class BookingEvent(models.Model):
 	user = models.ForeignKey(User)
 
 	def __str__(self):
+		print("Booking transitioned from state %(state_from) to state %(state_to) by %(trans)")
 		return {
 			BOOKING_EVENT_CREATE: lambda i: "Booking created",
-			BOOKING_EVENT_TRANSITION: lambda i: "Booking transitioned from state %(state_from) to state %(state_to) by %(trans)" % {
-				'state_from': i.pre_transiton_state,
+			BOOKING_EVENT_TRANSITION: lambda i: "Booking transitioned from state %(state_from)s to state %(state_to)s by %(trans)s" % {
+				'state_from': get_name_from_choices(BOOKING_CHOICES, i.pre_transition_state),
 				'state_to': get_name_from_choices(
 					BOOKING_CHOICES,
-					BOOKING_STATEMACHINE[(i.pre_transiton_state, i.transition)]),
+					BOOKING_STATEMACHINE[(i.pre_transition_state, i.transition)]),
 				'trans': get_name_from_choices(BOOKING_TRANSITION_CHOICES, i.transition),
 			},
 		}[self.event_type](self)
