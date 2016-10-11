@@ -79,7 +79,7 @@
 		{% load weeklist %}
 		{% load url_replace %}
 
-		<form action="" method="get">
+		<form class="form-select-venue" action="" method="get">
   			<select name="monthlist_venue" onchange="this.form.submit()">
   				{% for venue in weeklist.list|booking_venue_list %}
   				{% ifequal venue.venue monthlist.venue_this %}
@@ -92,7 +92,7 @@
 		</form>
 
 		{% with current_week_str=weeklist.week|date:'Y-\WW' %}
-		<div class="weeklist table-style">
+		<div class="weeklist monthlist table-style">
 			<div class="rowheader">
 				{% for e in 0|weekdays:current_week_str %}
 				<div class="cell">
@@ -106,25 +106,33 @@
 			{% with current_week_str=week|date:'Y-\WW' %}
 			<div class="row-col">
 				{% for date in monthlist.list|booking_weeklist:current_week_str %}
-				{% if date.accepted %}
+				{% if date.date|date:"m" != monthlist.weeks.0|date:"m" %}
+				<span class="cell deactivated"></span>
+				{% elif date.accepted %}
 				<a class="cell accepted" href="{% url 'booking:detail' date.booking.id %}" title="View booking">
 					{{ date.booking.band }}
+					<span class="date-cal">{{ date.date|date:"d" }}</span>
 				</a>
 				{% elif date.pending %}
 				{% if date.list|length_is:"1" %}
 				{% with booking=date.list|first %}
 				<a class="cell pending" href="{% url 'booking:detail' booking.id %}" title="View booking">
 					{{ booking.band }}
+					<span class="date-cal">{{ date.date|date:"d" }}</span>
 				</a>
 				{% endwith %}
 				{% else %}
 				<a class="cell pending" href="{% url 'booking:list' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="View bookings">
 					Multiple bookings
+					<span class="date-cal">{{ date.date|date:"d" }}</span>
 				</a>
 
 				{% endif %}
 				{% else %}
-				<a class="cell" href="{% url 'booking:create' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="Create booking"></a>
+				<a class="cell" href="{% url 'booking:create' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ monthlist.venue_this.slug }}" title="Create booking">
+					<span class="date-cal">{{ date.date|date:"d" }}</span>
+				</a>
+				
 				{% endif %}
 				{% endfor %}
 			</div>

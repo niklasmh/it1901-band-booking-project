@@ -730,7 +730,7 @@ select:focus {
 .weeklist .rowheader .cell .date {
 	display: block;
 	color: rgba(255, 255, 255, .5);
-
+	position: relative;
 }
 
 .weeklist .row-col {
@@ -740,8 +740,30 @@ select:focus {
 
 .weeklist .row-col .cell {
 	display: table-cell;
-	padding: 5px;
+	padding: 20px;
 	color: black;
+	position: relative;
+	font-size: 0.8em;
+	text-decoration: none;
+}
+
+.monthlist .row-col .cell {
+	display: table-cell;
+	padding: 20px;
+	color: black;
+	position: relative;
+	font-size: 0.8em;
+	text-decoration: none;
+	border: 1px solid #B0B0B0;
+}
+
+.monthlist .rowheader .cell {
+	display: table-cell;
+	padding: 5px;
+	vertical-align: middle;
+	text-align: center;
+	width: 80px;
+	max-width: 80px;
 }
 
 .weeklist .row-col .cell:nth-child(1){
@@ -771,6 +793,32 @@ select:focus {
 .weeklist .row-col .cell:first-child{
 	background-color: #a03033 !important;
 	color: white;
+}
+
+.monthlist .row-col:nth-child(odd) .cell:first-child{
+	background-color: #e9e9e9 !important;
+}
+
+.monthlist .row-col:nth-child(even) .cell:first-child{
+	background-color: #f6f6f6 !important;
+}
+
+.monthlist .row-col:nth-child(even) .deactivated:nth-child(odd),.monthlist .row-col:nth-child(odd) .deactivated:nth-child(odd),.monthlist .row-col:nth-child(odd) .deactivated:nth-child(even),.monthlist .row-col:nth-child(even) .deactivated:nth-child(even) {
+	background-color: #D0D0D0 !important;
+}
+
+.form-select-venue {
+	margin-top: 20px;
+	text-align: left;
+
+}
+
+.date-cal {
+	position: absolute;
+	right:2px;
+	top:2px;
+	font-size: 0.7em;
+	color: black;
 }
 
 .weeklist .row-col .cell.offer_sent {
