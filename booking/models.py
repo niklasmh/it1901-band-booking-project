@@ -96,7 +96,7 @@ class Booking(models.Model):
 
 	def __str__(self):
 		return "%s @ %s" % (self.band, self.venue)
-	
+
 	def state_transition(self, transition, user=None):
 		old_state = self.state
 		new_state = self.state_transition_legal(transition)
@@ -120,7 +120,7 @@ class Booking(models.Model):
 		return reverse('booking:detail', kwargs={ 'booking': self.id })
 
 	def report_ready(self):
-		return self.state=='a' and self.end < timezone.now()
+		return self.state=='b' and self.end < timezone.now()
 
 	def is_past_due(self):
 		return date.today() > self.begin.date()
@@ -153,7 +153,7 @@ class BookingEvent(models.Model):
 		Booking,
 		on_delete=models.CASCADE,
 		related_name="events"
-	) 
+	)
 	event_type = models.IntegerField(choices=BOOKING_EVENT_CHOICES)
 	pre_transition_state = models.CharField(choices=BOOKING_CHOICES, null=True, blank=True, max_length=1)
 	transition = models.CharField(choices=BOOKING_TRANSITION_CHOICES, null=True, blank=True, max_length=1)
