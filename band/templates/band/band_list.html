@@ -13,7 +13,7 @@
 {% if perms.band.add_band %}
 <div class="controls">
 	<a href="{% url 'band:create' %}" class="button"><i class="fa fa-plus"></i> Add band</a>
-	<input type="text" id="band-search" placeholder="Søk på band" />
+	<input type="text" id="band-search" placeholder="Search for bands..." />
 </div>
 
 {% endif %}
@@ -44,18 +44,20 @@
 	 * Filter band based on search.
 	 */
 	var _search = document.querySelector('#band-search')
-	var _display = document.querySelector('#band-table > .row').style.display
-	_search.addEventListener('keyup', function (evt) {
-		var _table = document.querySelectorAll('#band-table > .row')
-		var _self = this
-		_table.forEach(function (el) {
-			var _test = new RegExp(_self.value, "i").test(el.dataset.search)
-			if (!_self.value.length)
-				el.style.display = _display
-			else
-				el.style.display = _test ? _display : 'none'
+	if (document.querySelector('#band-table > .row')) {
+		var _display = document.querySelector('#band-table > .row').style.display
+		_search.addEventListener('keyup', function (evt) {
+			var _table = document.querySelectorAll('#band-table > .row')
+			var _self = this
+			_table.forEach(function (el) {
+				var _test = new RegExp(_self.value, "i").test(el.dataset.search)
+				if (!_self.value.length)
+					el.style.display = _display
+				else
+					el.style.display = _test ? _display : 'none'
+			})
 		})
-	})
+	}
 
 </script>
 

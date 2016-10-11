@@ -38,6 +38,7 @@
 			<option value="{{ genre }}">{{ genre }}</option>
 		{% endfor %}
 	</select>
+	<input type="text" id="venue-search" placeholder="Search for venue..." />
 </form>
 
 
@@ -50,7 +51,10 @@
 	</div>
 
 	{% for booking in venue.get_bookings %}
-	<a href="{% url 'booking:detail' booking.id %}" class="row" data-genres="{{ booking.band.get_all_genres }}">
+	<a href="{% url 'booking:detail' booking.id %}"
+		class="row"
+		data-genres="{{ booking.band.get_all_genres }}"
+		data-venue="{{ booking.band.name }}">
 		<div class="cell" data-col="Band">{{ booking.band.name }}</div>
 		<div class="cell" data-col="Date">{{ booking.begin|date:"d M Y" }}</div>
 		<div class="cell" data-col="Sum_tickets">{{ booking.report.sum_tickets }}</div>
@@ -64,19 +68,36 @@
 	 * Filter genres based on one genre dropdown.
 	 */
 	var _genre = document.querySelector('#select-genre')
-	var _display = document.querySelector('#booking-table > .row').style.display
-	_genre.addEventListener('change', function (evt) {
-		var _table = document.querySelectorAll('#booking-table > .row')
-		var _self = this
-		_table.forEach(function (el) {
-			var _test = new RegExp(_self.value).test(el.dataset.genres)
-			if (_self.value === 'alle')
-				el.style.display = _display
-			else
-				el.style.display = _test ? _display : 'none'
+	if (document.querySelector('#booking-table > .row')) {
+		var _display = document.querySelector('#booking-table > .row').style.display
+		_genre.addEventListener('change', function (evt) {
+			var _table = document.querySelectorAll('#booking-table > .row')
+			var _self = this
+			_table.forEach(function (el) {
+				var _test = new RegExp(_self.value).test(el.dataset.genres)
+				if (_self.value === 'alle')
+					el.style.display = _display
+				else
+					el.style.display = _test ? _display : 'none'
+			})
 		})
-	})
 
+		/**
+		 * Filter venue based on search.
+		 */
+		var _search = document.querySelector('#venue-search')
+		_search.addEventListener('keyup', function (evt) {
+			var _table = document.querySelectorAll('#booking-table > .row')
+			var _self = this
+			_table.forEach(function (el) {
+				var _test = new RegExp(_self.value, "i").test(el.dataset.venue)
+				if (!_self.value.length)
+					el.style.display = _display
+				else
+					el.style.display = _test ? _display : 'none'
+			})
+		})
+	}
 </script>
 
 {% endblock %}
