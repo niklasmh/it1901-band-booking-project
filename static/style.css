@@ -870,3 +870,62 @@ select:focus {
 		flex: 1 1 120px;
 	}
 }
+
+/* 15. Scrollbar */
+
+::selection {
+	background-color:rgba(0, 0, 0, 0);
+	text-shadow: 0px 0px 1px #000;
+}
+
+a::selection, .link::selection {
+	background-color:rgba(0, 0, 0, 0);
+	text-shadow: 0px 0px 1px #a03033;
+}
+
+::-webkit-scrollbar {
+	width: 17px;
+	height: 17px;
+	background-color: #FFF;
+}
+::-webkit-scrollbar-track-piece:end, ::-webkit-scrollbar-track-piece:start {
+	background-color: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar-track-piece:end:hover, ::-webkit-scrollbar-track-piece:start:hover {
+	background-color: rgba(0, 0, 0, .1);
+}
+Pseudo ::-webkit-input-placeholder element
+::-webkit-scrollbar-thumb {
+	background-color: #FFF;
+	border-radius:9px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #FFF;
+	background-image:linear-gradient(90deg, #a03033, #a03033);
+}
+::-webkit-scrollbar-thumb:hover {
+	background-image:linear-gradient(90deg, #a03033, #a03033);
+}
+Pseudo ::-webkit-slider-thumb element
+::-webkit-scrollbar-button {
+	background-color: #666;
+}
+::-webkit-scrollbar-button {
+	width:0;
+	height:0;
+	background-color: #666;
+	background-repeat: no-repeat;
+}
+Pseudo ::-webkit-search-results-decoration element
+::-webkit-scrollbar-corner {
+	background-color: #666;
+}
+
+::-webkit-resizer, ::-webkit-scrollbar-corner{
+	background-color:#FFF;
+	width:10px;
+	height:10px;
+	border: 50px solid rgba(0,0,0,.03);
+	border-bottom-color: rgba(0,0,0,.1);
+	border-right-color: rgba(0,0,0,.1);
+}
