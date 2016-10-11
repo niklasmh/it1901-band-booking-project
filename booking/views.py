@@ -89,9 +89,9 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 		context['monthlist'] = {
 			'weeks': [monthlist_begin + timedelta(days=7*i) for i in range(6)],
 			'venue_this': venue,
-			'list': self.model.objects.filter(state__in=(models.BOOKING_ACCEPTED, models.BOOKING_NONE),
-											begin__range=(monthlist_begin, monthlist_end),
-											venue=venue),
+			'list': self.model.objects.filter(state__in=models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,),
+											  begin__range=(monthlist_begin, monthlist_end),
+											  venue=venue),
 		}
 
 		context['weeklist'] = {
