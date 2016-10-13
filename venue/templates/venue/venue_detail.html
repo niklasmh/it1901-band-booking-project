@@ -30,8 +30,7 @@
 </table>
 <h2 class="title">Bookings</h2>
 
-<form action="" method="post">
-	{% csrf_token %}
+<form class="search-form">
 	<select name="genre" class="select-genre" id="select-genre">
 			<option value="alle">All</option>
 		{% for genre in venue.get_genres %}
@@ -98,6 +97,11 @@
 			})
 		})
 	}
+	var _form = document.querySelector('form.search-form');
+	_form.addEventListener('submit', function(evt) {
+		evt.preventDefault();
+		return false;
+	});
 </script>
 
 {% endblock %}
