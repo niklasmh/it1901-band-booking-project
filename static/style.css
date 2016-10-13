@@ -711,7 +711,7 @@ select:focus {
 	overflow-x: auto;
 	margin: auto;
 	width: 100%;
-	max-width: 655px;
+	max-width: 755px;
 	padding-top: 20px;
 }
 
@@ -744,12 +744,17 @@ select:focus {
 
 .weeklist .row-col .cell {
 	display: table-cell;
-	padding: 20px;
+	padding: 5px;
 	color: black;
 	position: relative;
 	font-size: 0.8em;
 	text-decoration: none;
 	vertical-align: middle;
+	word-wrap: break-word;
+	max-width: 60px;
+	width: 60px;
+	min-width: 60px;
+	height: 60px;
 }
 
 .monthlist .row-col .cell {
@@ -762,6 +767,8 @@ select:focus {
 	border: 1px solid #B0B0B0;
 	max-height: 80px;
 	vertical-align: middle;
+	max-width: 80px;
+	word-wrap: break-word;
 }
 
 .monthlist .rowheader .cell {
