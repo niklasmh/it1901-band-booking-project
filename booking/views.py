@@ -70,6 +70,7 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 		today = date.today()
 
 		if self.request.GET.get('list_type', None) == 'month':
+			monthlist_begin, monthlist_end = None, None
 			venue = Venue.objects.first()
 			month = today.month
 			year = today.year
@@ -79,7 +80,12 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 				month = int(self.request.GET.get('monthlist_month'))
 			if 'monthlist_year' in self.request.GET:
 				year = int(self.request.GET.get('monthlist_year'))
-			monthlist_begin, monthlist_end = get_month(date(year, month, 1))
+			try:
+				monthlist_begin, monthlist_end = get_month(date(year, month, 1))
+			except ValueError:
+				month = today.month
+				year = today.year
+				monthlist_begin, monthlist_end = get_month(date(year, month, 1))
 			for i in range(6):
 				print((monthlist_begin + timedelta(days=7*i)).isocalendar()[1], monthlist_end.isocalendar()[1])
 			context['monthlist'] = {
