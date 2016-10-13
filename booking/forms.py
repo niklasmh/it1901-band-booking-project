@@ -10,9 +10,9 @@ class BookingForm(forms.ModelForm):
 	def clean(self):
 		cleaned_data = super(BookingForm, self).clean()
 		errors = []
-		venue = cleaned_data['venue']
-		begin = cleaned_data['begin']
-		end = cleaned_data['end']
+		venue = cleaned_data.get('venue')
+		begin = cleaned_data.get('begin')
+		end = cleaned_data.get('end')
 
 		if begin > end:
 			errors.append(forms.ValidationError(
