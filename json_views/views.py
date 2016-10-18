@@ -5,7 +5,7 @@ import re
 class JsonBaseMixin:
 	json_response_class = JsonResponse
 	response_type = 'text/http'
-	accepted_types = ['text/http', 'text/json']
+	accepted_types = ['text/http', 'application/json']
 	def dispatch(self, response, *args, **kwargs):
 		accept = response.META.get('HTTP_ACCEPT', 'text/html').split(',')
 		for t in accept:
@@ -15,7 +15,7 @@ class JsonBaseMixin:
 		return super(JsonBaseMixin, self).dispatch(response, *args, **kwargs)
 
 	def render_to_response(self, context, **response_kwargs):
-		if not self.response_class or self.response_type != 'text/json':
+		if not self.response_class or self.response_type != 'application/json':
 			return super(JsonBaseMixin, self).render_to_response(context, **response_kwargs)
 
 		return self.json_response_class({
