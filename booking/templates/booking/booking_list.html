@@ -110,7 +110,7 @@
 		{% with current_week_str=week|date:'Y-\WW' %}
 		<div class="row-col">
 			{% for date in monthlist.list|booking_weeklist:current_week_str %}
-			{% if date.date|date:"m" != monthlist.weeks.0|date:"m" %}
+			{% if date.date|date:"m" != monthlist.weeks.1|date:"m" %}
 			<span class="cell deactivated"></span>
 			{% elif date.accepted %}
 			<a class="cell accepted" href="{% url 'booking:detail' date.booking.id %}" title="View booking">

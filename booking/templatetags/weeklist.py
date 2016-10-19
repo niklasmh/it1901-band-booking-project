@@ -25,7 +25,6 @@ def booking_venue_list(bookings):
 			'booking_list': bookings.filter(venue=venue),
 		}
 		
-	print(res)
 	return res.values()
 
 @register.filter

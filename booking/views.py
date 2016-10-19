@@ -58,6 +58,14 @@ def do_transition(request, booking, transition):
 		booking.state_transition(transition, request.user)
 	return True
 
+def first_day_of_week(lhs):
+	 return lhs - timedelta(days=lhs.weekday())
+
+def compare_week(lhs, rhs):
+	lhs = lhs - timedelta(days=lhs.weekday())
+	rhs = rhs + timedelta(days=6-rhs.weekday())
+	return lhs < rhs
+
 class BookingListView(JsonListMixin, OrderableMixin, ListView):
 	ordering = 'begin'
 	model = models.Booking
@@ -92,13 +100,11 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 				month = today.month
 				year = today.year
 				monthlist_begin, monthlist_end = get_month(date(year, month, 1))
-			for i in range(6):
-				print((monthlist_begin + timedelta(days=7*i)).isocalendar()[1], monthlist_end.isocalendar()[1])
 			context['monthlist'] = {
 				'year': str(year),
 				'month': str(month),
 				'months': [date(year, m, 1) for m in range(1,13)],
-				'weeks': [monthlist_begin + timedelta(days=7*i) for i in range(6) if (monthlist_begin + timedelta(days=7*i)).isocalendar()[1] <= (monthlist_end - timedelta(days=1)).isocalendar()[1]],
+				'weeks': [first_day_of_week(monthlist_begin + timedelta(days=7*i)) for i in range(6) if compare_week(monthlist_begin + timedelta(days=7*i), monthlist_end - timedelta(days=1))],
 				'venue_this': venue,
 				'venues': Venue.objects.filter(active=True),
 				'list': self.model.objects.filter(state__in=models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,),
