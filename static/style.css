@@ -842,8 +842,8 @@ select:focus {
 }
 
 .weeklist .row-col .cell.offer_sent:hover, .monthlist .row-col .cell.offer_sent:hover {
-	background-color: purple !important;
-	color: black;
+	background-color: black !important;
+	color: white;
 }
 
 .weeklist .row-col .cell.accepted, .monthlist .row-col .cell.accepted{

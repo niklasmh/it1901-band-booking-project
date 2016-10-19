@@ -32,6 +32,7 @@ Create
 	Booking <small>create</small>
 	{% endif %}
 </h1>
+
 <form class="create-form" method="POST">
 	<p>Please enter the booking information below.</p>
 	{% csrf_token %}
@@ -54,4 +55,34 @@ Create
 		</tr>
 	</table>
 </form>
+
+<script>
+	const ticket = document.querySelector("input[name=ticket_price_member]");
+    const ticketNonMember = document.querySelector("input[name=ticket_price_non_member]");
+    const venueGet = document.querySelector("select[name=venue]");
+    const bandFee = document.querySelector("input[name=band_fee]");
+    const profit = 1.20;
+    const band = document.querySelector("select[name=band");
+
+    function calculateTicket() {
+        let bandPop;
+        let venueValue = venueGet.value;
+        let bandID = band.value;
+        let bandFeeValue = bandFee.value;
+        getSpotifyDataFromBand(bandID,result=>{
+            bandPop = result.popularity;
+            if (bandPop == null){
+            	bandPop = 10;
+            }
+            bandPop = bandPop/10;
+            
+            fetch("/venue/" + venueValue + "/", {
+            credentials:"same-origin","headers":{"Accept":"application/json"}
+            	}).then(p => p.json()).then(data => {ticket.value = (Math.ceil((((bandFeeValue*((bandPop/10)+1))/data.object.crowd_capacity)/10)*profit))*10,ticketNonMember.value = (Math.ceil((((bandFeeValue*((bandPop/10)+1))/data.object.crowd_capacity)/10)*profit))*10+50, console.log(bandPop);})
+            		});
+        }
+
+        [venueGet,bandFee,band].forEach(element => element.addEventListener('input', calculateTicket));
+</script>
+
 {% endblock %}
