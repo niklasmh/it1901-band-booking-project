@@ -30,21 +30,20 @@
 		<span>Week {{ weeklist.week|date:'W, Y' }}</span> |
 		<a href="?{% url_replace request 'week' weeklist.week_next|date:'Y-\WW' %}">Next week</a>
 	</span>
-	{% with current_week_str=weeklist.week|date:'Y-\WW' %}
 	<div class="weeklist table-style">
 		<div class="rowheader">
 			<div class="cell"></div>
-			{% for e in 0|weekdays:current_week_str %}
+			{% for e in 0|weekdays:weeklist.week %}
 			<div class="cell">
-				<span class="dayname">{{ e.date|date:"l" }}</span>
-				<span class="date">{{ e.date|date:"d.m" }}</span>
+				<span class="dayname">{{ e|date:"l" }}</span>
+				<span class="date">{{ e|date:"d.m" }}</span>
 			</div>
 			{% endfor %}
 		</div>
 		{% for venue in weeklist.list|booking_venue_list %}
 		<div class="row-col">
 			<div class="cell">{{ venue.venue }}</div>
-			{% for date in venue.booking_list|booking_weeklist:current_week_str %}
+			{% for date in venue.booking_list|booking_weeklist:weeklist.week %}
 			{% if date.accepted %}
 			<a class="cell accepted" href="{% url 'booking:detail' date.booking.id %}" title="View booking">
 				{{ date.booking.band }}
@@ -76,7 +75,6 @@
 		</div>
 		{% endfor %}
 	</div>
-	{% endwith %}
 </div>
 {% else %}
 <div class="layout-cell center">
@@ -97,19 +95,16 @@
 	
 	<div class="monthlist">
 		<div class="rowheader">
-			{% with current_week_str=monthlist.weeks.0|date:'Y-\WW' %}
-			{% for e in 0|weekdays:current_week_str %}
+			{% for e in 0|weekdays:monthlist.weeks.0 %}
 			<div class="cell">
-				<span class="dayname">{{ e.date|date:"l" }}</span>
+				<span class="dayname">{{ e|date:"l" }}</span>
 			</div>
 			{% endfor %}
-			{% endwith %}
 		</div>
 
 		{% for week in monthlist.weeks %}
-		{% with current_week_str=week|date:'Y-\WW' %}
 		<div class="row-col">
-			{% for date in monthlist.list|booking_weeklist:current_week_str %}
+			{% for date in monthlist.list|booking_weeklist:week %}
 			{% if date.date|date:"m" != monthlist.weeks.1|date:"m" %}
 			<span class="cell deactivated"></span>
 			{% elif date.accepted %}
@@ -147,7 +142,6 @@
 			</a>
 			{% endif %}
 			{% endfor %}
-			{% endwith %}
 		</div>
 {% endfor %}
 	</div>

@@ -2,17 +2,19 @@ from django import template
 from django.utils import timezone
 from datetime import datetime, timedelta
 from booking import models
+import re
 
 register = template.Library()
 
-
+def first_day_of_week(lhs):
+	return lhs - timedelta(days=lhs.weekday())
 
 @register.filter
 def weeklist(value, week):
-	first_day = datetime.strptime("%s-1" % week, "%Y-W%W-%w")
+	first_day = first_day_of_week(week)
 	res = [{'date': first_day + timedelta(days=i), 'list': [] } for i in range(0, 7)]
 	for entry in value:
-		diff = (entry.begin.date() - first_day.date()).days
+		diff = (entry.begin.date() - first_day).days
 		res[diff]['list'].append(entry)
 	return res
 
@@ -29,12 +31,17 @@ def booking_venue_list(bookings):
 
 @register.filter
 def booking_weeklist(value, week):
-	first_day = datetime.strptime("%s-1" % week, "%Y-W%W-%w")
-	res = [{'date': first_day + timedelta(days=i), 'list': [], 'accepted': False, 'pending': False } for i in range(0, 7)]
+	first_day = first_day_of_week(week)
+	res = [{
+		'date': first_day + timedelta(days=i),
+		'list': [],
+		'accepted': False,
+		'pending': False
+	} for i in range(0, 7)]
 	for entry in value:
 		if not entry.state in models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,):
 			continue
-		diff = (entry.begin.date() - first_day.date()).days
+		diff = (entry.begin.date() - first_day).days
 		if diff >= 7 or diff < 0:
 			continue
 		if entry.state == models.BOOKING_ACCEPTED:
@@ -53,6 +60,6 @@ def booking_weeklist(value, week):
 
 @register.filter
 def weekdays(value, week):
-	first_day = datetime.strptime("%s-1" % week, "%Y-W%W-%w")
+	first_day = first_day_of_week(week)
 	res = [first_day + timedelta(days=i) for i in range(0, 7)]
 	return res
