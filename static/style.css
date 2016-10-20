@@ -19,6 +19,8 @@
  * 11. LOG-IN
  * 12. Band Info Box
  * 13. Layout
+ * 14. Nav-Bar
+ * 15. Scrollbar
  *
  * @project Band Booking
  * @version 1.0
@@ -1042,4 +1044,38 @@ Pseudo ::-webkit-search-results-decoration element
 	border: 50px solid rgba(0,0,0,.03);
 	border-bottom-color: rgba(0,0,0,.1);
 	border-right-color: rgba(0,0,0,.1);
+}
+
+.login tr > th,
+.login tr:last-child td:first-child {
+	display: none;
+}
+
+.login tr > td:before {
+	color: #fff;
+	background-color: #a03033;
+	padding: 7px;
+	vertical-align: middle;
+	display: inline-block;
+	width: 16px;
+	text-align: center;
+	font-family: FontAwesome;
+}
+
+.login tr:first-child > td:before {
+   	content: "\f007";
+}
+
+.login tr:nth-child(2) > td:before {
+   	content: "\f084";
+}
+
+.login tr:last-child > td {
+	display: table-cell;
+}
+
+.login tr:last-child > td > input {
+	margin: 0;
+	margin-left: auto;
+	display: block;
 }
