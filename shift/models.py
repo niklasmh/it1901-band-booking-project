@@ -9,6 +9,7 @@ class Group(models.Model):
 
 class Shift(models.Model):
 	booking = models.ForeignKey(Booking, related_name='shifts')
+	group = models.ForeignKey(Group, related_name='shifts')
 	user = models.ForeignKey(User, blank=True, null=True, related_name='shifts')
 	name = models.CharField(max_length=200)
 
@@ -18,4 +19,5 @@ class DefaultShiftSet(models.Model):
 
 class DefaultShift(models.Model):
 	shiftset = models.ForeignKey(DefaultShiftSet, related_name='shifts')
+	group = models.ForeignKey(Group, related_name='default_shifts')
 	name = models.CharField(max_length=200)
