@@ -206,11 +206,7 @@ class Technical_Requirements(models.Model):
 		on_delete=models.CASCADE,
 		related_name="tech_req"
 	)
-	guitar = models.IntegerField(blank=True)
-	drummset = models.IntegerField(blank=True)
-	keyboard = models.IntegerField(blank=True)
-	microphone = models.IntegerField(blank=True)
-	bass = models.IntegerField(blank=True)
+	requirements = models.TextField()
 
 	def get_absolute_url(self):
 			return reverse('booking:detail', kwargs={ 'booking': self.booking.id })
