@@ -251,40 +251,13 @@
 		{% elif booking.state == 'b' and not booking.is_past_due %}
 			<tr><th>The booking is accepted :)</th></tr>
 		{% elif booking.state == 'b' %}
-		{% if booking.tech_req %}
-				{% if booking.tech_req.guitar %}
+			{% if booking.tech_req %}
 				<tr>
-					<th>guitar:</th>
-					<td>{{ booking.tech_req.guitar }}</td>
+					<td>{{ booking.tech_req.requirements }}</td>
 				</tr>
-				{% endif %}
-				{% if booking.tech_req.drummset %}
-				<tr>
-					<th>drummset:</th>
-					<td>{{ booking.tech_req.drummset }}</td>
-				</tr>
-				{% endif %}
-				{% if booking.tech_req.keyboard %}
-				<tr>
-					<th>keyboard:</th>
-					<td>{{ booking.tech_req.keyboard }}</td>
-				</tr>
-				{% endif %}
-				{% if booking.tech_req.bass %}
-				<tr>
-					<th>bass:</th>
-					<td>{{ booking.tech_req.bass }}</td>
-				</tr>
-				{% endif %}
-				{% if booking.tech_req.microphone %}
-				<tr>
-					<th>microphone:</th>
-					<td>{{ booking.tech_req.microphone }}</td>
-				</tr>
-				{% endif %}
-			{% endif %}
-		{% else %}
+				{% else %}
 			<tr><th>The booking is finished :)</th></tr>
+			{% endif %}
 		{% endif %}
 		{% if booking.state == ' ' and perms.booking.accept_booking or booking.state == 'e' %}
 		<tr>

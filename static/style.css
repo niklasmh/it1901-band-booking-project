@@ -997,7 +997,7 @@ a::selection, .link::selection {
 }
 
 ::-webkit-scrollbar {
-	width: 17px;
+	width: 5px;
 	height: 17px;
 	background-color: #FFF;
 }
@@ -1012,14 +1012,14 @@ a::selection, .link::selection {
 Pseudo ::-webkit-input-placeholder element
 ::-webkit-scrollbar-thumb {
 	background-color: #FFF;
-	border-radius:9px;
+	border-radius:100px;
 }
 ::-webkit-scrollbar-thumb {
 	background-color: #FFF;
-	background-image:linear-gradient(90deg, #a03033, #a03033);
+	background-image:linear-gradient(90deg, black, black);
 }
 ::-webkit-scrollbar-thumb:hover {
-	background-image:linear-gradient(90deg, #a03033, #a03033);
+	background-image:linear-gradient(90deg, black, black);
 }
 Pseudo ::-webkit-slider-thumb element
 ::-webkit-scrollbar-button {

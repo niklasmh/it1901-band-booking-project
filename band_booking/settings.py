@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 	'venue',
 	'booking',
 	'user',
+	'shift',
 ]
 
 MIDDLEWARE_CLASSES = [
