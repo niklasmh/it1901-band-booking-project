@@ -7,7 +7,10 @@ import re
 register = template.Library()
 
 def first_day_of_week(lhs):
-	return lhs - timedelta(days=lhs.weekday())
+	r = lhs - timedelta(days=lhs.weekday())
+	if type(r) is datetime:
+		r = r.date()
+	return r
 
 @register.filter
 def weeklist(value, week):
