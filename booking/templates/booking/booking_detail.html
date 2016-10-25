@@ -252,9 +252,7 @@
 			<tr><th>The booking is accepted :)</th></tr>
 		{% elif booking.state == 'b' %}
 			{% if booking.tech_req %}
-				<tr>
-					<td>{{ booking.tech_req.requirements }}</td>
-				</tr>
+				<p>test</p>
 				{% else %}
 			<tr><th>The booking is finished :)</th></tr>
 			{% endif %}

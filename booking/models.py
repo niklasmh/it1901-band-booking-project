@@ -201,12 +201,9 @@ class Report(models.Model):
 			return reverse('booking:detail', kwargs={ 'booking': self.booking.id })
 
 class Technical_Requirements(models.Model):
-	booking = models.OneToOneField(
-		Booking,
-		on_delete=models.CASCADE,
-		related_name="tech_req"
-	)
-	requirements = models.TextField()
+	booking = models.ForeignKey(Booking, related_name="tech_req")
+	item = models.TextField()
+	quantity = models.IntegerField(blank=True)
 
 	def get_absolute_url(self):
 			return reverse('booking:detail', kwargs={ 'booking': self.booking.id })
