@@ -239,7 +239,11 @@
 		{% for tech in booking.tech_req.all %}
 		<tr>
 			<th>{{ tech.item }}</th>
-			<td>{{ tech.quantity }}</td>
+			{% if tech.quantity %}
+				<td>{{ tech.quantity }}</td>
+			{% else %}
+				<td></td>
+			{% endif %}
 		</tr>
 		{% endfor %}
 	</table>
