@@ -5,6 +5,24 @@
 <span class="breadcrumbs"><a href="{% url 'booking:list' %}">Shift</a></span>
 {% endblock %}
 
-{% block content %}
+{% block title %}Shifts - Band Booking{% endblock %}
 
+{% block content %}
+<div class="table table-style">
+	<div class="rowheader">
+		<div class="cell">Role</div>
+		<div class="cell">Band</div>
+		<div class="cell">Venue</div>
+		<div class="cell">Date</div>
+	</div>
+
+	{% for shift in shift_list %}
+	<a href="{% url 'booking:detail' shift.booking.id %}" class="row">
+		<div class="cell" data-col="Role">{{ shift.name }}</div>
+		<div class="cell" data-col="Band">{{ shift.booking.band.name }}</div>
+		<div class="cell" data-col="Venue">{{ shift.booking.venue.name }}</div>
+		<div class="cell" data-col="Date">{{ shift.booking.begin|date:"d M Y H:i" }}</div>
+	</a>
+	{% endfor %}
+</div>
 {% endblock %}

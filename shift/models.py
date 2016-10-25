@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Group(models.Model):
 	name = models.CharField(max_length=200)
-	members = models.ManyToManyField(User, related_name='shift_groups')
+	members = models.ManyToManyField(User, blank=True, related_name='shift_groups')
 
 	def __str__(self):
 		return self.name
