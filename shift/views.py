@@ -10,5 +10,5 @@ class ShiftListView(ListView):
 		qs = super(ShiftListView, self).get_queryset()
 		qs = qs.filter(user=self.request.user)
 		qs = qs.filter(booking__state=booking.BOOKING_OFFER_ACCEPTED)
-		qs = qs.filter(booking__end__lt=datetime.date.today())
+		qs = qs.filter(booking__end__gt=datetime.date.today())
 		return qs
