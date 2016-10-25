@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^band/', include('band.urls', namespace='band')),
     url(r'^venue/', include('venue.urls', namespace='venue')),
     url(r'^booking/', include('booking.urls', namespace='booking')),
+    url(r'^shift/', include('shift.urls', namespace='shift')),
     url(r'^admin/', admin.site.urls),
 ]

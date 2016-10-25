@@ -292,6 +292,25 @@
 		{% endif %}
 	</table>
 </div>
+
+<div class="booking-box">
+	<div class="booking-box-header">
+		<div>Shifts</div>
+	</div>
+	<table class="booking-table">
+		{% for shift in booking.shifts.all %}
+		<tr>
+			<td>{{ shift.name }}</td>
+			<td>{{ shift.group.name }}</td>
+			<td>{% if shift.user %}{{ shift.user.get_full_name|default:shift.user.username }}{% else %}-{% endif %}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<div class="button-go-to-shifts">
+		<a class="button"  href="{% url 'band:detail' booking.band.slug %}">Go to {{ booking.band.name }}</a>
+	</div>
+</div>
+
 <div class="booking-box">
 	<div class="booking-box-header">
 		<div>Events</div>

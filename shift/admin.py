@@ -7,12 +7,12 @@ class ShiftGroupAdmin(admin.ModelAdmin):
 
 @admin.register(models.Shift)
 class ShiftAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('name', 'booking', 'group', 'user',)
 
 @admin.register(models.DefaultShiftSet)
 class DefaultShiftSetAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('name', 'venue',)
 
 @admin.register(models.DefaultShift)
 class DefaultShiftAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('name', 'shiftset', 'group',)
