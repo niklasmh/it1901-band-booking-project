@@ -151,6 +151,17 @@ class BookingDetailView(JsonDetailMixin, DetailView):
 	model = models.Booking
 	pk_url_kwarg = 'booking'
 
+class TechnicalRequirementCreateView(CreateView):
+	model = models.TechnicalRequirement
+	form = forms.TechnicalRequirementForm
+	fields = ('item', 'quantity',)
+	def dispatch(self, request, booking, *args, **kwargs):
+		self.booking = get_object_or_404(models.Booking, id=booking)
+		return super(TechnicalRequirementCreateView, self).dispatch(request, booking=booking, *args, **kwargs)
+	def form_valid(self, form):
+		form.instance.booking = self.booking
+		return super(TechnicalRequirementCreateView, self).form_valid(form)
+
 class BookingCreateView(PermissionRequiredMixin, CreateView):
 	permission_required = 'booking.add_booking'
 	model = models.Booking

@@ -7,6 +7,7 @@ booking = [
     url(r'^transition/$', views.BookingTransitionView.as_view(), name='transition'),
     url(r'^change/$', views.BookingUpdateView.as_view(), name='change'),
 	url(r'^report/edit/$', views.BookingReportCreateView.as_view(), name='report_edit'),
+	url(r'^tecnicalreq/add/$', views.TechnicalRequirementCreateView.as_view(), name='techreq_add'),
 ]
 
 urlpatterns = [

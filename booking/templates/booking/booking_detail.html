@@ -231,17 +231,31 @@
 
 {% endif %}
 
+<div class="booking-box">
+	<div class="booking-box-header">
+		<div>Technical Requirements:</div>
+	</div>
+	<table class="booking-table">
+		{% for tech in booking.tech_req.all %}
+		<tr>
+			<th>{{ tech.item }}</th>
+			<td>{{ tech.quantity }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<form action="{% url 'booking:techreq_add' booking.id %}" method="POST">
+		{% csrf_token %}
+		<input type="text" name="item"/>
+		<input type="number" name="quantity"/>
+		<input type="submit" value="Legg til" class="submit-button"/>
+	</form>
+</div>
 
 <div class="booking-box">
 	<div class="booking-box-header">
-		{% if booking.tech_req %}
-			<div>Technical Requirements:</div>
-		{% else %}
-			<div>Booking Status</div>
-		{% endif %}
+		<div>Booking Status</div>
 	</div>
 	<table class="booking-table">
-
 		{% if booking.state == ' ' %}
 			<tr><th>Waiting for the booking to be accepted internally</th></tr>
 		{% elif booking.state == 'a' %}
@@ -251,16 +265,7 @@
 		{% elif booking.state == 'b' and not booking.is_past_due %}
 			<tr><th>The booking is accepted :)</th></tr>
 		{% elif booking.state == 'b' %}
-			{% if booking.tech_req %}
-				{% for tech in booking.tech_req.all %}
-					<tr>
-						<td>{{ tech.item }}</td>
-						<td>{{ booking.quantity }}</td>
-					</tr>
-				{% endfor %}
-				{% else %}
 			<tr><th>The booking is finished :)</th></tr>
-			{% endif %}
 		{% endif %}
 		{% if booking.state == ' ' and perms.booking.accept_booking or booking.state == 'e' %}
 		<tr>

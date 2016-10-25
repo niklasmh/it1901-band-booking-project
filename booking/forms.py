@@ -41,3 +41,8 @@ class BookingTransitionForm(forms.Form):
 	accept = forms.BooleanField(required = False)
 	reject = forms.BooleanField(required = False)
 	send_offer = forms.BooleanField(required = False)
+
+class TechnicalRequirementForm(forms.ModelForm):
+	class Meta:
+		model = models.TechnicalRequirement
+		fields = ('item', 'quantity',)
