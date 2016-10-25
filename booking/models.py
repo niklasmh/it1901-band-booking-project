@@ -200,7 +200,7 @@ class Report(models.Model):
 	def get_absolute_url(self):
 			return reverse('booking:detail', kwargs={ 'booking': self.booking.id })
 
-class Technical_Requirements(models.Model):
+class TechnicalRequirements(models.Model):
 	booking = models.ForeignKey(Booking, related_name="tech_req")
 	item = models.TextField()
 	quantity = models.IntegerField(blank=True)
