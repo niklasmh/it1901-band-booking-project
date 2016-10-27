@@ -3,6 +3,8 @@ from django.utils.encoding import escape_uri_path
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from json_views.views import JsonListMixin, JsonDetailMixin, OrderableMixin, FilterMixin
+from django.contrib.auth.models import User
+from django.urls import reverse
 from band import models
 import requests, json
 
@@ -72,7 +74,7 @@ class BandCreateView(PermissionRequiredMixin, CreateView):
 				form.instance.save()
 				for genre in range(0,len(artist['genres'])):
 					if models.Genre.objects.filter(name=artist['genres'][genre]).exists():
-						models.Genre.objects.get(name=artist['genres'][genre]).bands.add(form.instance)
+	 					models.Genre.objects.get(name=artist['genres'][genre]).bands.add(form.instance)
 					else:
 						g = models.Genre(name=artist['genres'][genre])
 						g.save()
@@ -85,3 +87,24 @@ class BandUpdateView(PermissionRequiredMixin, UpdateView):
 	pk_url_kwarg = 'band_pk'
 	slug_url_kwarg = 'band_slug'
 	fields = '__all__'
+
+class BandCreateMemberView(PermissionRequiredMixin, CreateView):
+	template_name = 'band/band_form.html'
+	permission_required = 'band.add_band'
+	model = User
+	fields = ('username', 'first_name', 'last_name', 'email')
+	def dispatch(self, request, *args, **kwargs):
+		dt = {'slug': kwargs.get('band_slug')} if 'band_slug' in kwargs else {'id': kwargs.get('band_pk')}
+		self.band = models.Band.objects.get(**dt)
+		return super(BandCreateMemberView, self).dispatch(request, *args, **kwargs)
+	def form_valid(self, form):
+		form.instance.password = ''
+		form.instance.is_active = True
+		ret = super(BandCreateMemberView, self).form_valid(form)
+		print(self.band, self.object)
+		self.band.members.add(self.object)
+		return ret
+
+	def get_success_url(self):
+		return reverse('band:detail', kwargs=self.kwargs)
+

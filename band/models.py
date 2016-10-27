@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Band(models.Model):
 	name = models.CharField(max_length=200)
@@ -11,6 +12,7 @@ class Band(models.Model):
 	slug = models.SlugField(null=True, editable=False)
 	concerts = models.PositiveIntegerField(default=0)
 	sold_albums = models.PositiveIntegerField(default=0)
+	members = models.ManyToManyField(User, blank=True, related_name='memberships')
 
 	def __str__(self):
 		return self.name
@@ -23,6 +25,11 @@ class Band(models.Model):
 
 	def get_all_genres(self):
 		return ', '.join([str(i.name) for i in self.genres.all()])
+
+	class Meta:
+		permissions = (
+			("view_managing_bands", "View managing bands"),
+		)
 
 class Genre(models.Model):
 	name = models.CharField(max_length=50)

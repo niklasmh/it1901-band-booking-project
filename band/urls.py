@@ -5,6 +5,7 @@ from band import views
 band = [
 	url(r'^$', views.BandDetailView.as_view(), name='detail'),
 	url(r'^update/$', views.BandUpdateView.as_view(), name='update'),
+	url(r'^member/add/$', views.BandCreateMemberView.as_view(), name='member_add'),
 ]
 
 urlpatterns = [
