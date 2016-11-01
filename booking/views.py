@@ -170,6 +170,8 @@ class TechnicalRequirementCreateView(CreateView):
 	def form_valid(self, form):
 		form.instance.booking = self.booking
 		return super(TechnicalRequirementCreateView, self).form_valid(form)
+	def form_invalid(self, form):
+		return HttpResponseRedirect(reverse('booking:detail', kwargs={'booking': self.booking.id}))
 
 class BookingCreateView(PermissionRequiredMixin, CreateView):
 	permission_required = 'booking.add_booking'
