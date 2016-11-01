@@ -14,22 +14,23 @@ class BookingForm(forms.ModelForm):
 		begin = cleaned_data.get('begin')
 		end = cleaned_data.get('end')
 
-		if begin > end:
-			errors.append(forms.ValidationError(
-				"The event cannot end before it starts."
-			))
+		if venue and begin and end:
+			if begin > end:
+				errors.append(forms.ValidationError(
+					"The event cannot end before it starts."
+				))
 
-		qs = models.Booking.objects.filter(venue=venue,
-										   begin__date=begin.date(),
-										   state__in=models.BOOKING_IS_ACCEPTED)
-		if self.original_booking:
-			qs = qs.exclude(id=self.original_booking.id)
+			qs = models.Booking.objects.filter(venue=venue,
+											begin__date=begin.date(),
+											state__in=models.BOOKING_IS_ACCEPTED)
+			if self.original_booking:
+				qs = qs.exclude(id=self.original_booking.id)
 
-		if len(qs) > 0:
-			errors.append(forms.ValidationError(
-				"The venue %(venue)s is already in use on this day.",
-				params={'venue': venue}
-			))
+			if len(qs) > 0:
+				errors.append(forms.ValidationError(
+					"The venue %(venue)s is already in use on this day.",
+					params={'venue': venue}
+				))
 		if errors:
 			raise forms.ValidationError(errors)
 		return cleaned_data
