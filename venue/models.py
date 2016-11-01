@@ -26,3 +26,8 @@ class Venue(models.Model):
 				if bookings[booking].band.genres.all()[genre].name not in genres:
 					genres.append(bookings[booking].band.genres.all()[genre].name)
 		return genres
+
+	class Meta:
+		permissions = (
+			("view_venue", "View venue"),
+		)

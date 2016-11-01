@@ -29,6 +29,7 @@ class Band(models.Model):
 	class Meta:
 		permissions = (
 			("view_managing_bands", "View managing bands"),
+			("view_booking", "View booking"),
 		)
 
 class Genre(models.Model):

@@ -5,9 +5,9 @@
 
 <h1 class="title">Overview</h1>
 <div class="overview">
-	<a href="{% url 'band:list' %}" class="overview-element"><p>BANDS</p></a>
-	<a href="{% url 'venue:list' %}" class="overview-element"><p>VENUES</p></a>
-	<a href="{% url 'booking:list' %}" class="overview-element"><p>BOOKINGS</p></a>
-	<a href="{% url 'shift:list' %}" class="overview-element"><p>SHIFTS</p></a>
+	{% if perms.band.view_band or perms.band.view_managing_bands %}<a href="{% url 'band:list' %}" class="overview-element"><p>BANDS</p></a>{% endif %}
+	{% if perms.venue.view_venue %}<a href="{% url 'venue:list' %}" class="overview-element"><p>VENUES</p></a>{% endif %}
+	{% if perms.booking.view_booking or perms.band.view_managing_bands %}<a href="{% url 'booking:list' %}" class="overview-element"><p>BOOKINGS</p></a>{% endif %}
+	{% if perms.shift.view_shift %}<a href="{% url 'shift:list' %}" class="overview-element"><p>SHIFTS</p></a>{% endif %}
 </div>
 {% endblock %}

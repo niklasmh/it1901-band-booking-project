@@ -19,6 +19,11 @@ class Shift(models.Model):
 	def __str__(self):
 		return "%s - %s" % (self.booking, self.name)
 
+	class Meta:
+		permissions = (
+			("view_shift", "View shift"),
+		)
+
 class DefaultShiftSet(models.Model):
 	venue = models.ForeignKey(Venue, related_name='shiftsets')
 	name = models.CharField(max_length=200)

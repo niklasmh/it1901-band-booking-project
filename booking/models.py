@@ -139,6 +139,7 @@ class Booking(models.Model):
 	class Meta:
 		permissions = (
 			("accept_booking", "Accept or reject booking"),
+			("view_booking", "View booking"),
 		)
 
 BOOKING_EVENT_CREATE = 0

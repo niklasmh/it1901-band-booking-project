@@ -11,6 +11,7 @@ from json_views.views import JsonListMixin, JsonDetailMixin, OrderableMixin, Fil
 from booking import models, forms
 from datetime import datetime, date, timedelta
 from venue.models import Venue
+from band.views import BandMemberViewableMixin
 import itertools
 import re
 import calendar
@@ -66,7 +67,8 @@ def compare_week(lhs, rhs):
 	rhs = rhs + timedelta(days=6-rhs.weekday())
 	return lhs < rhs
 
-class BookingListView(JsonListMixin, OrderableMixin, ListView):
+class BookingListView(BandMemberViewableMixin, PermissionRequiredMixin, JsonListMixin, OrderableMixin, ListView):
+	permission_required = 'booking.view_booking'
 	ordering = 'begin'
 	model = models.Booking
 	allowed_filters = {
@@ -77,59 +79,62 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 		context = super(BookingListView, self).get_context_data(**kwargs)
 		today = date.today()
 
-		if self.request.GET.get('list_type', None) == 'month':
-			monthlist_begin, monthlist_end = None, None
-			venue = Venue.objects.first()
-			month = today.month
-			year = today.year
-			if 'monthlist_venue' in self.request.GET:
-				venue = Venue.objects.get(slug=self.request.GET.get('monthlist_venue'))
-			if 'monthlist_month' in self.request.GET:
-				try:
-					month = int(self.request.GET.get('monthlist_month'))
-				except ValueError:
-					pass
-			if 'monthlist_year' in self.request.GET:
-				try:
-					year = int(self.request.GET.get('monthlist_year'))
-				except ValueError:
-					pass
-			try:
-				monthlist_begin, monthlist_end = get_month(date(year, month, 1))
-			except ValueError:
+		if not self.is_manager:
+			if self.request.GET.get('list_type', None) == 'month':
+				monthlist_begin, monthlist_end = None, None
+				venue = Venue.objects.first()
 				month = today.month
 				year = today.year
-				monthlist_begin, monthlist_end = get_month(date(year, month, 1))
-			context['monthlist'] = {
-				'year': str(year),
-				'month': str(month),
-				'months': [date(year, m, 1) for m in range(1,13)],
-				'weeks': [first_day_of_week(monthlist_begin + timedelta(days=7*i)) for i in range(6) if compare_week(monthlist_begin + timedelta(days=7*i), monthlist_end - timedelta(days=1))],
-				'venue_this': venue,
-				'venues': Venue.objects.filter(active=True),
-				'list': self.model.objects.filter(state__in=models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,),
-												  begin__range=(monthlist_begin, monthlist_end),
-												  venue=venue),
-			}
-		else:
-			weeklist_begin, weeklist_end = get_weekspan(today)
-			if 'week' in self.request.GET:
-				m = re.match("([0-9]{4})-W([0-9]+)", self.request.GET.get('week'))
-				if m:
-					year, week = m.group(1, 2)
-					weeklist_begin, weeklist_end = get_weekspan_from_number(week, year)
+				if 'monthlist_venue' in self.request.GET:
+					venue = Venue.objects.get(slug=self.request.GET.get('monthlist_venue'))
+				if 'monthlist_month' in self.request.GET:
+					try:
+						month = int(self.request.GET.get('monthlist_month'))
+					except ValueError:
+						pass
+				if 'monthlist_year' in self.request.GET:
+					try:
+						year = int(self.request.GET.get('monthlist_year'))
+					except ValueError:
+						pass
+				try:
+					monthlist_begin, monthlist_end = get_month(date(year, month, 1))
+				except ValueError:
+					month = today.month
+					year = today.year
+					monthlist_begin, monthlist_end = get_month(date(year, month, 1))
+				context['monthlist'] = {
+					'year': str(year),
+					'month': str(month),
+					'months': [date(year, m, 1) for m in range(1,13)],
+					'weeks': [first_day_of_week(monthlist_begin + timedelta(days=7*i)) for i in range(6) if compare_week(monthlist_begin + timedelta(days=7*i), monthlist_end - timedelta(days=1))],
+					'venue_this': venue,
+					'venues': Venue.objects.filter(active=True),
+					'list': self.model.objects.filter(state__in=models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,),
+													begin__range=(monthlist_begin, monthlist_end),
+													venue=venue),
+				}
+			else:
+				weeklist_begin, weeklist_end = get_weekspan(today)
+				if 'week' in self.request.GET:
+					m = re.match("([0-9]{4})-W([0-9]+)", self.request.GET.get('week'))
+					if m:
+						year, week = m.group(1, 2)
+						weeklist_begin, weeklist_end = get_weekspan_from_number(week, year)
 
-			context['weeklist'] = {
-				'week': (weeklist_begin),
-				'week_next': (weeklist_begin + timedelta(days=7)),
-				'week_previous': (weeklist_begin - timedelta(days=7)),
-				'list': self.model.objects.filter(state__in=models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,),
-												begin__range=(weeklist_begin, weeklist_end)),
-			}
+				context['weeklist'] = {
+					'week': (weeklist_begin),
+					'week_next': (weeklist_begin + timedelta(days=7)),
+					'week_previous': (weeklist_begin - timedelta(days=7)),
+					'list': self.model.objects.filter(state__in=models.BOOKING_IS_ACCEPTED + (models.BOOKING_NONE,),
+													begin__range=(weeklist_begin, weeklist_end)),
+				}
 		return context
 
 	def get_queryset(self):
 		qs = super(BookingListView, self).get_queryset()
+		if self.is_manager:
+			qs = qs.filter(band__members__id=self.request.user.id)
 		if 'date' in self.request.GET:
 			qs = qs.filter(begin__date=datetime.strptime(self.request.GET.get('date'), '%Y-%m-%d'))
 		if 'venue' in self.request.GET:
@@ -147,9 +152,13 @@ class BookingListView(JsonListMixin, OrderableMixin, ListView):
 		)
 		return qs
 
-class BookingDetailView(JsonDetailMixin, DetailView):
+class BookingDetailView(BandMemberViewableMixin, PermissionRequiredMixin, JsonDetailMixin, DetailView):
+	permission_required = 'booking.view_booking'
 	model = models.Booking
 	pk_url_kwarg = 'booking'
+	def is_manager_for_object(self):
+		obj = get_object_or_404(models.Booking, id=self.kwargs['booking'])
+		return self.request.user in obj.band.members.all()
 
 class TechnicalRequirementCreateView(CreateView):
 	model = models.TechnicalRequirement

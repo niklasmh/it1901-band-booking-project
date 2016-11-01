@@ -1,0 +1,45 @@
+{% extends "band/band_list.html" %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<span class="breadcrumbs">
+	<a href="{% url 'band:detail' band.slug %}">{{ band }}</a>
+</span>
+<span class="breadcrumbs">
+	{% if form.initial %}
+	<a href="">Edit member</a>
+	{% else %}
+	<a href="">Create member</a>
+	{% endif %}
+</span>
+{% endblock %}
+
+{% block title %}
+{% if form.initial %}
+{{ user.get_full_name|default:user.username }} - Edit
+{% else %}
+Create
+{% endif %}
+ - {{ band }} - Band - Band Booking
+{% endblock %}
+{% block content %}
+<h1>
+	{% if form.initial %}
+	{{ user.get_full_name|default:user.username }} <small>edit</small>
+	{% else %}
+	Band member <small>create</small>
+	{% endif %}
+</h1>
+<form class="create-form" method="POST">
+	{% csrf_token %}
+	<table class="create-booking-table">
+		{{ form.as_table }}
+		<tr>
+			<td></td>
+			<td>
+				<button class="submit-button" type="submit" value="Add">Add</button>
+			</td>
+		</tr>
+	</table>
+</form>
+{% endblock %}

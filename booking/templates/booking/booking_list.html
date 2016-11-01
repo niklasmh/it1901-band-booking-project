@@ -16,10 +16,14 @@
 	<div class="layout-cell corner-spacing">
 		<h1 class="title">Bookings</h1>
 		<div class="controls">
+			{% if perms.booking.create_booking %}
 			<a href="{% url 'booking:create' %}" class="button"><i class="fa fa-plus"></i> Add booking</a>
+			{% endif %}
+			{% if not is_manager %}
 			<a href="?{% url_replace request 'list_type' monthlist|yesno:'week,month' %}" class="button">
 				{{ weeklist|yesno:'Month,Week' }}
 			</a>
+			{% endif %}
 		</div>
 	</div>
 </div>
@@ -76,7 +80,7 @@
 		{% endfor %}
 	</div>
 </div>
-{% else %}
+{% elif monthlist %}
 <div class="layout-cell center">
 	<form action="" method="get">
 		<input type="text" name="monthlist_year" value="{{ monthlist.year }}">

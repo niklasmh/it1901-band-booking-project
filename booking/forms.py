@@ -46,3 +46,4 @@ class TechnicalRequirementForm(forms.ModelForm):
 	class Meta:
 		model = models.TechnicalRequirement
 		fields = ('item', 'quantity',)
+
