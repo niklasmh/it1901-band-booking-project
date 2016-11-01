@@ -24,6 +24,7 @@ class BandMemberViewableMixin:
 class BandListView(BandMemberViewableMixin, PermissionRequiredMixin, JsonListMixin, OrderableMixin, FilterMixin, ListView):
 	permission_required = 'band.view_band'
 	ordering = 'name'
+	fields = ('id', 'name', 'contact_person', 'contact_phone', 'contact_email', 'spotify_artist_id', 'slug', 'concerts', 'sold_albums')
 	allowed_filters = {
 		"genre": "genres__name"
 	}
@@ -40,6 +41,7 @@ class BandDetailView(BandMemberViewableMixin, PermissionRequiredMixin, JsonDetai
 	model = models.Band
 	pk_url_kwarg = 'band_pk'
 	slug_url_kwarg = 'band_slug'
+	fields = ('id', 'name', 'contact_person', 'contact_phone', 'contact_email', 'spotify_artist_id', 'slug', 'concerts', 'sold_albums')
 
 	def get_context_data(self, **kwargs):
 		context = super(BandDetailView, self).get_context_data(**kwargs)
