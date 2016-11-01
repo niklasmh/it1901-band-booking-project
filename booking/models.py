@@ -162,7 +162,6 @@ class BookingEvent(models.Model):
 	user = models.ForeignKey(User)
 
 	def __str__(self):
-		print("Booking transitioned from state %(state_from) to state %(state_to) by %(trans)")
 		return {
 			BOOKING_EVENT_CREATE: lambda i: "Booking created",
 			BOOKING_EVENT_TRANSITION: lambda i: "Booking transitioned from state %(state_from)s to state %(state_to)s by %(trans)s" % {

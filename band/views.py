@@ -12,7 +12,6 @@ class BandMemberViewableMixin:
 	def has_permission(self):
 		perm = super(BandMemberViewableMixin, self).has_permission()
 		manager_perm = self.request.user.has_perms(['band.view_managing_bands'])
-		print(self.request.user.get_all_permissions(), manager_perm, self.is_manager_for_object())
 		self.is_manager = manager_perm and self.is_manager_for_object() and not perm
 		return perm or self.is_manager
 	def is_manager_for_object(self):
