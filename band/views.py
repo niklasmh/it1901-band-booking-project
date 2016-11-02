@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.encoding import escape_uri_path
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
 from json_views.views import JsonListMixin, JsonDetailMixin, OrderableMixin, FilterMixin
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -134,6 +136,8 @@ class BandCreateMemberView(PermissionRequiredMixin, CreateView):
 		form.instance.is_active = True
 		ret = super(BandCreateMemberView, self).form_valid(form)
 		self.band.members.add(self.object)
+		content_type = ContentType.objects.get_for_model(models.Band)
+		self.object.user_permissions.add(Permission.objects.get(codename='view_managing_bands', content_type=content_type))
 		return ret
 
 	def get_success_url(self):
