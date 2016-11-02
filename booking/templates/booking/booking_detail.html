@@ -271,6 +271,7 @@
 		{% elif booking.state == 'b' %}
 			<tr><th>The booking is finished :)</th></tr>
 		{% endif %}
+		{% if perms.booking.transition_booking %}
 		{% if booking.state == ' ' and perms.booking.accept_booking or booking.state == 'e' %}
 		<tr>
 			<th>
@@ -301,6 +302,7 @@
 					</form>
 				</th>
 			</tr>
+		{% endif %}
 		{% endif %}
 	</table>
 </div>

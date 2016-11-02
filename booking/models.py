@@ -139,6 +139,7 @@ class Booking(models.Model):
 	class Meta:
 		permissions = (
 			("accept_booking", "Accept or reject booking"),
+			("transition_booking", "Transition the booking state"),
 			("view_booking", "View booking"),
 		)
 

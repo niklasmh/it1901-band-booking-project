@@ -45,7 +45,7 @@ def do_transition(request, booking, transition):
 
 	new_state = booking.state_transition_legal(transition)
 	if new_state:
-		if new_state in models.BOOKING_IS_ACCEPTED:
+		if new_state == models.BOOKING_OFFER_ACCEPTED:
 			qs = models.Booking.objects.filter(venue=booking.venue,
 											   begin__date=booking.begin.date(),
 											   state__in=models.BOOKING_IS_ACCEPTED)
@@ -266,7 +266,8 @@ class BookingUpdateView(PermissionRequiredMixin, CreateView, SingleObjectMixin):
 				context.update(kwargs)
 		return super(BookingUpdateView, self).get_context_data(**context)
 
-class BookingTransitionView(FormView):
+class BookingTransitionView(PermissionRequiredMixin, FormView):
+	permission_required = 'booking.transition_booking'
 	form_class = forms.BookingTransitionForm
 
 	def get(self, request, booking, **kwargs):
