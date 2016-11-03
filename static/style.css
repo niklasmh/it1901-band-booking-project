@@ -1055,19 +1055,31 @@ Pseudo ::-webkit-search-results-decoration element
 	color: #fff;
 	background-color: #a03033;
 	padding: 7px;
-	vertical-align: middle;
+	vertical-align: bottom;
 	display: inline-block;
 	width: 16px;
 	text-align: center;
 	font-family: FontAwesome;
 }
 
-.login tr:first-child > td:before {
+.login input {
+	height: 30px;
+}
+
+.login tr:nth-last-child(3) > td:before {
    	content: "\f007";
 }
 
-.login tr:nth-child(2) > td:before {
+.login tr:nth-last-child(2) > td:before {
    	content: "\f084";
+}
+
+.login tr:nth-last-child(4) > td > .errorlist {
+    background-color: #a03033;
+    list-style: none;
+    width: 215px;
+    padding: 8px 16px;
+    color: #fff;
 }
 
 .login tr:last-child > td {
