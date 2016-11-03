@@ -1,0 +1,38 @@
+server {
+	listen band.spork.no:80;
+	server_name band.spork.no;
+	rewrite ^ https://band.spork.no$request_uri? permanent;
+}
+
+server {
+	listen band.spork.no:443;
+
+	server_name band.spork.no;
+
+	access_log /var/log/nginx/band.spork.no.access.log;
+	error_log /var/log/nginx/band.spork.no.error.log;
+
+	ssl on;
+	ssl_certificate /etc/letsencrypt/live/band.spork.no/cert.pem;
+	ssl_certificate_key /etc/letsencrypt/live/band.spork.no/privkey.pem;
+
+	keepalive_timeout 60;
+	ssl_session_timeout 5m;
+	ssl_session_cache shared:SSL:32m;
+
+	add_header X-Frame-Options "DENY";
+	add_header Strict-Transport-Security max-age=15768000;
+
+	location /static/ {
+		alias /var/www/spork.no/band/static/;
+	}
+
+	location / {
+		proxy_pass http://localhost:5000;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Ssl on;
+		proxy_set_header X-Forwarded-Protocol ssl;
+	}
+}
+
