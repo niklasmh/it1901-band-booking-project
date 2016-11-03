@@ -16,7 +16,7 @@
 	<div class="layout-cell corner-spacing">
 		<h1 class="title">Bookings</h1>
 		<div class="controls">
-			{% if perms.booking.create_booking %}
+			{% if perms.booking.add_booking %}
 			<a href="{% url 'booking:create' %}" class="button"><i class="fa fa-plus"></i> Add booking</a>
 			{% endif %}
 			{% if not is_manager %}
@@ -73,7 +73,11 @@
 			</a>
 			{% endif %}
 			{% else %}
+			{% if perms.booking.add_booking %}
 			<a class="cell" href="{% url 'booking:create' %}?date={{ date.date|date:'Y-m-d' }}&venue={{ venue.venue.slug }}" title="Create booking"></a>
+			{% else %}
+			<p class="cell"></p>
+			{% endif %}
 			{% endif %}
 			{% endfor %}
 		</div>
