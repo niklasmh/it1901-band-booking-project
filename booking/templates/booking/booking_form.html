@@ -73,7 +73,7 @@ const band = document.querySelector("select[name=band]")
 	ticket,
 	ticketNonMember,
 	ticketForSale,
-].forEach(element => {
+].forEach(function (element) {
 	if (typeof element.min !== 'undefined') element.min = 0
 })
 
@@ -90,7 +90,7 @@ function calculateTicket () {
 	* Sjekker om band ID og bandFee er initialisert før vi beregner prisene.
 	*/
 	if (bandID.length && bandFeeValue.length) {
-		getSpotifyDataFromBand(bandID, result => {
+		getSpotifyDataFromBand(bandID, function (result) {
 			bandPop = result.popularity
 
 			if (!bandPop) bandPop = 10
@@ -102,8 +102,8 @@ function calculateTicket () {
 					"Accept": "application/json"
 				}
 			})
-			.then(p => p.json())
-			.then(data => {
+			.then(function (p) { return p.json() })
+			.then(function (data) {
 					ticket.value = (
 						Math.ceil(
 							(
@@ -130,7 +130,6 @@ function calculateTicket () {
 							) * profit
 						)
 					) * 10 + 50
-					console.log(bandPop)
 			})
 		})
 	}
@@ -139,7 +138,7 @@ function calculateTicket () {
 /**
  * Lager en lytter for hvert av elementene som bestemmer prisene.
  */
-[venueGet, bandFee, band].forEach(element => element.addEventListener('input', calculateTicket))
+[venueGet, bandFee, band].forEach(function (element) { element.addEventListener('input', calculateTicket) })
 </script>
 
 {% endblock %}
