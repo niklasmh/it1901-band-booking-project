@@ -54,6 +54,7 @@ body {
 	padding: 0 10px 70px 10px;
 	box-sizing: border-box;
 	display: flex;
+	    min-height: calc(100vh - 70px);
 	flex-direction: column;
 }
 
