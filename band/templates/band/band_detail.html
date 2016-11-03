@@ -61,16 +61,16 @@
 		<h2>Members</h2>
 		<table class="table table-style inline-table">
 			<tr class="rowheader">
-				<td class="cell" colspan="2">
-					<b></b>
-				</td>
+				<td class="cell" colspan="2">{% if band.members.all %}
+					Members connected to band
+				{% endif %}</td>
 			</tr>
 			{% for member in band.members.all %}
-			<tr class="row">
+			<tr class="row members-for-band">
 				<td>{{ member.get_full_name|default:member.username }}</td>
 			</tr>
 			{% endfor %}
-			<tr>
+			<tr class="add-members-for-band">
 				<td><a href="{% url 'band:member_add' band.slug %}" class="button">Add</a></td>
 			</tr>
 		</table>

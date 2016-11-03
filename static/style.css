@@ -486,6 +486,24 @@ select:focus {
 	color: white;
 }
 
+.table-style .rowheader .cell:empty {
+	display: none;
+}
+
+.table-style .members-for-band > td {
+	padding: 4px;
+}
+
+.table-style .add-members-for-band td {
+	padding: 0;
+}
+
+.table-style .add-members-for-band a {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
 .inline-table {
 	width: auto;
 }
