@@ -11,8 +11,8 @@ function getData (url, callback) {
             'Accept': 'application/json'
         }
     })
-    .then(res => res.json())
-    .then(res => res.object)
+    .then(function(res) { return res.json() })
+    .then(function(res) { return res.object })
     .then(callback)
 }
 
@@ -23,9 +23,9 @@ function getData (url, callback) {
  * @param {function} callback The function to recieve the async data.
  */
 function getSpotifyDataFromBand (id, callback) {
-    getData('/band/' + id + '/', (data) => {
+    getData('/band/' + id + '/', function(data) {
         fetch('https://api.spotify.com/v1/artists/' + data.spotify_artist_id + '/')
-        .then(res => res.json())
+        .then(function(res) { return res.json() })
         .then(callback)
     })
 }
