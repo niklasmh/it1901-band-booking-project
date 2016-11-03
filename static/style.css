@@ -51,10 +51,24 @@ body {
 	max-width: 960px;
 	margin: auto;
 	position: relative;
-	padding: 40px 10px 70px 10px;
+	padding: 0 10px 70px 10px;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
+}
+
+@media only screen and (min-device-width: 1024px) {
+	body {
+		overflow: hidden;
+	}
+
+	.content-container {
+		height: calc(100vh - 40px);
+		overflow-y: auto;
+		width: 100%;
+		max-width: 100%;
+		margin-top: 40px;
+	}
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -135,6 +149,11 @@ h6 small {
 
 	.content {
 		padding-top: 20px;
+	}
+
+	.content-container {
+		height: calc(100vh - 80px);
+		margin-top: 0;
 	}
 }
 
@@ -487,7 +506,8 @@ select:focus {
 }
 
 .table-style .rowheader .cell:empty {
-	display: none;
+	padding: 0;
+	margin: 0;
 }
 
 .table-style .members-for-band > td {

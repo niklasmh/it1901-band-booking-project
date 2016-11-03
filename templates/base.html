@@ -26,39 +26,41 @@
 			{% endif %}
 		</header>
 
-		<div class="content">
-			{% if user.is_authenticated %}
-			<nav class="nav-bar">
-				{% if perms.band.view_band or perms.band.view_managing_bands %}<a href="{% url 'band:list' %}" class="tab">Bands</a>{% endif %}
-				{% if perms.venue.view_venue %}<a href="{% url 'venue:list' %}" class="tab">Venues</a>{% endif %}
-				<a href="{% url 'index' %}" class="tab img"></a>
-				{% if perms.booking.view_booking or perms.band.view_managing_bands %}<a href="{% url 'booking:list' %}" class="tab">Bookings</a>{% endif %}
-				{% if perms.shift.view_shift %}<a href="{% url 'shift:list' %}" class="tab">Shifts</a>{% endif %}
-			</nav>
-			{% endif %}
+		<div class="content-container">
+			<div class="content">
+				{% if user.is_authenticated %}
+				<nav class="nav-bar">
+					{% if perms.band.view_band or perms.band.view_managing_bands %}<a href="{% url 'band:list' %}" class="tab">Bands</a>{% endif %}
+					{% if perms.venue.view_venue %}<a href="{% url 'venue:list' %}" class="tab">Venues</a>{% endif %}
+					<a href="{% url 'index' %}" class="tab img"></a>
+					{% if perms.booking.view_booking or perms.band.view_managing_bands %}<a href="{% url 'booking:list' %}" class="tab">Bookings</a>{% endif %}
+					{% if perms.shift.view_shift %}<a href="{% url 'shift:list' %}" class="tab">Shifts</a>{% endif %}
+				</nav>
+				{% endif %}
 
-			{% if messages %}
-			<ul class="messages">
-				{% for message in messages %}
-				<p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-				{% endfor %}
-			</ul>
-			{% endif %}
+				{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+					<p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+					{% endfor %}
+				</ul>
+				{% endif %}
 
-			{% if user.is_authenticated %}
-			<div class="breadcrumb-container">
-				{% block breadcrumbs %}
-				<span class="breadcrumbs"><a href="{% url 'index' %}">Home</a></span>
+				{% if user.is_authenticated %}
+				<div class="breadcrumb-container">
+					{% block breadcrumbs %}
+					<span class="breadcrumbs"><a href="{% url 'index' %}">Home</a></span>
+					{% endblock %}
+				</div>
+				{% endif %}
+
+				{% block content %}
+
 				{% endblock %}
 			</div>
-			{% endif %}
-
-			{% block content %}
-
-			{% endblock %}
+			<footer class="foot">
+					<p><a class="footerlink" href="mailto:baldur.kjelsvik@gmail.com">Contact</a> | Samfundet 2016</p>
+			</footer>
 		</div>
-		<footer class="foot">
-				<p><a class="footerlink" href="mailto:baldur.kjelsvik@gmail.com">Contact</a> | Samfundet 2016</p>
-		</footer>
 	</body>
 </html>
