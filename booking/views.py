@@ -224,7 +224,7 @@ class BookingReportCreateView(PermissionRequiredMixin, FormView, ModelFormMixin)
 		return super(BookingReportCreateView, self).form_valid(form)
 
 class BookingUpdateView(PermissionRequiredMixin, CreateView, SingleObjectMixin):
-	permission_required = 'booking.change_report'
+	permission_required = 'booking.change_booking'
 	model = models.Booking
 	form_class = forms.BookingForm
 	pk_url_kwarg = 'booking'
