@@ -16,7 +16,7 @@ class Venue(models.Model):
 		return reverse('venue:detail', kwargs={ 'venue_slug': self.slug })
 
 	def get_bookings(self):
-		return self.bookings.exclude(report__isnull=True)
+		return self.bookings.filter(state='b')
 
 	def get_genres(self):
 		bookings = self.bookings.exclude(report__isnull=True)
