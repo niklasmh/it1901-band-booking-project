@@ -40,7 +40,7 @@ Så for å avslutte:
 $ deactivate # For å deaktivere.
 ```
 
-### API
+## API
 Systemet bruker et API (Application Programming Interface) over HTTP/HTTPS slik at utviklere kan få tak i informasjon fra databasen, uavhengig av teknologi. Av sikkerhetsgrunner trenger man en sessionid-cookie for å både hente og legge inn data. Kallene vi har åpnet for i API'et er skrevet under. Om flere kall trengs senere kan man ta kontakt med system-administratorene. Systemet returnerer bare JSON-format foreløpig.
 
 #### API kall
