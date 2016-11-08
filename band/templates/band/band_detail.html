@@ -95,8 +95,7 @@
 	</div>
 
 	{% for booking in band.bookings.all %}
-	{% if booking.is_past_due and booking.state_accepted %}
-
+	{% if booking.is_past_due and booking.state == 'b' %}
 	<a href="{% url 'booking:detail' booking.id %}" class="row">
 		<div class="cell" data-col="Date">{{ booking.begin|date:"d M Y H:i" }}</div>
 		<div class="cell" data-col="Venue">{{ booking.venue.name }}</div>
