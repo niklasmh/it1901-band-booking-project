@@ -40,13 +40,25 @@ Så for å avslutte:
 $ deactivate # For å deaktivere.
 ```
 
+### API
+Systemet bruker et API (Application Programming Interface) over HTTP/HTTPS slik at utviklere kan få tak i informasjon fra databasen, uavhengig av teknologi. Av sikkerhetsgrunner trenger man en sessionid-cookie for å både hente og legge inn data. Kallene vi har åpnet for i API'et er skrevet under. Om flere kall trengs senere kan man ta kontakt med system-administratorene. Systemet returnerer bare JSON-format foreløpig.
+
+#### API kall
+
+`GET /band/:[id|navn]`
+
+Gir ut data om band basert på enten id eller navn på band.
+
+`GET /venue/:id`
+
+Gir ut en venue basert på id.
+
 ## Contributors
 
-* Christoffer Almankaas
-* Petter Bemelmans
-* Embrik Einang
 * Baldur Kjelsvik
-* Odd Kristian Kvarmestøl
+* Christoffer Almankaas
+* Embrik Einang
 * Ingrid Medalen
 * Niklas Molnes Hole
-
+* Odd Kristian Kvarmestøl
+* Petter Bemelmans
