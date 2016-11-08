@@ -184,6 +184,8 @@ class Report(models.Model):
 	ticket_sold_non_member = models.IntegerField()
 	additional_information = models.TextField(blank=True)
 
+	def ticket_total(self):
+		return self.ticket_sold_member + self.ticket_sold_non_member
 	def sum_member_tickets(self):
 		return self.ticket_sold_member * self.booking.ticket_price_member
 	def sum_non_member_tickets(self):

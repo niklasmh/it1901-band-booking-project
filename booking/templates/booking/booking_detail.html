@@ -177,12 +177,29 @@
 		</div>
 		<table class="booking-table">
 			<tr>
-				<th>Members attended:</th>
-				<td colspan="2">{{ booking.report.ticket_sold_member }}</td>
+				<th>Members:</th>
+				<td>{{ booking.report.ticket_sold_member }}</td>
+				<td>{{ booking.report.sum_member_tickets }}kr</td>
 			</tr>
 			<tr>
-				<th>Non members attended:</th>
-				<td colspan="2">{{ booking.report.ticket_sold_non_member }}</td>
+				<th>Non members:</th>
+				<td>{{ booking.report.ticket_sold_non_member }}</td>
+				<td>{{ booking.report.sum_non_member_tickets }}kr</td>
+			</tr>
+			<tr>
+				<th>Total:</th>
+				<td>{{ booking.report.ticket_total }}</td>
+				<td>{{ booking.report.sum_tickets }}kr</td>
+			</tr>
+			<tr>
+				<th>Band fee:</th>
+				<td></td>
+				<td>-{{ booking.band_fee }}kr</td>
+			</tr>
+			<tr>
+				<th>Total:</th>
+				<td></td>
+				<td>{{ booking.report.sum }}kr</td>
 			</tr>
 			{% if booking.report.additional_information %}
 			<tr>
