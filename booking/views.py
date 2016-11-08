@@ -45,7 +45,7 @@ def do_transition(request, booking, transition):
 
 	new_state = booking.state_transition_legal(transition)
 	if new_state:
-		if new_state == models.BOOKING_OFFER_ACCEPTED:
+		if new_state in models.BOOKING_IS_ACCEPTED:
 			qs = models.Booking.objects.filter(venue=booking.venue,
 											   begin__date=booking.begin.date(),
 											   state__in=models.BOOKING_IS_ACCEPTED)
